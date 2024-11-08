@@ -11,6 +11,9 @@ public class BattleSystem : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject enemyPrefab1;
 
+    public WandObject wand1;
+    public WandObject wand2;
+
     public Transform playerSpawn;
     public Transform enemySpawn1;
 
@@ -47,9 +50,14 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-    IEnumerator WandCast()
+    IEnumerator WandCast1()
     {
-        bool isDead = enemyUnit1.TakeDamage(5);
+        wand1.CalculateValues();
+
+        bool isDead = enemyUnit1.TakeDamage(wand1.damageValue);
+
+        playerUnit.HealDamage(wand1.healValue);
+        playerUnit.GainShield(wand1.shieldValue);
 
         enemyHUD1.SetHP(enemyUnit1.currentHP);
         Debug.Log("Casted Wand!");
@@ -116,6 +124,6 @@ public class BattleSystem : MonoBehaviour
             return;
         }
 
-        StartCoroutine(WandCast());
+        StartCoroutine(WandCast1());
     }
 }
