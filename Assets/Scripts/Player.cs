@@ -4,8 +4,8 @@ public class Player : Unit
 {
     public int maxMana;
     public int currentMana;
-    
-    public bool ManaChange(int manaChange)
+
+    public bool ManaChange(int manaChange, bool casting)
     {
         if (currentMana + manaChange > maxMana)
         {
@@ -14,6 +14,10 @@ public class Player : Unit
         }
         else if (currentMana + manaChange < 0)
         {
+            if (casting)
+            {
+                return true;
+            }
             currentMana = 0;
             return true;
         }

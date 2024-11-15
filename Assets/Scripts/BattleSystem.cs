@@ -58,7 +58,7 @@ public class BattleSystem : MonoBehaviour
 
         wand1.CalculateValues();
 
-        if (playerUnit.ManaChange(wand1.ManaCost))
+        if (playerUnit.ManaChange(wand1.ManaCost,true))
         {
             Debug.Log("Breaking!");
             //playerUnit.ManaChange(wand1.ManaCost * -1);
@@ -99,7 +99,7 @@ public class BattleSystem : MonoBehaviour
 
     void PlayerTurn()
     {
-        playerUnit.ManaChange(3);
+        playerUnit.ManaChange(3,false);
         playerUnit.ResetShield();
         playerHUD.SetHUD(playerUnit);
         playerHUD.SetMana(playerUnit);
