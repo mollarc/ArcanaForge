@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public abstract class Unit : MonoBehaviour
 {
     public string unitName;
     public int maxHP;
@@ -24,7 +24,14 @@ public class Unit : MonoBehaviour
 
     public void HealDamage(int healing)
     {
-        currentHP += healing;
+        if (maxHP - currentHP <= healing)
+        {
+            currentHP = maxHP;
+        }
+        else
+        {
+            currentHP += healing;
+        }
     }
 
     public void GainShield(int shield)

@@ -7,11 +7,17 @@ public class WandObject : MonoBehaviour
     public int typeSlots;
     public int modifierSlots;
     public int shapeSlots;
-    public int healValue = 0;
-    public int damageValue = 0;
-    public int shieldValue = 0;
-    public float modifierValue = 1;
+    private int manaCost;
+    private int healValue;
+    private int damageValue;
+    private int shieldValue;
+    private float modifierValue;
     public List<WandComponents> wandComponents= new List<WandComponents>();
+
+    public int HealValue { get => healValue; set => healValue = value; }
+    public int DamageValue { get => damageValue; set => damageValue = value; }
+    public int ShieldValue { get => shieldValue; set => shieldValue = value; }
+    public int ManaCost { get => manaCost; set => manaCost = value; }
 
     public WandObject(string _wandName, int _typeSlots, int _modifierSlots, int _shapeSlots)
     {
@@ -34,30 +40,47 @@ public class WandObject : MonoBehaviour
 
     public void CalculateValues()
     {
-        foreach(var wandComponent in wandComponents)
+        ResetValues();
+        
+        foreach (var wandComponent in wandComponents)
         {
+            manaCost += wandComponent.manaCost;
             healValue += wandComponent.healValue;
             damageValue += wandComponent.damageValue;
             shieldValue += wandComponent.shieldValue;
             modifierValue += wandComponent.modifierValue;
-        }
 
+            //Debug.Log(wandComponent.healValue);
+            //Debug.Log(wandComponent.damageValue);
+            //Debug.Log(wandComponent.shieldValue);
+            //Debug.Log(wandComponent.modifierValue);
+        }
+        Debug.Log(healValue);
+        Debug.Log(damageValue);
+        Debug.Log(shieldValue);
+        //Debug.Log(modifierValue);
+        manaCost *= -1;
         healValue = (int)Mathf.Round(healValue * modifierValue);
         damageValue = (int)Mathf.Round(damageValue * modifierValue);
         shieldValue = (int)Mathf.Round(shieldValue * modifierValue);
+        Debug.Log(healValue);
+        Debug.Log(damageValue);
+        Debug.Log(shieldValue);
     }
 
     public void ResetValues()
     {
+        manaCost = 0;
         healValue = 0;
         damageValue = 0;
         shieldValue = 0;
+        modifierValue = 1;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        ResetValues();
     }
 
     // Update is called once per frame

@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
+public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, CASTING }
 
 public class BattleSystem : MonoBehaviour
 {
@@ -20,8 +21,8 @@ public class BattleSystem : MonoBehaviour
     public BattleHUD playerHUD;
     public BattleHUD enemyHUD1;
 
-    Unit playerUnit;
-    Unit enemyUnit1;
+    Player playerUnit;
+    Enemy enemyUnit1;
 
     public BattleState state;
 
@@ -35,12 +36,13 @@ public class BattleSystem : MonoBehaviour
     IEnumerator SetupBattle()
     {
         GameObject playerGO = Instantiate(playerPrefab, playerSpawn);
-        playerUnit = playerGO.GetComponent<Unit>();
+        playerUnit = playerGO.GetComponent<Player>();
 
         GameObject enemyGO = Instantiate(enemyPrefab1, enemySpawn1);
-        enemyUnit1 = enemyGO.GetComponent<Unit>();
+        enemyUnit1 = enemyGO.GetComponent<Enemy>();
 
         playerHUD.SetHUD(playerUnit);
+        playerHUD.SetHUDPlayer(playerUnit);
         enemyHUD1.SetHUD(enemyUnit1);
 
         yield return new WaitForSeconds(2f);
@@ -52,42 +54,67 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator WandCast1()
     {
+        state = BattleState.CASTING;
+
         wand1.CalculateValues();
 
-        bool isDead = enemyUnit1.TakeDamage(wand1.damageValue);
+        if (playerUnit.ManaChange(wand1.ManaCost))
+        {
+            Debug.Log("Breaking!");
+            //playerUnit.ManaChange(wand1.ManaCost * -1);
+            state = BattleState.PLAYERTURN;
+            yield break;
+        }
+        playerHUD.SetMana(playerUnit);
 
-        playerUnit.HealDamage(wand1.healValue);
-        playerUnit.GainShield(wand1.shieldValue);
+        bool isDead = enemyUnit1.TakeDamage(wand1.DamageValue);
+
+        playerUnit.HealDamage(wand1.HealValue);
+        playerHUD.SetHP(playerUnit.currentHP);
+
+        playerUnit.GainShield(wand1.ShieldValue);
 
         enemyHUD1.SetHP(enemyUnit1.currentHP);
         Debug.Log("Casted Wand!");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
 
-        if(isDead)
+        if (isDead)
         {
             state = BattleState.WON;
             EndBattle();
         }
         else
         {
-            state = BattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurn());
+            state = BattleState.PLAYERTURN;
         }
+    }
+
+    IEnumerator EndTurn()
+    {
+        yield return new WaitForSeconds(0.5f);
+        state = BattleState.ENEMYTURN;
+        StartCoroutine(EnemyTurn());
     }
 
     void PlayerTurn()
     {
+        playerUnit.ManaChange(3);
+        playerUnit.ResetShield();
+        playerHUD.SetHUD(playerUnit);
+        playerHUD.SetMana(playerUnit);
+        enemyHUD1.SetHUD(enemyUnit1);
         Debug.Log("Player's Turn!");
     }
 
     IEnumerator EnemyTurn()
     {
         Debug.Log("Enemy Attacks!");
+        enemyUnit1.ResetShield();
 
         yield return new WaitForSeconds(1f);
 
-        bool isDead = playerUnit.TakeDamage(3);
+        bool isDead = playerUnit.TakeDamage(10);
 
         playerHUD.SetHP(playerUnit.currentHP);
 
@@ -119,11 +146,21 @@ public class BattleSystem : MonoBehaviour
 
     public void OnCastButton()
     {
-        if(state != BattleState.PLAYERTURN)
+        if (state != BattleState.PLAYERTURN)
         {
             return;
         }
 
         StartCoroutine(WandCast1());
+    }
+
+    public void OnEndTurnButton()
+    {
+        if (state != BattleState.PLAYERTURN)
+        {
+            return;
+        }
+
+        StartCoroutine(EndTurn());
     }
 }
