@@ -489,8 +489,8 @@ GameObject:
   m_Component:
   - component: {fileID: 330585546}
   - component: {fileID: 330585545}
-  - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -498,14 +498,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &330585544
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -616,6 +608,20 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &338215481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,6 +1048,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6077016876734134331, guid: 301cc04078ffdac46a11600934b181ef, type: 3}
   enemyPrefab1: {fileID: 2038308319422139699, guid: 52e515224b3a94c4aa60acfd6406db0a, type: 3}
+  wand1: {fileID: 0}
+  wand2: {fileID: 0}
   playerSpawn: {fileID: 1410955257}
   enemySpawn1: {fileID: 272976946}
   playerHUD: {fileID: 1377738806}
@@ -2155,7 +2163,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 974859654}
   hpText: {fileID: 642931960}
+  manaText: {fileID: 0}
   hpSlider: {fileID: 1010252879}
+  manaSlider: {fileID: 0}
 --- !u!1 &1394904609
 GameObject:
   m_ObjectHideFlags: 0
