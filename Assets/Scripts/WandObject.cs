@@ -35,7 +35,6 @@ public class WandObject : MonoBehaviour
     public void RemoveWandComponent(string wandName)
     {
         //Search through list and remove item
-        //Maybe components should be an array? may have future implications if relics get added
     }
 
     public void CalculateValues()

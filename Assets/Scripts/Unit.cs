@@ -10,6 +10,14 @@ public abstract class Unit : MonoBehaviour
     public bool TakeDamage(int dmg)
     {
         dmg -= currentShield;
+        if(currentShield - dmg < 0)
+        {
+            currentShield = 0;
+        }
+        else
+        {
+            currentShield -= dmg;
+        }
         currentHP -= dmg;
 
         if (currentHP <= 0)

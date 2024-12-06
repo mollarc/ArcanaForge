@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,13 +17,23 @@ public class BattleSystem : MonoBehaviour
     public WandObject wand2;
 
     public Transform playerSpawn;
-    public Transform enemySpawn1;
-
     public BattleHUD playerHUD;
+
+    public Transform enemySpawn1;
     public BattleHUD enemyHUD1;
+
+    public Transform enemySpawn2;
+    public BattleHUD enemyHUD2;
+
+    public Transform enemySpawn3;
+    public BattleHUD enemyHUD3;
+
+    public List<Enemy> enemies;
 
     Player playerUnit;
     Enemy enemyUnit1;
+    Enemy enemyUnit2;
+    Enemy enemyUnit3;
 
     public BattleState state;
 
@@ -33,6 +44,11 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(SetupBattle());
     }
 
+    void Update()
+    {
+
+    }
+
     IEnumerator SetupBattle()
     {
         GameObject playerGO = Instantiate(playerPrefab, playerSpawn);
@@ -40,10 +56,20 @@ public class BattleSystem : MonoBehaviour
 
         GameObject enemyGO = Instantiate(enemyPrefab1, enemySpawn1);
         enemyUnit1 = enemyGO.GetComponent<Enemy>();
+        GameObject enemyGO2 = Instantiate(enemyPrefab1, enemySpawn2);
+        enemyUnit2 = enemyGO2.GetComponent<Enemy>();
+        GameObject enemyGO3 = Instantiate(enemyPrefab1, enemySpawn3);
+        enemyUnit3 = enemyGO3.GetComponent<Enemy>();
+
+        enemies.Add(enemyUnit1);
+        enemies.Add(enemyUnit2);
+        enemies.Add(enemyUnit3);
 
         playerHUD.SetHUD(playerUnit);
         playerHUD.SetHUDPlayer(playerUnit);
         enemyHUD1.SetHUD(enemyUnit1);
+        enemyHUD2.SetHUD(enemyUnit2);
+        enemyHUD3.SetHUD(enemyUnit3);
 
         yield return new WaitForSeconds(2f);
 
@@ -109,27 +135,27 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        bool isDead;
         Debug.Log("Enemy Attacks!");
-        enemyUnit1.ResetShield();
-
-        yield return new WaitForSeconds(1f);
-
-        bool isDead = playerUnit.TakeDamage(10);
-
-        playerHUD.SetHP(playerUnit.currentHP);
-
-        yield return new WaitForSeconds(1f);
-
-        if (isDead)
+        foreach (var enemy in enemies)
         {
-            state = BattleState.LOST;
-            EndBattle();
+            enemy.ResetShield();
+            yield return new WaitForSeconds(1f);
+
+            isDead = playerUnit.TakeDamage(10);
+
+            playerHUD.SetHP(playerUnit.currentHP);
+
+            yield return new WaitForSeconds(1f);
+
+            if (isDead)
+            {
+                state = BattleState.LOST;
+                EndBattle();
+            }
         }
-        else
-        {
-            state = BattleState.PLAYERTURN;
-            PlayerTurn();
-        }
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
     }
 
     private void EndBattle()
