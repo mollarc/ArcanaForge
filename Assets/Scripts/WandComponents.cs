@@ -3,6 +3,7 @@ using UnityEngine;
 public class WandComponents : MonoBehaviour
 {
     public string componentName;
+    public string componentType;
     public int manaCost;
     public int healValue;
     public int damageValue;

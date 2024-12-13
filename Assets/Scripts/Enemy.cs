@@ -11,7 +11,9 @@ public class Enemy : Unit
     //Get the GameObject’s mesh renderer to access the GameObject’s material and color
     SpriteRenderer m_Renderer;
 
-    bool target = false;
+    public bool target = false;
+
+    public BattleHUD enemyHUD;
 
     void Start()
     {
@@ -42,5 +44,11 @@ public class Enemy : Unit
     {
         target = true;
         this.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+    }
+
+    public void TargetDeselect()
+    {
+        target = false;
+        this.GetComponentInChildren<SpriteRenderer>().color = m_OriginalColor;
     }
 }

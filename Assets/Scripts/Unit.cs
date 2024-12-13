@@ -7,21 +7,25 @@ public abstract class Unit : MonoBehaviour
     public int currentHP;
     public int currentShield;
 
+    public bool isDead = false;
+
     public bool TakeDamage(int dmg)
     {
-        dmg -= currentShield;
         if(currentShield - dmg < 0)
         {
+            dmg -= currentShield;
             currentShield = 0;
         }
         else
         {
             currentShield -= dmg;
+            dmg = 0;
         }
         currentHP -= dmg;
 
         if (currentHP <= 0)
         {
+            isDead = true;
             return true;
         }
         else

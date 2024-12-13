@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: -6898545311652284167}
   - component: {fileID: 8905856301992956472}
   m_Layer: 0
-  m_Name: Goblin
-  m_TagString: Untagged
+  m_Name: Slime
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,10 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5910c5e5f13f07c4aa5895b3620fb763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Goblin
+  unitName: Sliime
   maxHP: 43
   currentHP: 43
   currentShield: 0
+  isDead: 0
+  target: 0
+  enemyHUD: {fileID: 0}
 --- !u!61 &8905856301992956472
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -84,7 +87,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.12326193, y: 0.6847892}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -94,7 +97,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4, y: 8}
+  m_Size: {x: 9.067439, y: 6.6304216}
   m_EdgeRadius: 0
 --- !u!1 &4108410840082762530
 GameObject:
@@ -107,7 +110,7 @@ GameObject:
   - component: {fileID: 4889364621505021153}
   - component: {fileID: 8915282701702856815}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,7 +125,7 @@ Transform:
   m_GameObject: {fileID: 4108410840082762530}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.03, y: -0.11, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -172,8 +175,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 73c1ef05d7c79704185c31eb56b3c6c8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

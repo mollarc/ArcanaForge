@@ -65,11 +65,15 @@ public class BattleSystem : MonoBehaviour
         enemies.Add(enemyUnit2);
         enemies.Add(enemyUnit3);
 
+        enemyUnit1.enemyHUD = enemyHUD1;
+        enemyUnit2.enemyHUD = enemyHUD2;
+        enemyUnit3.enemyHUD = enemyHUD3;
+
         playerHUD.SetHUD(playerUnit);
         playerHUD.SetHUDPlayer(playerUnit);
-        enemyHUD1.SetHUD(enemyUnit1);
-        enemyHUD2.SetHUD(enemyUnit2);
-        enemyHUD3.SetHUD(enemyUnit3);
+        enemyUnit1.enemyHUD.SetHUD(enemyUnit1);
+        enemyUnit2.enemyHUD.SetHUD(enemyUnit2);
+        enemyUnit3.enemyHUD.SetHUD(enemyUnit3);
 
         yield return new WaitForSeconds(2f);
 
@@ -93,7 +97,13 @@ public class BattleSystem : MonoBehaviour
         }
         playerHUD.SetMana(playerUnit);
 
-        bool isDead = enemyUnit1.TakeDamage(wand1.DamageValue);
+        foreach(Enemy enemy in enemies)
+        {
+            if (enemy.target)
+            {
+                bool isDead = enemy.TakeDamage(wand1.DamageValue);
+            }
+        }
 
         playerUnit.HealDamage(wand1.HealValue);
         playerHUD.SetHP(playerUnit.currentHP);
@@ -101,18 +111,40 @@ public class BattleSystem : MonoBehaviour
         playerUnit.GainShield(wand1.ShieldValue);
 
         enemyHUD1.SetHP(enemyUnit1.currentHP);
+        enemyHUD2.SetHP(enemyUnit2.currentHP);
+        enemyHUD3.SetHP(enemyUnit3.currentHP);
         Debug.Log("Casted Wand!");
 
         yield return new WaitForSeconds(0.5f);
 
-        if (isDead)
+        foreach(var enemy in enemies)
         {
-            state = BattleState.WON;
-            EndBattle();
+            if (enemy.isDead)
+            {
+                enemy.gameObject.SetActive(false);
+                enemy.enemyHUD.gameObject.SetActive(false);
+            }
+            else
+            {
+                state = BattleState.PLAYERTURN;
+            }
         }
-        else
+        foreach(var enemy in enemies)
         {
-            state = BattleState.PLAYERTURN;
+            int count = 0;
+            if (!enemy.isDead)
+            {
+
+            }
+            else
+            {
+                count += 1;
+            }
+            if(count == enemies.Count)
+            {
+                state = BattleState.WON;
+                EndBattle();
+            }
         }
     }
 
@@ -139,16 +171,18 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("Enemy Attacks!");
         foreach (var enemy in enemies)
         {
-            enemy.ResetShield();
-            yield return new WaitForSeconds(1f);
+            if (enemy.gameObject.activeSelf)
+            {
+                enemy.ResetShield();
+                yield return new WaitForSeconds(1f);
 
-            isDead = playerUnit.TakeDamage(10);
+                isDead = playerUnit.TakeDamage(10);
 
-            playerHUD.SetHP(playerUnit.currentHP);
+                playerHUD.SetHP(playerUnit.currentHP);
 
-            yield return new WaitForSeconds(1f);
-
-            if (isDead)
+                yield return new WaitForSeconds(1f);
+            }
+            if (playerUnit.isDead)
             {
                 state = BattleState.LOST;
                 EndBattle();
@@ -188,5 +222,19 @@ public class BattleSystem : MonoBehaviour
         }
 
         StartCoroutine(EndTurn());
+    }
+
+    public void MarkTargets()
+    {
+
+    }
+
+    public void MarkTargets(Enemy _enemy)
+    {
+        foreach(Enemy enemy in enemies)
+        {
+            enemy.TargetDeselect();
+        }
+        _enemy.TargetSelect();
     }
 }

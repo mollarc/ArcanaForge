@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
+    public BattleSystem battleSystem;
     private Camera _mainCamera;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +36,11 @@ public class InputHandler : MonoBehaviour
             return;
         }
 
+        if(rayhit.collider.gameObject.tag == "Enemy")
+        {
+            Enemy enemy = (Enemy)rayhit.collider.gameObject.GetComponent<Enemy>();
+            battleSystem.MarkTargets(enemy);
+        }
         Debug.Log(rayhit.collider.gameObject.name);
     }
 }
