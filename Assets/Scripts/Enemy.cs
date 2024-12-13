@@ -15,6 +15,8 @@ public class Enemy : Unit
 
     public BattleHUD enemyHUD;
 
+    public EnemyMoves enemyMoves;
+
     void Start()
     {
         //Fetch the mesh renderer component from the GameObject

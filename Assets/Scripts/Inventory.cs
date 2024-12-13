@@ -18,12 +18,10 @@ public class Inventory : MonoBehaviour
             {
                 Wand1.typeDropdown1.options.Add(new TMP_Dropdown.OptionData(wandComponent.componentName));
                 Wand1.typeDropdown2.options.Add(new TMP_Dropdown.OptionData(wandComponent.componentName));
-                Debug.Log("ComponentAdded");
             }
             else if (wandComponent.componentType == "MODIFIER")
             {
                 Wand1.modifierDropdown3.options.Add(new TMP_Dropdown.OptionData(wandComponent.componentName));
-                Debug.Log("ComponentAdded");
             }
         }
         Wand1.typeDropdown1.RefreshShownValue();

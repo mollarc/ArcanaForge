@@ -54,26 +54,26 @@ public class BattleSystem : MonoBehaviour
         GameObject playerGO = Instantiate(playerPrefab, playerSpawn);
         playerUnit = playerGO.GetComponent<Player>();
 
-        GameObject enemyGO = Instantiate(enemyPrefab1, enemySpawn1);
-        enemyUnit1 = enemyGO.GetComponent<Enemy>();
+        //GameObject enemyGO = Instantiate(enemyPrefab1, enemySpawn1);
+        //enemyUnit1 = enemyGO.GetComponent<Enemy>();
         GameObject enemyGO2 = Instantiate(enemyPrefab1, enemySpawn2);
         enemyUnit2 = enemyGO2.GetComponent<Enemy>();
-        GameObject enemyGO3 = Instantiate(enemyPrefab1, enemySpawn3);
-        enemyUnit3 = enemyGO3.GetComponent<Enemy>();
+        //GameObject enemyGO3 = Instantiate(enemyPrefab1, enemySpawn3);
+        //enemyUnit3 = enemyGO3.GetComponent<Enemy>();
 
-        enemies.Add(enemyUnit1);
+        //enemies.Add(enemyUnit1);
         enemies.Add(enemyUnit2);
-        enemies.Add(enemyUnit3);
+        //enemies.Add(enemyUnit3);
 
-        enemyUnit1.enemyHUD = enemyHUD1;
+        //enemyUnit1.enemyHUD = enemyHUD1;
         enemyUnit2.enemyHUD = enemyHUD2;
-        enemyUnit3.enemyHUD = enemyHUD3;
+        //.enemyHUD = enemyHUD3;
 
         playerHUD.SetHUD(playerUnit);
         playerHUD.SetHUDPlayer(playerUnit);
-        enemyUnit1.enemyHUD.SetHUD(enemyUnit1);
+        //enemyUnit1.enemyHUD.SetHUD(enemyUnit1);
         enemyUnit2.enemyHUD.SetHUD(enemyUnit2);
-        enemyUnit3.enemyHUD.SetHUD(enemyUnit3);
+        //enemyUnit3.enemyHUD.SetHUD(enemyUnit3);
 
         yield return new WaitForSeconds(2f);
 
@@ -110,9 +110,9 @@ public class BattleSystem : MonoBehaviour
 
         playerUnit.GainShield(wand1.ShieldValue);
 
-        enemyHUD1.SetHP(enemyUnit1.currentHP);
+        //enemyHUD1.SetHP(enemyUnit1.currentHP);
         enemyHUD2.SetHP(enemyUnit2.currentHP);
-        enemyHUD3.SetHP(enemyUnit3.currentHP);
+        //enemyHUD3.SetHP(enemyUnit3.currentHP);
         Debug.Log("Casted Wand!");
 
         yield return new WaitForSeconds(0.5f);
@@ -161,7 +161,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.ResetShield();
         playerHUD.SetHUD(playerUnit);
         playerHUD.SetMana(playerUnit);
-        enemyHUD1.SetHUD(enemyUnit1);
+        //enemyHUD1.SetHUD(enemyUnit1);
         Debug.Log("Player's Turn!");
     }
 
@@ -176,8 +176,12 @@ public class BattleSystem : MonoBehaviour
                 enemy.ResetShield();
                 yield return new WaitForSeconds(1f);
 
-                isDead = playerUnit.TakeDamage(10);
+                enemy.enemyMoves.UseMove();
 
+                enemy.HealDamage(enemy.enemyMoves.HealValue);
+                enemyHUD2.SetHP(enemy.currentHP);
+
+                playerUnit.TakeDamage(enemy.enemyMoves.DamageValue);
                 playerHUD.SetHP(playerUnit.currentHP);
 
                 yield return new WaitForSeconds(1f);

@@ -17,8 +17,9 @@ public class WandObject : MonoBehaviour
     private float modifierValue;
     //public List<WandComponents> wandTypeComponents= new List<WandComponents>();
     //public List<WandComponents> wandModifierComponents= new List<WandComponents>();
+    public TMP_Text manaCostText;
     public List <WandComponents> components;
-    public WandComponents tempComponent1;
+    public TMP_Dropdown.OptionData tempData;
     public WandComponents tempComponent2;
     public WandComponents tempComponent3;
     public TMP_Dropdown typeDropdown1;
@@ -46,6 +47,7 @@ public class WandObject : MonoBehaviour
     {
         wandTypeComponents = new WandComponents[typeSlots];
         wandModifierComponents = new WandComponents[modifierSlots];
+        tempData = modifierDropdown3.options[0];
     }
 
     public void ChangeType1Component()
@@ -54,10 +56,21 @@ public class WandObject : MonoBehaviour
         {
             typeDropdown2.options.Add(new TMP_Dropdown.OptionData(wandTypeComponents[0].componentName));
         }
-        else
+        for (int i = 0; i < typeDropdown2.options.Count; i++)
         {
-            typeDropdown1.options.RemoveAt(0);
+            if (typeDropdown1.options[typeDropdown1.value].text == typeDropdown2.options[i].text)
+            {
+                print("Drop2 "+ typeDropdown2.value + " i: " +i);
+                
+                typeDropdown2.options.RemoveAt(i);
+                if (i == 0 && typeDropdown2.value > 0)
+                {
+                    typeDropdown2.value = 0;
+                }
+
+            }
         }
+        
         foreach(var wandComponent in components)
         {
             if(wandComponent.componentName == typeDropdown1.options[typeDropdown1.value].text)
@@ -65,7 +78,7 @@ public class WandObject : MonoBehaviour
                 wandTypeComponents[0] = wandComponent;
             }
         }
-        typeDropdown2.options.Remove(typeDropdown1.options[typeDropdown1.value]);
+        
         typeDropdown1.RefreshShownValue();
     }
     public void ChangeType2Component()
@@ -74,10 +87,21 @@ public class WandObject : MonoBehaviour
         {
             typeDropdown1.options.Add(new TMP_Dropdown.OptionData(wandTypeComponents[1].componentName));
         }
-        else
+        for (int i = 0; i < typeDropdown1.options.Count; i++)
         {
-            typeDropdown2.options.RemoveAt(0);
+            if (typeDropdown2.options[typeDropdown2.value].text == typeDropdown1.options[i].text)
+            {
+                print("Drop1 " + typeDropdown1.value + " i: " + i);
+                
+                typeDropdown1.options.RemoveAt(i);
+                if (i == 0 && typeDropdown1.value > 0)
+                {
+                    typeDropdown1.value = 0;
+                }
+
+            }
         }
+        
         foreach (var wandComponent in components)
         {
             if (wandComponent.componentName == typeDropdown2.options[typeDropdown2.value].text)
@@ -85,68 +109,61 @@ public class WandObject : MonoBehaviour
                 wandTypeComponents[1] = wandComponent;
             }
         }
-        typeDropdown1.options.Remove(typeDropdown1.options[typeDropdown2.value]);
+        
         typeDropdown2.RefreshShownValue();
     }
 
     public void ChangeModifierComponent()
     {
-        if (!(wandModifierComponents[0] == null))
-        {
-            modifierDropdown3.options.Add(new TMP_Dropdown.OptionData(wandModifierComponents[0].componentName));
-        }
-        else
-        {
-            //modifierDropdown3.options.RemoveAt(0);
-        }
-        Debug.Log(modifierDropdown3.value);
         foreach (var wandComponent in components)
         {
+            print(modifierDropdown3.value);
             if (wandComponent.componentName == modifierDropdown3.options[modifierDropdown3.value].text)
             {
                 wandModifierComponents[0] = wandComponent;
             }
         }
-        modifierDropdown3.options.RemoveAt(modifierDropdown3.value);
         modifierDropdown3.RefreshShownValue();
-    }
-
-    public void ChangeComponent()
-    {
-
     }
 
     public void CalculateValues()
     {
         ResetValues();
-        
+
         foreach (var wandComponent in wandTypeComponents)
         {
-            manaCost += wandComponent.manaCost;
-            healValue += wandComponent.healValue;
-            damageValue += wandComponent.damageValue;
-            shieldValue += wandComponent.shieldValue;
-            modifierValue += wandComponent.modifierValue;
+            if(wandComponent != null)
+            {
+                manaCost += wandComponent.manaCost;
+                healValue += wandComponent.healValue;
+                damageValue += wandComponent.damageValue;
+                shieldValue += wandComponent.shieldValue;
+                modifierValue += wandComponent.modifierValue;
+            } 
         }
         foreach (var wandComponent in wandModifierComponents)
         {
-            manaCost += wandComponent.manaCost;
-            healValue += wandComponent.healValue;
-            damageValue += wandComponent.damageValue;
-            shieldValue += wandComponent.shieldValue;
-            modifierValue += wandComponent.modifierValue;
+            if (wandComponent != null)
+            {
+                manaCost += wandComponent.manaCost;
+                healValue += wandComponent.healValue;
+                damageValue += wandComponent.damageValue;
+                shieldValue += wandComponent.shieldValue;
+                modifierValue += wandComponent.modifierValue;
+            }
         }
         Debug.Log(healValue);
         Debug.Log(damageValue);
         Debug.Log(shieldValue);
         //Debug.Log(modifierValue);
+        manaCostText.text = manaCost.ToString();
         manaCost *= -1;
         healValue = (int)Mathf.Round(healValue * modifierValue);
         damageValue = (int)Mathf.Round(damageValue * modifierValue);
         shieldValue = (int)Mathf.Round(shieldValue * modifierValue);
         Debug.Log(healValue);
         Debug.Log(damageValue);
-        Debug.Log(shieldValue);
+        Debug.Log(shieldValue); 
     }
 
     public void ResetValues()
