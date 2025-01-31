@@ -87,13 +87,26 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.CASTING;
 
         wand1.CalculateValues();
-
+        
         if (playerUnit.ManaChange(wand1.ManaCost,true))
         {
             Debug.Log("Breaking!");
             //playerUnit.ManaChange(wand1.ManaCost * -1);
             state = BattleState.PLAYERTURN;
             yield break;
+        }
+        if (enemies.Count == 1)
+        {
+            enemies[0].TargetSelect();
+        }
+        else
+        {
+            switch (wand1.targets)
+            {
+                case 0:
+                    break;
+
+            }
         }
         playerHUD.SetMana(playerUnit);
 
@@ -226,11 +239,6 @@ public class BattleSystem : MonoBehaviour
         }
 
         StartCoroutine(EndTurn());
-    }
-
-    public void MarkTargets()
-    {
-
     }
 
     public void MarkTargets(Enemy _enemy)

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class WandObject : MonoBehaviour
     private float modifierValue;
     //public List<WandComponents> wandTypeComponents= new List<WandComponents>();
     //public List<WandComponents> wandModifierComponents= new List<WandComponents>();
+    public int targets;
     public TMP_Text manaCostText;
     public List <WandComponents> components;
     public TMP_Dropdown.OptionData tempData;
@@ -27,6 +29,7 @@ public class WandObject : MonoBehaviour
     public TMP_Dropdown modifierDropdown3;
     public WandComponents[] wandTypeComponents;
     public WandComponents[] wandModifierComponents;
+    public WandComponents[] wandShapeComponents;
 
 
     public int HealValue { get => healValue; set => healValue = value; }
@@ -152,6 +155,23 @@ public class WandObject : MonoBehaviour
                 modifierValue += wandComponent.modifierValue;
             }
         }
+        if(wandShapeComponents.Count() == 0)
+        {
+            targets = 0;
+        }
+        else
+        {
+            foreach (var wandComponent in wandShapeComponents)
+            {
+                manaCost += wandComponent.manaCost;
+
+                if(wandComponent.targets > targets)
+                {
+                    targets = wandComponent.targets;
+                }
+            }
+        }
+        
         Debug.Log(healValue);
         Debug.Log(damageValue);
         Debug.Log(shieldValue);
