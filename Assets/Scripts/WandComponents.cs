@@ -11,8 +11,9 @@ public class WandComponents : MonoBehaviour
     //Write percentages as decimals
     public float modifierValue;
     public int numberOfCasts;
-    public int targets; //Int Values refer to "None,Single,Random,Blast,All" in order starting from 0. Highest value takes priority.
-    public WandComponents(string _componentName, int _healValue, int _damageValue, int _shieldValue, float _modifierValue, int _numberOfCasts, int _targets)
+    public int targets; //Int Values refer to "None,Single,Blast,All" in order starting from 0. Highest value takes priority.
+    public bool isRandom;
+    public WandComponents(string _componentName, int _healValue, int _damageValue, int _shieldValue, float _modifierValue, int _numberOfCasts, int _targets, bool _isRandom)
     {
         componentName = _componentName;
         healValue = _healValue;
@@ -21,5 +22,6 @@ public class WandComponents : MonoBehaviour
         modifierValue = _modifierValue;
         numberOfCasts = _numberOfCasts;
         targets = _targets;
+        isRandom = _isRandom;
     }
 }

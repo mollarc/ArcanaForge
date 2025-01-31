@@ -22,25 +22,25 @@ public class InputHandler : MonoBehaviour
         
     }
 
-    public void OnClick(InputAction.CallbackContext context)
-    {
-        if (!context.started)
-        {
-            return;
-        }
+    //public void OnClick(InputAction.CallbackContext context)
+    //{
+    //    if (!context.started)
+    //    {
+    //        return;
+    //    }
 
-        var rayhit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
+    //    var rayhit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
 
-        if (!rayhit.collider)
-        {
-            return;
-        }
+    //    if (!rayhit.collider)
+    //    {
+    //        return;
+    //    }
 
-        if(rayhit.collider.gameObject.tag == "Enemy")
-        {
-            Enemy enemy = (Enemy)rayhit.collider.gameObject.GetComponent<Enemy>();
-            battleSystem.MarkTargets(enemy);
-        }
-        Debug.Log(rayhit.collider.gameObject.name);
-    }
+    //    if(rayhit.collider.gameObject.tag == "Enemy")
+    //    {
+    //        Enemy enemy = (Enemy)rayhit.collider.gameObject.GetComponent<Enemy>();
+    //        battleSystem.MarkTargets(enemy);
+    //    }
+    //    Debug.Log(rayhit.collider.gameObject.name);
+    //}
 }

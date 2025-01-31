@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, CASTING }
@@ -34,6 +36,8 @@ public class BattleSystem : MonoBehaviour
     Enemy enemyUnit1;
     Enemy enemyUnit2;
     Enemy enemyUnit3;
+
+    bool isTarget = false;
 
     public BattleState state;
 
@@ -95,19 +99,9 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.PLAYERTURN;
             yield break;
         }
-        if (enemies.Count == 1)
-        {
-            enemies[0].TargetSelect();
-        }
-        else
-        {
-            switch (wand1.targets)
-            {
-                case 0:
-                    break;
 
-            }
-        }
+        yield return TargetEnemies();
+
         playerHUD.SetMana(playerUnit);
 
         foreach(Enemy enemy in enemies)
@@ -248,5 +242,38 @@ public class BattleSystem : MonoBehaviour
             enemy.TargetDeselect();
         }
         _enemy.TargetSelect();
+    }
+
+    IEnumerator TargetEnemies()
+    {
+        if (enemies.Count == 1)
+        {
+            enemies[0].TargetSelect();
+            isTarget = true;
+            yield return null;
+        }
+        switch ca
+        while (true)
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                var rayhit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()));
+
+                if (!rayhit.collider)
+                {
+                    isTarget = false;
+                    yield return null;
+                }
+
+                if (rayhit.collider.gameObject.tag == "Enemy")
+                {
+                    Enemy enemy = (Enemy)rayhit.collider.gameObject.GetComponent<Enemy>();
+                    MarkTargets(enemy);
+                    isTarget = true;
+                }
+                Debug.Log(rayhit.collider.gameObject.name);
+                yield return null;
+            }
+        }
     }
 }
