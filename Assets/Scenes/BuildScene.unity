@@ -515,7 +515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &272976946
 Transform:
   m_ObjectHideFlags: 0
@@ -583,7 +583,8 @@ MonoBehaviour:
   shieldValue: 4
   modifierValue: 0
   numberOfCasts: 0
-  targets: None
+  targets: 0
+  isRandom: 0
 --- !u!1 &292022628
 GameObject:
   m_ObjectHideFlags: 0
@@ -4428,7 +4429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1128941449
 Transform:
   m_ObjectHideFlags: 0
@@ -4711,7 +4712,8 @@ MonoBehaviour:
   shieldValue: 0
   modifierValue: 1.5
   numberOfCasts: 0
-  targets: None
+  targets: 0
+  isRandom: 0
 --- !u!1 &1209316961
 GameObject:
   m_ObjectHideFlags: 0
@@ -6587,7 +6589,8 @@ MonoBehaviour:
   shieldValue: 0
   modifierValue: 0
   numberOfCasts: 0
-  targets: None
+  targets: 0
+  isRandom: 0
 --- !u!1 &1801338017
 GameObject:
   m_ObjectHideFlags: 0
@@ -7152,7 +7155,8 @@ MonoBehaviour:
   shieldValue: 0
   modifierValue: 0
   numberOfCasts: 0
-  targets: Single
+  targets: 0
+  isRandom: 0
 --- !u!1 &1975882656
 GameObject:
   m_ObjectHideFlags: 0
@@ -7483,7 +7487,8 @@ MonoBehaviour:
   shieldValue: 0
   modifierValue: 0.5
   numberOfCasts: 0
-  targets: None
+  targets: 0
+  isRandom: 0
 --- !u!1 &2050686106
 GameObject:
   m_ObjectHideFlags: 0
@@ -7532,7 +7537,7 @@ MonoBehaviour:
   typeSlots: 2
   modifierSlots: 1
   shapeSlots: 0
-  needsTarget: 0
+  targets: 0
   manaCostText: {fileID: 1221531561}
   components:
   - {fileID: 1955768025}
@@ -7551,6 +7556,7 @@ MonoBehaviour:
   modifierDropdown3: {fileID: 1669792681}
   wandTypeComponents: []
   wandModifierComponents: []
+  wandShapeComponents: []
 --- !u!1 &2116663732
 GameObject:
   m_ObjectHideFlags: 0
@@ -7802,15 +7808,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1111569704230503373, guid: 4686cc16f5e1987499bc3d4f0e6f6cb7, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1111569704230503373, guid: 4686cc16f5e1987499bc3d4f0e6f6cb7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1111569704230503373, guid: 4686cc16f5e1987499bc3d4f0e6f6cb7, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1111569704230503373, guid: 4686cc16f5e1987499bc3d4f0e6f6cb7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7898,11 +7904,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5995075946087457726, guid: 4686cc16f5e1987499bc3d4f0e6f6cb7, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5995075946087457726, guid: 4686cc16f5e1987499bc3d4f0e6f6cb7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8097481719689800012, guid: 4686cc16f5e1987499bc3d4f0e6f6cb7, type: 3}
       propertyPath: m_Name
@@ -7910,7 +7916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8097481719689800012, guid: 4686cc16f5e1987499bc3d4f0e6f6cb7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -58,24 +58,24 @@ public class BattleSystem : MonoBehaviour
         GameObject playerGO = Instantiate(playerPrefab, playerSpawn);
         playerUnit = playerGO.GetComponent<Player>();
 
-        //GameObject enemyGO = Instantiate(enemyPrefab1, enemySpawn1);
-        //enemyUnit1 = enemyGO.GetComponent<Enemy>();
+        GameObject enemyGO = Instantiate(enemyPrefab1, enemySpawn1);
+        enemyUnit1 = enemyGO.GetComponent<Enemy>();
         GameObject enemyGO2 = Instantiate(enemyPrefab1, enemySpawn2);
         enemyUnit2 = enemyGO2.GetComponent<Enemy>();
         //GameObject enemyGO3 = Instantiate(enemyPrefab1, enemySpawn3);
         //enemyUnit3 = enemyGO3.GetComponent<Enemy>();
 
-        //enemies.Add(enemyUnit1);
+        enemies.Add(enemyUnit1);
         enemies.Add(enemyUnit2);
         //enemies.Add(enemyUnit3);
 
-        //enemyUnit1.enemyHUD = enemyHUD1;
+        enemyUnit1.enemyHUD = enemyHUD1;
         enemyUnit2.enemyHUD = enemyHUD2;
-        //.enemyHUD = enemyHUD3;
+        //enemyUnit3.enemyHUD = enemyHUD3;
 
         playerHUD.SetHUD(playerUnit);
         playerHUD.SetHUDPlayer(playerUnit);
-        //enemyUnit1.enemyHUD.SetHUD(enemyUnit1);
+        enemyUnit1.enemyHUD.SetHUD(enemyUnit1);
         enemyUnit2.enemyHUD.SetHUD(enemyUnit2);
         //enemyUnit3.enemyHUD.SetHUD(enemyUnit3);
 
@@ -91,8 +91,8 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.CASTING;
 
         wand1.CalculateValues();
-        
-        if (playerUnit.ManaChange(wand1.ManaCost,true))
+
+        if (playerUnit.ManaChange(wand1.ManaCost, true))
         {
             Debug.Log("Breaking!");
             //playerUnit.ManaChange(wand1.ManaCost * -1);
@@ -102,9 +102,17 @@ public class BattleSystem : MonoBehaviour
 
         yield return TargetEnemies();
 
+        if (!isTarget)
+        {
+            print("Breaking2!");
+            playerUnit.ManaChange(wand1.ManaCost * -1, false);
+            state = BattleState.PLAYERTURN;
+            yield break;
+        }
+
         playerHUD.SetMana(playerUnit);
 
-        foreach(Enemy enemy in enemies)
+        foreach (Enemy enemy in enemies)
         {
             if (enemy.target)
             {
@@ -117,14 +125,14 @@ public class BattleSystem : MonoBehaviour
 
         playerUnit.GainShield(wand1.ShieldValue);
 
-        //enemyHUD1.SetHP(enemyUnit1.currentHP);
+        enemyHUD1.SetHP(enemyUnit1.currentHP);
         enemyHUD2.SetHP(enemyUnit2.currentHP);
         //enemyHUD3.SetHP(enemyUnit3.currentHP);
         Debug.Log("Casted Wand!");
 
         yield return new WaitForSeconds(0.5f);
 
-        foreach(var enemy in enemies)
+        foreach (var enemy in enemies)
         {
             if (enemy.isDead)
             {
@@ -136,7 +144,7 @@ public class BattleSystem : MonoBehaviour
                 state = BattleState.PLAYERTURN;
             }
         }
-        foreach(var enemy in enemies)
+        foreach (var enemy in enemies)
         {
             int count = 0;
             if (!enemy.isDead)
@@ -147,7 +155,7 @@ public class BattleSystem : MonoBehaviour
             {
                 count += 1;
             }
-            if(count == enemies.Count)
+            if (count == enemies.Count)
             {
                 state = BattleState.WON;
                 EndBattle();
@@ -164,7 +172,7 @@ public class BattleSystem : MonoBehaviour
 
     void PlayerTurn()
     {
-        playerUnit.ManaChange(3,false);
+        playerUnit.ManaChange(3, false);
         playerUnit.ResetShield();
         playerHUD.SetHUD(playerUnit);
         playerHUD.SetMana(playerUnit);
@@ -237,7 +245,7 @@ public class BattleSystem : MonoBehaviour
 
     public void MarkTargets(Enemy _enemy)
     {
-        foreach(Enemy enemy in enemies)
+        foreach (Enemy enemy in enemies)
         {
             enemy.TargetDeselect();
         }
@@ -250,30 +258,24 @@ public class BattleSystem : MonoBehaviour
         {
             enemies[0].TargetSelect();
             isTarget = true;
-            yield return null;
+            yield break;
         }
-        switch ca
-        while (true)
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        var rayhit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()));
+
+        if (!rayhit.collider)
         {
-            if(Input.GetMouseButtonDown(0))
-            {
-                var rayhit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()));
-
-                if (!rayhit.collider)
-                {
-                    isTarget = false;
-                    yield return null;
-                }
-
-                if (rayhit.collider.gameObject.tag == "Enemy")
-                {
-                    Enemy enemy = (Enemy)rayhit.collider.gameObject.GetComponent<Enemy>();
-                    MarkTargets(enemy);
-                    isTarget = true;
-                }
-                Debug.Log(rayhit.collider.gameObject.name);
-                yield return null;
-            }
+            isTarget = false;
+            yield break;
         }
+
+        if (rayhit.collider.gameObject.tag == "Enemy")
+        {
+            Enemy enemy = (Enemy)rayhit.collider.gameObject.GetComponent<Enemy>();
+            MarkTargets(enemy);
+            isTarget = true;
+        }
+        Debug.Log(rayhit.collider.gameObject.name);
+        yield break;
     }
 }

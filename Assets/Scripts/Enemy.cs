@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Enemy : Unit
@@ -13,6 +14,8 @@ public class Enemy : Unit
 
     public bool target = false;
 
+    public bool casting = false;
+
     public BattleHUD enemyHUD;
 
     public EnemyMoves enemyMoves;
@@ -26,26 +29,18 @@ public class Enemy : Unit
     }
     private void OnMouseOver()
     {
-        if (target)
-        {
-            return;
-        }
         m_Renderer.color = m_MouseOverColor;
     }
 
     private void OnMouseExit()
     {
-        if (target)
-        {
-            return;
-        }
         m_Renderer.color = m_OriginalColor;
     }
 
     public void TargetSelect()
     {
         target = true;
-        this.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        //this.GetComponentInChildren<SpriteRenderer>().color = Color.red;
     }
 
     public void TargetDeselect()
