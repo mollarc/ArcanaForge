@@ -171,7 +171,7 @@ public class WandObject : MonoBehaviour
                 }
             }
         }
-        
+
         Debug.Log(healValue);
         Debug.Log(damageValue);
         Debug.Log(shieldValue);

@@ -124,9 +124,13 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetHP(playerUnit.currentHP);
 
         playerUnit.GainShield(wand1.ShieldValue);
+        playerHUD.SetShield(wand1.ShieldValue);
 
         enemyHUD1.SetHP(enemyUnit1.currentHP);
         enemyHUD2.SetHP(enemyUnit2.currentHP);
+
+        enemyHUD1.SetShield(enemyUnit1.currentShield);
+        enemyHUD2.SetShield(enemyUnit2.currentShield);
         //enemyHUD3.SetHP(enemyUnit3.currentHP);
         Debug.Log("Casted Wand!");
 
@@ -176,6 +180,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.ResetShield();
         playerHUD.SetHUD(playerUnit);
         playerHUD.SetMana(playerUnit);
+        playerHUD.SetShield(playerUnit.currentShield);
         //enemyHUD1.SetHUD(enemyUnit1);
         Debug.Log("Player's Turn!");
     }
@@ -195,6 +200,7 @@ public class BattleSystem : MonoBehaviour
 
                 enemy.HealDamage(enemy.enemyMoves.HealValue);
                 enemyHUD2.SetHP(enemy.currentHP);
+                enemyHUD2.SetShield(enemy.currentShield);
 
                 playerUnit.TakeDamage(enemy.enemyMoves.DamageValue);
                 playerHUD.SetHP(playerUnit.currentHP);

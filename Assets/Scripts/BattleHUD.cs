@@ -9,6 +9,7 @@ public class BattleHUD : MonoBehaviour
     public TMP_Text nameText;
     public TMP_Text hpText;
     public TMP_Text manaText;
+    public TMP_Text shieldText;
     public Slider hpSlider;
     public Slider manaSlider;
 
@@ -18,6 +19,7 @@ public class BattleHUD : MonoBehaviour
         nameText.text = unit.unitName;
         hpSlider.maxValue = unit.maxHP;
         hpSlider.value = unit.currentHP;
+        shieldText.text = unit.currentShield.ToString();
     
         hpText.text = hpSlider.value + "/" + hpSlider.maxValue;
     }
@@ -41,5 +43,10 @@ public class BattleHUD : MonoBehaviour
         //Things that cost mana should be inputted as a negative number
         manaSlider.value = player.currentMana;
         manaText.text = manaText.text = manaSlider.value + "\n/\n" + manaSlider.maxValue;
+    }
+
+    public void SetShield(int shieldValue)
+    {
+        shieldText.text = shieldValue.ToString();
     }
 }
