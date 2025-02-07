@@ -45,8 +45,8 @@ public class BattleHUD : MonoBehaviour
         manaText.text = manaText.text = manaSlider.value + "\n/\n" + manaSlider.maxValue;
     }
 
-    public void SetShield(int shieldValue)
+    public void SetShield(Unit unit)
     {
-        shieldText.text = shieldValue.ToString();
+        shieldText.text = unit.currentShield.ToString();
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8905856301992956472}
   m_Layer: 0
   m_Name: Slime
-  m_TagString: Enemy
+  m_TagString: Undefined
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   currentShield: 0
   isDead: 0
   target: 0
+  casting: 0
   enemyHUD: {fileID: 0}
   enemyMoves: {fileID: 2657871825228579760}
 --- !u!61 &8905856301992956472
