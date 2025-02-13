@@ -61,7 +61,11 @@ public class WandObject : MonoBehaviour
         }
         for (int i = 0; i < typeDropdown2.options.Count; i++)
         {
-            if (typeDropdown1.options[typeDropdown1.value].text == typeDropdown2.options[i].text)
+            if(typeDropdown1.options[typeDropdown1.value].text == null)
+            {
+
+            }
+            else if (typeDropdown1.options[typeDropdown1.value].text == typeDropdown2.options[i].text)
             {
                 print("Drop2 "+ typeDropdown2.value + " i: " +i);
                 

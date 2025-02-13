@@ -32,6 +32,8 @@ public class BattleSystem : MonoBehaviour
 
     public List<Enemy> enemies;
 
+    public TMP_Text castingText;
+
     Player playerUnit;
     Enemy enemyUnit1;
     Enemy enemyUnit2;
@@ -261,18 +263,23 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator TargetEnemies()
     {
+        
         if (enemies.Count == 1)
         {
             enemies[0].TargetSelect();
             isTarget = true;
             yield break;
         }
+        castingText.enabled = true;
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
         var rayhit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()));
+
+        
 
         if (!rayhit.collider)
         {
             isTarget = false;
+            castingText.enabled = false;
             yield break;
         }
 
@@ -280,6 +287,7 @@ public class BattleSystem : MonoBehaviour
         {
             Enemy enemy = (Enemy)rayhit.collider.gameObject.GetComponent<Enemy>();
             MarkTargets(enemy);
+            castingText.enabled = false;
             isTarget = true;
         }
         Debug.Log(rayhit.collider.gameObject.name);
