@@ -43,6 +43,8 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
 
+    public Animator playerAnimator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -59,6 +61,7 @@ public class BattleSystem : MonoBehaviour
     {
         GameObject playerGO = Instantiate(playerPrefab, playerSpawn);
         playerUnit = playerGO.GetComponent<Player>();
+        playerAnimator = playerGO.GetComponentInChildren<Animator>();
 
         GameObject enemyGO = Instantiate(enemyPrefab1, enemySpawn1);
         enemyUnit1 = enemyGO.GetComponent<Enemy>();
@@ -91,6 +94,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator WandCast1()
     {
         state = BattleState.CASTING;
+        playerAnimator.SetBool("isSelecting", true);
 
         wand1.CalculateValues();
 
@@ -263,7 +267,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator TargetEnemies()
     {
-        
+        print("targeting");   
         if (enemies.Count == 1)
         {
             enemies[0].TargetSelect();
@@ -280,11 +284,13 @@ public class BattleSystem : MonoBehaviour
         {
             isTarget = false;
             castingText.enabled = false;
+            print("breaking3");
             yield break;
         }
 
         if (rayhit.collider.gameObject.tag == "Enemy")
         {
+            print("enemyTargeted");
             Enemy enemy = (Enemy)rayhit.collider.gameObject.GetComponent<Enemy>();
             MarkTargets(enemy);
             castingText.enabled = false;
