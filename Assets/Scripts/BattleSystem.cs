@@ -45,6 +45,13 @@ public class BattleSystem : MonoBehaviour
 
     public Animator playerAnimator;
 
+
+    private void Awake()
+    {
+        GameObject playerGO = Instantiate(playerPrefab, playerSpawn);
+        playerUnit = playerGO.GetComponent<Player>();
+        playerAnimator = playerGO.GetComponentInChildren<Animator>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -59,9 +66,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        GameObject playerGO = Instantiate(playerPrefab, playerSpawn);
-        playerUnit = playerGO.GetComponent<Player>();
-        playerAnimator = playerGO.GetComponentInChildren<Animator>();
+        
 
         GameObject enemyGO = Instantiate(enemyPrefab1, enemySpawn1);
         enemyUnit1 = enemyGO.GetComponent<Enemy>();
@@ -94,7 +99,6 @@ public class BattleSystem : MonoBehaviour
     IEnumerator WandCast1()
     {
         state = BattleState.CASTING;
-        playerAnimator.SetBool("isSelecting", true);
 
         wand1.CalculateValues();
 
@@ -117,6 +121,8 @@ public class BattleSystem : MonoBehaviour
         }
 
         playerHUD.SetMana(playerUnit);
+
+        playerAnimator.SetBool("Attacked", true);
 
         foreach (Enemy enemy in enemies)
         {
@@ -141,6 +147,8 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("Casted Wand!");
 
         yield return new WaitForSeconds(0.5f);
+
+        playerAnimator.SetBool("Attacked", false);
 
         foreach (var enemy in enemies)
         {
