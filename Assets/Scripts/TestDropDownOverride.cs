@@ -12,16 +12,10 @@ public class TestDropDownOverride : TMP_Dropdown
         player = GameObject.FindWithTag("Player");
         playerAnimator = player.GetComponentInChildren<Animator>();
     }
-    public override void OnSelect(BaseEventData eventData)
-    {
-        base.OnSelect(eventData);
 
-    }
-
-    public override void OnDeselect(BaseEventData eventData)
+    protected override void DestroyDropdownList(GameObject dropdownList)
     {
-        print("Deselect");
-        base.OnDeselect(eventData);
+        base.DestroyDropdownList(dropdownList);
         playerAnimator.SetBool("isSelecting", false);
     }
 }
