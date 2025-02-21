@@ -1,9 +1,10 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ModifierComponent", menuName = "Scriptable Objects/ModifierComponent")]
-public class ModifierComponent : ScriptableObject
+public class ModifierComponentSO : WandComponentSO
 {
-    public string componentName;
+    public int manaCost;
+    public int cooldown;
     //Debuff Type
     //Buff Type
     //Debuff Duration

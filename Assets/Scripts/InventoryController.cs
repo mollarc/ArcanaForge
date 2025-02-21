@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEditor.Search;
 using UnityEngine;
 
@@ -7,14 +9,19 @@ public class InventoryController : MonoBehaviour
     public GameObject slotPrefab;
     public GameObject wandPanel;
     public int slotCount;
-    public GameObject[] itemPrefabs;
+    public List<GameObject> itemPrefabs = new List<GameObject>();
+    public ComponentDB componentDB;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        for(int i = 0; i < slotCount; i++)
+        componentDB = gameObject.GetComponent<ComponentDB>();
+        AddItem(componentDB.CreateComponent());
+        AddItem(componentDB.CreateComponent());
+        AddItem(componentDB.CreateComponent());
+        for (int i = 0; i < slotCount; i++)
         {
             Slot slot = Instantiate(slotPrefab, inventoryPanel.transform).GetComponent<Slot>();
-            if(i < itemPrefabs.Length)
+            if(i < itemPrefabs.Count)
             {
                 GameObject item = Instantiate(itemPrefabs[i], slot.transform);
                 item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
@@ -28,5 +35,10 @@ public class InventoryController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AddItem(GameObject item)
+    {
+        itemPrefabs.Add(item);
     }
 }

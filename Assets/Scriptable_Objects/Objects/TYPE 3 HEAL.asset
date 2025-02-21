@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84a1f4e0237ea924f9090c6f8b88b2b9, type: 3}
-  m_Name: Type_5DMG
+  m_Name: TYPE 3 HEAL
   m_EditorClassIdentifier: 
-  componentName: Magic
+  componentName: Bandage
+  componentType: TYPE
+  gemImage: {fileID: 21300000, guid: 73c1ef05d7c79704185c31eb56b3c6c8, type: 3}
   manaCost: 1
   cooldown: 0
-  healValue: 0
-  damageValue: 5
+  healValue: 3
+  damageValue: 0
   shieldValue: 0
   targets: 0

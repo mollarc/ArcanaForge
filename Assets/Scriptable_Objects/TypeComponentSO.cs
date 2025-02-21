@@ -1,9 +1,8 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WandComponent", menuName = "Scriptable Objects/WandComponent")]
-public class TypeComponent : ScriptableObject
+[CreateAssetMenu(fileName = "TypeComponent", menuName = "Scriptable Objects/TypeComponent")]
+public class TypeComponentSO : WandComponentSO
 {
-    public string componentName;
     public int manaCost;
     public int cooldown;
     public int healValue;

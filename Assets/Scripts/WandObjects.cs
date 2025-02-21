@@ -20,16 +20,16 @@ public class WandObject : MonoBehaviour
     //public List<WandComponents> wandModifierComponents= new List<WandComponents>();
     public int targets;
     public TMP_Text manaCostText;
-    public List <WandComponents> components;
+    public List <WandComponent> components;
     public TMP_Dropdown.OptionData tempData;
-    public WandComponents tempComponent2;
-    public WandComponents tempComponent3;
+    public WandComponent tempComponent2;
+    public WandComponent tempComponent3;
     public TMP_Dropdown typeDropdown1;
     public TMP_Dropdown typeDropdown2;
     public TMP_Dropdown modifierDropdown3;
-    public WandComponents[] wandTypeComponents;
-    public WandComponents[] wandModifierComponents;
-    public WandComponents[] wandShapeComponents;
+    public WandComponent[] wandTypeComponents;
+    public WandComponent[] wandModifierComponents;
+    public WandComponent[] wandShapeComponents;
 
 
     public int HealValue { get => healValue; set => healValue = value; }
@@ -48,8 +48,8 @@ public class WandObject : MonoBehaviour
 
     public void SetUP()
     {
-        wandTypeComponents = new WandComponents[typeSlots];
-        wandModifierComponents = new WandComponents[modifierSlots];
+        wandTypeComponents = new WandComponent[typeSlots];
+        wandModifierComponents = new WandComponent[modifierSlots];
         tempData = modifierDropdown3.options[0];
     }
 
@@ -137,7 +137,7 @@ public class WandObject : MonoBehaviour
     {
         ResetValues();
 
-        foreach (var wandComponent in wandTypeComponents)
+        foreach (TypeComponent wandComponent in wandTypeComponents)
         {
             if(wandComponent != null)
             {
@@ -145,17 +145,13 @@ public class WandObject : MonoBehaviour
                 healValue += wandComponent.healValue;
                 damageValue += wandComponent.damageValue;
                 shieldValue += wandComponent.shieldValue;
-                modifierValue += wandComponent.modifierValue;
             } 
         }
-        foreach (var wandComponent in wandModifierComponents)
+        foreach (ModifierComponent wandComponent in wandModifierComponents)
         {
             if (wandComponent != null)
             {
                 manaCost += wandComponent.manaCost;
-                healValue += wandComponent.healValue;
-                damageValue += wandComponent.damageValue;
-                shieldValue += wandComponent.shieldValue;
                 modifierValue += wandComponent.modifierValue;
             }
         }
@@ -165,7 +161,7 @@ public class WandObject : MonoBehaviour
         }
         else
         {
-            foreach (var wandComponent in wandShapeComponents)
+            foreach (ShapeComponent wandComponent in wandShapeComponents)
             {
                 manaCost += wandComponent.manaCost;
 
