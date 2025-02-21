@@ -5,6 +5,7 @@ public class InventoryController : MonoBehaviour
 {
     public GameObject inventoryPanel;
     public GameObject slotPrefab;
+    public GameObject wandPanel;
     public int slotCount;
     public GameObject[] itemPrefabs;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
