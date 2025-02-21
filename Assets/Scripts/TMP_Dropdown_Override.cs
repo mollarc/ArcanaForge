@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TestDropDownOverride : TMP_Dropdown
+public class TMP_Dropdown_Override : TMP_Dropdown
 {
     public Animator playerAnimator;
     public GameObject player;

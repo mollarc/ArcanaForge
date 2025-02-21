@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DropDown : MonoBehaviour
+public class EventListeners : MonoBehaviour
 {
     public Animator playerAnimator;
     public GameObject player;

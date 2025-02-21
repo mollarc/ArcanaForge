@@ -5,6 +5,7 @@ public class WandComponents : MonoBehaviour
     public string componentName;
     public string componentType;
     public int manaCost;
+    public int cooldown;
     public int healValue;
     public int damageValue;
     public int shieldValue;
