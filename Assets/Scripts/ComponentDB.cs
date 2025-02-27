@@ -32,6 +32,15 @@ public class ComponentDB : MonoBehaviour
             newTypeComponent.GetComponent<TypeComponent>().LoadComponentData(templist2[0]);
             return newTypeComponent;
         }
+        else if(component.componentType == "MODIFIER")
+        {
+            var tempList1 = new List<WandComponentSO>();
+            tempList1.Add(component);
+            var templist2 = tempList1.Cast<ModifierComponentSO>().ToArray();
+            var newModComponent = Instantiate(modifierComponent);
+            newModComponent.GetComponent<ModifierComponent>().LoadComponentData(templist2[0]);
+            return newModComponent;
+        }
         return null;
     }
 }

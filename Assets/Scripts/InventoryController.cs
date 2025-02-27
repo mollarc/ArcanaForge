@@ -18,6 +18,9 @@ public class InventoryController : MonoBehaviour
         AddItem(componentDB.CreateComponent());
         AddItem(componentDB.CreateComponent());
         AddItem(componentDB.CreateComponent());
+        AddItem(componentDB.CreateComponent());
+        AddItem(componentDB.CreateComponent());
+        AddItem(componentDB.CreateComponent());
         for (int i = 0; i < slotCount; i++)
         {
             Slot slot = Instantiate(slotPrefab, inventoryPanel.transform).GetComponent<Slot>();

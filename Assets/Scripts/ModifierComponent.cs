@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ModifierComponent : WandComponent
 {
@@ -14,18 +15,26 @@ public class ModifierComponent : WandComponent
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        componentName = modifierComponentData.name;
-        componentType = modifierComponentData.componentType;
-        manaCost = modifierComponentData.manaCost;
-        cooldown = modifierComponentData.cooldown;
-        modifierValue = modifierComponentData.modifierValue;
-        numberOfCasts = modifierComponentData.numberOfCasts;
-        targets = modifierComponentData.targets;
+        if(modifierComponentData != null)
+        {
+            LoadComponentData(modifierComponentData);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    public void LoadComponentData(ModifierComponentSO componentData)
+    {
+        componentName = componentData.name;
+        componentType = componentData.componentType;
+        manaCost = componentData.manaCost;
+        cooldown = componentData.cooldown;
+        gameObject.GetComponent<Image>().sprite = componentData.gemImage;
+        modifierValue = componentData.modifierValue;
+        numberOfCasts = componentData.numberOfCasts;
+        targets = componentData.targets;
     }
 }

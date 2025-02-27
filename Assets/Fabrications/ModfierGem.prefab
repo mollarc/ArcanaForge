@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 517694833835118472}
   - component: {fileID: 5489985975564361543}
   - component: {fileID: 3024078699915335031}
+  - component: {fileID: -4061743820461895072}
   m_Layer: 0
   m_Name: ModfierGem
   m_TagString: Untagged
@@ -101,3 +102,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc8e1c1b8f994946bf720fdbd0ab2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4061743820461895072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2415953237952369590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af321a94e9b462341adb77c91a2c4604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: 
+  componentType: 
+  manaCost: 0
+  cooldown: 0
+  gemImage: {fileID: 0}
+  modifierComponentData: {fileID: 0}
+  modifierValue: 0
+  numberOfCasts: 0
+  targets: 0
