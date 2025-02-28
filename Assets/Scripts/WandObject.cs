@@ -55,10 +55,12 @@ public class WandObject : MonoBehaviour
         for (int i = 0; i < typeSlots; i++)
         {
             Slot slot = Instantiate(slotTypePrefab, typePanel.transform).GetComponent<Slot>();
+            wandTypeSlots[i] = slot;
         }
         for (int i = 0; i < modifierSlots; i++)
         {
             Slot slot = Instantiate(slotModPrefab, modifierPanel.transform).GetComponent<Slot>();
+            wandModifierSlots[i] = slot;
         }
     }
 
@@ -66,41 +68,48 @@ public class WandObject : MonoBehaviour
     {
         ResetValues();
 
-        foreach (Slot typeSlot in wandTypeSlots)
+        if(wandTypeSlots.Count() != 0)
         {
-            if (typeSlot.currentItem != null)
+            foreach (Slot typeSlot in wandTypeSlots)
             {
-                manaCost += typeSlot.currentItem.manaCost;
-                healValue += typeSlot.currentItem.healValue;
-                damageValue += typeSlot.currentItem.damageValue;
-                shieldValue += typeSlot.currentItem.shieldValue;
-            }
-        }
-        foreach (ModifierComponent wandComponent in wandModifierComponents)
-        {
-            if (wandComponent != null)
-            {
-                manaCost += wandComponent.manaCost;
-                modifierValue += wandComponent.modifierValue;
-            }
-        }
-        if (wandShapeComponents.Count() == 0)
-        {
-            targets = 0;
-        }
-        else
-        {
-            foreach (ShapeComponent wandComponent in wandShapeComponents)
-            {
-                manaCost += wandComponent.manaCost;
-
-                if (wandComponent.targets > targets)
+                if (typeSlot.currentItem != null)
                 {
-                    targets = wandComponent.targets;
+                    manaCost += typeSlot.currentItem.GetComponent<TypeComponent>().manaCost;
+                    healValue += typeSlot.currentItem.GetComponent<TypeComponent>().healValue;
+                    damageValue += typeSlot.currentItem.GetComponent<TypeComponent>().damageValue;
+                    shieldValue += typeSlot.currentItem.GetComponent<TypeComponent>().shieldValue;
                 }
             }
         }
-        manaCostText.text = manaCost.ToString();
+        if(wandModifierSlots.Count() != 0)
+        {
+            foreach (Slot modifierSlot in wandModifierSlots)
+            {
+                if (modifierSlot.currentItem != null)
+                {
+                    manaCost += modifierSlot.currentItem.GetComponent<ModifierComponent>().manaCost;
+                    modifierValue += modifierSlot.currentItem.GetComponent<ModifierComponent>().modifierValue;
+                }
+            }
+        }
+        
+        if (wandShapeSlots.Count() != 0)
+        {
+            foreach (Slot shapeSlot in wandShapeSlots)
+            {
+                manaCost += shapeSlot.currentItem.GetComponent<ShapeComponent>().manaCost;
+
+                if (shapeSlot.currentItem.GetComponent<ShapeComponent>().targets > targets)
+                {
+                    targets = shapeSlot.currentItem.GetComponent<ShapeComponent>().targets;
+                }
+            }
+        }
+        else
+        {
+            targets = 0;
+        }
+        //manaCostText.text = manaCost.ToString();
         manaCost *= -1;
         healValue = (int)Mathf.Round(healValue * modifierValue);
         damageValue = (int)Mathf.Round(damageValue * modifierValue);

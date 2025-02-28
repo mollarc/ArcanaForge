@@ -47,11 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5910c5e5f13f07c4aa5895b3620fb763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Sliime
+  unitName: Slime
   maxHP: 43
   currentHP: 43
   currentShield: 0
   isDead: 0
+  m_Renderer: {fileID: 0}
   target: 0
   casting: 0
   enemyHUD: {fileID: 0}

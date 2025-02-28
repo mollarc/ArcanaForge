@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: Buckler
   componentType: TYPE
-  gemImage: {fileID: 21300000, guid: 5eb87d19156ac8646815a48b151f01be, type: 3}
+  gemImage: {fileID: -491205331, guid: a0d4ee17c90d68d47ad845c7fc8ae389, type: 3}
   manaCost: 1
   cooldown: 0
   healValue: 0

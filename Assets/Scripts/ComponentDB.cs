@@ -43,4 +43,31 @@ public class ComponentDB : MonoBehaviour
         }
         return null;
     }
+
+    public List<GameObject> CreateAllComponents()
+    {
+        List<GameObject> list = new List<GameObject>();
+        foreach(WandComponentSO component in components)
+        {
+            if (component.componentType == "TYPE")
+            {
+                var tempList1 = new List<WandComponentSO>();
+                tempList1.Add(component);
+                var templist2 = tempList1.Cast<TypeComponentSO>().ToArray();
+                var newTypeComponent = Instantiate(typeComponent);
+                newTypeComponent.GetComponent<TypeComponent>().LoadComponentData(templist2[0]);
+                list.Add(newTypeComponent);
+            }
+            else if (component.componentType == "MODIFIER")
+            {
+                var tempList1 = new List<WandComponentSO>();
+                tempList1.Add(component);
+                var templist2 = tempList1.Cast<ModifierComponentSO>().ToArray();
+                var newModComponent = Instantiate(modifierComponent);
+                newModComponent.GetComponent<ModifierComponent>().LoadComponentData(templist2[0]);
+                list.Add(newModComponent);
+            }
+        }
+        return list;
+    }
 }

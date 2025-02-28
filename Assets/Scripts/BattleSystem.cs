@@ -41,7 +41,7 @@ public class BattleSystem : MonoBehaviour
 
     bool isTarget = false;
 
-    public BattleState state;
+    public static BattleState state;
 
     public Animator playerAnimator;
 
@@ -105,9 +105,13 @@ public class BattleSystem : MonoBehaviour
         if (playerUnit.ManaChange(wand1.ManaCost, true))
         {
             Debug.Log("Breaking!");
-            //playerUnit.ManaChange(wand1.ManaCost * -1);
+            castingText.text = "Not Enough Mana!";
+            castingText.enabled = true;
             state = BattleState.PLAYERTURN;
+            yield return new WaitForSeconds(1f);
+            castingText.enabled = false;
             yield break;
+
         }
 
         yield return TargetEnemies();
@@ -195,7 +199,10 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetHUD(playerUnit);
         playerHUD.SetMana(playerUnit);
         playerHUD.SetShield(playerUnit);
-        //enemyHUD1.SetHUD(enemyUnit1);
+        foreach (var enemy in enemies)
+        {
+            enemy.enemyHUD.setMove(enemy.enemyMoves.LoadMove());
+        }
         Debug.Log("Player's Turn!");
     }
 
@@ -212,9 +219,13 @@ public class BattleSystem : MonoBehaviour
 
                 enemy.enemyMoves.UseMove();
 
+                
+
                 enemy.HealDamage(enemy.enemyMoves.HealValue);
-                enemyHUD2.SetHP(enemy.currentHP);
-                enemyHUD2.SetShield(enemy);
+                enemy.enemyHUD.SetHP(enemy.currentHP);
+                enemy.GainShield(enemy.enemyMoves.ShieldValue);
+                enemy.enemyHUD.SetShield(enemy);
+                enemy.AttackAnim();
 
                 playerUnit.TakeDamage(enemy.enemyMoves.DamageValue);
                 playerHUD.SetHP(playerUnit.currentHP);
@@ -291,6 +302,7 @@ public class BattleSystem : MonoBehaviour
         if (!rayhit.collider)
         {
             isTarget = false;
+            castingText.text = "Select an Enemy!";
             castingText.enabled = false;
             print("breaking3");
             yield break;

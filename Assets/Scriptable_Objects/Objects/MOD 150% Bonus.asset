@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: Overload
   componentType: MODIFIER
-  gemImage: {fileID: 21300000, guid: fa8c76bd6e5121f499ebd6a29493b776, type: 3}
+  gemImage: {fileID: -1485488481, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
   manaCost: 1
   cooldown: 1
   modifierValue: 1.5

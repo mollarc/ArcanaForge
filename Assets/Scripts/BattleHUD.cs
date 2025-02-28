@@ -10,6 +10,7 @@ public class BattleHUD : MonoBehaviour
     public TMP_Text hpText;
     public TMP_Text manaText;
     public TMP_Text shieldText;
+    public TMP_Text moveText;
     public Slider hpSlider;
     public Slider manaSlider;
 
@@ -48,5 +49,10 @@ public class BattleHUD : MonoBehaviour
     public void SetShield(Unit unit)
     {
         shieldText.text = unit.currentShield.ToString();
+    }
+
+    public void setMove(string move)
+    {
+        moveText.text = move;
     }
 }

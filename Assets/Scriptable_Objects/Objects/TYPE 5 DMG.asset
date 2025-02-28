@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: Magic
   componentType: TYPE
-  gemImage: {fileID: 21300000, guid: a67ab5b176a14ee4f972c43b9524c67b, type: 3}
+  gemImage: {fileID: 2124294421, guid: 3b40f86dba31e4443a71815c4782fa53, type: 3}
   manaCost: 1
   cooldown: 0
   healValue: 0

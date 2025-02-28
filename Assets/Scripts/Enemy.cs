@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class Enemy : Unit
     Color m_OriginalColor;
 
     //Get the GameObject’s mesh renderer to access the GameObject’s material and color
-    SpriteRenderer m_Renderer;
+    public SpriteRenderer m_Renderer;
 
     public bool target = false;
 
@@ -20,16 +21,48 @@ public class Enemy : Unit
 
     public EnemyMoves enemyMoves;
 
+    Vector3 pointA;
+    Vector3 pointB;
+
     void Start()
     {
         //Fetch the mesh renderer component from the GameObject
         m_Renderer = GetComponentInChildren<SpriteRenderer>();
         //Fetch the original color of the GameObject
         m_OriginalColor = m_Renderer.color;
+        pointA = transform.position;
+        pointB = transform.position + Vector3.left;
+    }
+
+    public void AttackAnim()
+    {
+        StartCoroutine(MoveOverTime());
+    }
+
+    IEnumerator MoveOverTime()
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime <= 0.5f)
+        {
+            transform.position = Vector3.Lerp(pointA, pointB, elapsedTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        while(elapsedTime <= 1f)
+        {
+            transform.position = Vector3.Lerp(pointB, pointA, elapsedTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = pointA;
     }
     private void OnMouseOver()
     {
-        m_Renderer.color = m_MouseOverColor;
+        if (BattleSystem.state == BattleState.CASTING)
+        {
+            m_Renderer.color = m_MouseOverColor;
+        }
     }
 
     private void OnMouseExit()
