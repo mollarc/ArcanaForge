@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using NUnit.Framework;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
