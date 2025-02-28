@@ -18,7 +18,7 @@ public class WandObject : MonoBehaviour
     private int shieldValue;
     private float modifierValue;
     public int targets;
-    public TMP_Text manaCostText;
+    public TMP_Text wandTypeText;
     public GameObject typePanel;
     public GameObject modifierPanel;
     public GameObject slotTypePrefab;
@@ -114,6 +114,8 @@ public class WandObject : MonoBehaviour
         healValue = (int)Mathf.Round(healValue * modifierValue);
         damageValue = (int)Mathf.Round(damageValue * modifierValue);
         shieldValue = (int)Mathf.Round(shieldValue * modifierValue);
+
+        DisplayTypeValues();
     }
 
     public void ResetValues()
@@ -123,6 +125,24 @@ public class WandObject : MonoBehaviour
         damageValue = 0;
         shieldValue = 0;
         modifierValue = 1;
+    }
+
+    public void DisplayTypeValues()
+    {
+        wandEffectText.text = "Mana Cost: " + manaCost;
+
+        if(damageValue > 0)
+        {
+            wandEffectText.text += " Damage:" + damageValue;
+        }
+        if (shieldValue > 0)
+        {
+            wandEffectText.text += " Shield: " + shieldValue;
+        }
+        if (healValue > 0)
+        {
+            wandEffectText.text += " Heal: " + healValue;
+        }
     }
 
     // Update is called once per frame
