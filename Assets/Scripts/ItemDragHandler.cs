@@ -6,11 +6,14 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 {
     Transform originalParent;
     CanvasGroup canvasGroup;
+    public Animator playerAnimator;
+    public GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        
+        player = GameObject.FindWithTag("Player");
+        playerAnimator = player.GetComponentInChildren<Animator>();
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
