@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Unit : MonoBehaviour
@@ -8,6 +9,8 @@ public abstract class Unit : MonoBehaviour
     public int currentShield;
 
     public bool isDead = false;
+
+    public List<StackableEffectSO> stackableEffects = new List<StackableEffectSO>();
 
     public bool TakeDamage(int dmg)
     {
@@ -54,5 +57,61 @@ public abstract class Unit : MonoBehaviour
     public void ResetShield()
     {
         currentShield = 0;
+    }
+
+    public void AddStatus(StackableEffectSO _statusEffect)
+    {
+        print(_statusEffect._status.GetEffectName());
+        if(stackableEffects != null)
+        {
+            foreach(StackableEffectSO effect in stackableEffects)
+            {
+                if(effect._status == _statusEffect._status)
+                {
+                    print("Adding to Status");
+                    effect._status.AddAmount(_statusEffect._status.GetAmount());
+                }
+                else
+                {
+                    print("Adding Status");
+                    stackableEffects.Add(_statusEffect);
+                }
+            }
+        }
+        else
+        {
+            print("Adding Status");
+            stackableEffects.Add(_statusEffect);
+        }
+        print("End of Add Status");
+    }
+
+    public void EndTurnEffects()
+    {
+        if(stackableEffects != null)
+        {
+            foreach (StackableEffectSO effect in stackableEffects)
+            {
+                string effectName = effect._status.GetEffectName();
+                print(effectName);
+                print(effect._status.GetAmount());
+                switch (effectName)
+                {
+                    case "Poison":
+                        TakeDamage(effect._status.GetAmount());
+                        effect._status.ActivateEffect();
+                        print(effect._status.GetAmount().ToString());
+                        break;
+                    case "Burn":
+                        TakeDamage(effect._status.GetAmount());
+                        effect._status.ActivateEffect();
+                        print(effect._status.GetAmount().ToString());
+                        break;
+                    default:
+                        print("Defaulted");
+                        break;
+                }
+            }
+        }
     }
 }

@@ -769,8 +769,8 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -784,7 +784,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1909428795096084342}
   m_FillRect: {fileID: 5995075946087457726}
   m_HandleRect: {fileID: 1111569704230503373}
@@ -986,6 +986,7 @@ MonoBehaviour:
   hpText: {fileID: 5730636994097223074}
   manaText: {fileID: 0}
   shieldText: {fileID: 6710885600959345380}
+  moveText: {fileID: 7931911408787955422}
   hpSlider: {fileID: 5351602938516757008}
   manaSlider: {fileID: 0}
 --- !u!1 &8644263479117187668

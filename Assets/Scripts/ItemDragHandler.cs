@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,6 +16,21 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         player = GameObject.FindWithTag("Player");
         playerAnimator = player.GetComponentInChildren<Animator>();
     }
+
+    public void ComponentChange()
+    {
+        playerAnimator.SetBool("Swapped", true);
+        playerAnimator.SetBool("isSelecting", false);
+        StartCoroutine(ChangeSwapped());
+
+    }
+
+    public IEnumerator ChangeSwapped()
+    {
+        yield return new WaitForSeconds(0.25f);
+        playerAnimator.SetBool("Swapped", false);
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         originalParent = transform.parent; //Save OG parent
@@ -23,6 +39,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup.alpha = 0.6f; //Semi-transparent during drag
         Slot originalSlot = originalParent.GetComponent<Slot>();
         print(originalSlot.currentItem.GetComponent<WandComponent>().componentType);
+        playerAnimator.SetBool("isSelecting", true);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -43,6 +60,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             {
                 dropSlot = dropItem.GetComponentInParent<Slot>();
             }
+            playerAnimator.SetBool("isSelecting", false);
         }
         Slot originalSlot = originalParent.GetComponent<Slot>();
 
@@ -51,6 +69,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             if (dropSlot.slotType != originalSlot.currentItem.GetComponent<WandComponent>().componentType && dropSlot.slotType != "ANY")
             {
                 transform.SetParent(originalParent);
+                playerAnimator.SetBool("isSelecting", false);
             }
             else
             {
@@ -69,6 +88,14 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 //Move Item Drop Slot
                 transform.SetParent(dropSlot.transform);
                 dropSlot.currentItem = gameObject;
+                if(dropSlot.slotType != "ANY")
+                {
+                    ComponentChange();
+                }
+                else
+                {
+                    playerAnimator.SetBool("isSelecting", false);
+                }
             }
         }
         else

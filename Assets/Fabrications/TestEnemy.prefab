@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -6898545311652284167}
   - component: {fileID: 8905856301992956472}
   m_Layer: 0
-  m_Name: Slime
+  m_Name: TestEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,7 +224,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2189578083047376111, guid: eec188db456f3ca4c85afbed0b0f6521, type: 3}
       propertyPath: m_Name
-      value: SlimeWand
+      value: TestWand
       objectReference: {fileID: 0}
     - target: {fileID: 5235255633255316901, guid: eec188db456f3ca4c85afbed0b0f6521, type: 3}
       propertyPath: m_LocalPosition.x
@@ -266,6 +266,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8213744943931798029, guid: eec188db456f3ca4c85afbed0b0f6521, type: 3}
+      propertyPath: enemyMoves.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213744943931798029, guid: eec188db456f3ca4c85afbed0b0f6521, type: 3}
+      propertyPath: 'enemyMoves.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 095db298b73ef274ca1fdb4a7163293b, type: 2}
+    - target: {fileID: 8213744943931798029, guid: eec188db456f3ca4c85afbed0b0f6521, type: 3}
+      propertyPath: 'enemyMoves.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 095db298b73ef274ca1fdb4a7163293b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5061705928852853113, guid: eec188db456f3ca4c85afbed0b0f6521, type: 3}

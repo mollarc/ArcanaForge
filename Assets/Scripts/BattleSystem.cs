@@ -113,6 +113,10 @@ public class BattleSystem : MonoBehaviour
             yield break;
 
         }
+        else
+        {
+            castingText.text = "Select an Enemy!";
+        }
 
         yield return TargetEnemies();
 
@@ -187,8 +191,16 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EndTurn()
     {
-        yield return new WaitForSeconds(0.5f);
+        playerUnit.EndTurnEffects();
+        playerHUD.SetHP(playerUnit.currentHP);
+        playerHUD.SetShield(playerUnit);
+        foreach (var enemy in enemies)
+        {
+            enemy.EndTurnEffects();
+            enemy.enemyHUD.SetHP(enemy.currentHP);
+        }
         state = BattleState.ENEMYTURN;
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(EnemyTurn());
     }
 
@@ -201,7 +213,7 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetShield(playerUnit);
         foreach (var enemy in enemies)
         {
-            enemy.enemyHUD.setMove(enemy.enemyMoves.LoadMove());
+            enemy.enemyHUD.SetMove(enemy.enemyMoves.LoadMove());
         }
         Debug.Log("Player's Turn!");
     }
@@ -226,6 +238,16 @@ public class BattleSystem : MonoBehaviour
                 enemy.GainShield(enemy.enemyMoves.ShieldValue);
                 enemy.enemyHUD.SetShield(enemy);
                 enemy.AttackAnim();
+
+                if(enemy.enemyMoves.statusEffects != null)
+                {
+                    print("Battle Status Not Null");
+                    foreach(StackableEffectSO effectSO in enemy.enemyMoves.statusEffects)
+                    {
+                        print(effectSO._status.GetEffectName());
+                        playerUnit.AddStatus(effectSO);
+                    }
+                }
 
                 playerUnit.TakeDamage(enemy.enemyMoves.DamageValue);
                 playerHUD.SetHP(playerUnit.currentHP);

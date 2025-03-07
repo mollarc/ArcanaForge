@@ -83,6 +83,7 @@ public class WandObject : MonoBehaviour
         }
         if(wandModifierSlots.Count() != 0)
         {
+            //Buffs/Debuffs that affect values should adjust the modifier value
             foreach (Slot modifierSlot in wandModifierSlots)
             {
                 if (modifierSlot.currentItem != null)
@@ -115,7 +116,7 @@ public class WandObject : MonoBehaviour
         damageValue = (int)Mathf.Round(damageValue * modifierValue);
         shieldValue = (int)Mathf.Round(shieldValue * modifierValue);
 
-        DisplayTypeValues();
+        //DisplayTypeValues();
     }
 
     public void ResetValues()
@@ -129,19 +130,19 @@ public class WandObject : MonoBehaviour
 
     public void DisplayTypeValues()
     {
-        wandEffectText.text = "Mana Cost: " + manaCost;
+        wandTypeText.text = "Mana Cost: " + manaCost;
 
         if(damageValue > 0)
         {
-            wandEffectText.text += " Damage:" + damageValue;
+            wandTypeText.text += " Damage:" + damageValue;
         }
         if (shieldValue > 0)
         {
-            wandEffectText.text += " Shield: " + shieldValue;
+            wandTypeText.text += " Shield: " + shieldValue;
         }
         if (healValue > 0)
         {
-            wandEffectText.text += " Heal: " + healValue;
+            wandTypeText.text += " Heal: " + healValue;
         }
     }
 

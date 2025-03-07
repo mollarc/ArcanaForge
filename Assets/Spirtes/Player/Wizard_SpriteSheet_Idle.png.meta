@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -34,27 +34,27 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -95,19 +95,755 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1984
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b1377ac356dfdb41b05d3700c5aff88
+      internalID: 27366962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c5180bfbcf02d24fbd9b65163ce2769
+      internalID: -1154314298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1856
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5ea9a242591b63469139a13e9129d6c
+      internalID: -1605662655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1792
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fd40bdd45366fe4996d36a26195f8cd
+      internalID: -517806928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1728
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad161139b8086bd46860e9f098733a79
+      internalID: -1189106706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1664
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee2c864022c17b04da4a19489dd478af
+      internalID: 779152684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1600
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c6bc467fb3942c43b4a49e2f64c4622
+      internalID: -711914626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c22db3aeff70984aa470c13bff11796
+      internalID: 185921880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1472
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdf99d48100a3844fb237c29ecf8e87c
+      internalID: -1207954389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1408
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a8726e25b686e4eafbc6133963f079
+      internalID: -285138522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1344
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba48f5c2ee98ec844aea8206d1ed685d
+      internalID: 1704724552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1280
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15a71a621686bff40b6918eaccfeb953
+      internalID: 253584512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1216
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 789904aa36abea049a2b315f2bee4ed5
+      internalID: 1364468111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d82c4e9da88df4594a5b5d2321b165
+      internalID: 1979266775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1088
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09de444503bcad34592feb82a4a34d01
+      internalID: -559157189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6772a61110744b46b9374027de0f165
+      internalID: -2036096313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfd8f2f5ff3ec9942bfcfae391096b34
+      internalID: -1049721864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 896
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6977dbb2d15cacf4cbc27419a14cc60d
+      internalID: -212691643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 832
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbc8b80dfc07e4c42b34fc3a097f50b7
+      internalID: -622247444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16780a410644ba542b64837b69e074be
+      internalID: 443619785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 704
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f97d5285eb6ae0c468e7560cf93e7101
+      internalID: 2109629212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38cd435e6cd5b6742b9bb4bce64cdcb3
+      internalID: 270428733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6cb44a00a26f524fba05eadcac8ea91
+      internalID: -1092893683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc19506ee7cb7b542ab8737043b60df9
+      internalID: 374337767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b84cec36decabf4d81c387b1e1738a7
+      internalID: 94389765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90199a1d783135b4cab24a04c3c3c22f
+      internalID: -136136686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66f4b4621177f9f40ae3031ced85dfd5
+      internalID: -418680151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2a23cdc8b08ce246889aa386fd15645
+      internalID: 1477687462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 087249bcaf7d94c46b08dc3b1707db7c
+      internalID: -478340155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 242e9c334a7315844b5b9172aedea65a
+      internalID: -813129280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e403c8e0f2cbe0d4b981ad9dc0feaf7a
+      internalID: -221469302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wizard_SpriteSheet_Idle_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 139
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a12ce25c388b604ea33fff9834bac91
+      internalID: 971417228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 253640ec9b1a2134f8d5143aa68f5b34
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Wizard_SpriteSheet_Idle_0: 27366962
+      Wizard_SpriteSheet_Idle_1: -1154314298
+      Wizard_SpriteSheet_Idle_10: 1704724552
+      Wizard_SpriteSheet_Idle_11: 253584512
+      Wizard_SpriteSheet_Idle_12: 1364468111
+      Wizard_SpriteSheet_Idle_13: 1979266775
+      Wizard_SpriteSheet_Idle_14: -559157189
+      Wizard_SpriteSheet_Idle_15: -2036096313
+      Wizard_SpriteSheet_Idle_16: -1049721864
+      Wizard_SpriteSheet_Idle_17: -212691643
+      Wizard_SpriteSheet_Idle_18: -622247444
+      Wizard_SpriteSheet_Idle_19: 443619785
+      Wizard_SpriteSheet_Idle_2: -1605662655
+      Wizard_SpriteSheet_Idle_20: 2109629212
+      Wizard_SpriteSheet_Idle_21: 270428733
+      Wizard_SpriteSheet_Idle_22: -1092893683
+      Wizard_SpriteSheet_Idle_23: 374337767
+      Wizard_SpriteSheet_Idle_24: 94389765
+      Wizard_SpriteSheet_Idle_25: -136136686
+      Wizard_SpriteSheet_Idle_26: -418680151
+      Wizard_SpriteSheet_Idle_27: 1477687462
+      Wizard_SpriteSheet_Idle_28: -478340155
+      Wizard_SpriteSheet_Idle_29: -813129280
+      Wizard_SpriteSheet_Idle_3: -517806928
+      Wizard_SpriteSheet_Idle_30: -221469302
+      Wizard_SpriteSheet_Idle_31: 971417228
+      Wizard_SpriteSheet_Idle_4: -1189106706
+      Wizard_SpriteSheet_Idle_5: 779152684
+      Wizard_SpriteSheet_Idle_6: -711914626
+      Wizard_SpriteSheet_Idle_7: 185921880
+      Wizard_SpriteSheet_Idle_8: -1207954389
+      Wizard_SpriteSheet_Idle_9: -285138522
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

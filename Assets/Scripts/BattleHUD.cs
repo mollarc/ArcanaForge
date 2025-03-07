@@ -51,8 +51,9 @@ public class BattleHUD : MonoBehaviour
         shieldText.text = unit.currentShield.ToString();
     }
 
-    public void setMove(string move)
+    public void SetMove(string move)
     {
         moveText.text = move;
     }
+
 }
