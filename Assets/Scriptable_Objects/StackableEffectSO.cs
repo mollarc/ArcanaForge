@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StatusEffectSO", menuName = "Scriptable Objects/StatusEffectSO")]
 public class StackableEffectSO : ScriptableObject
 {
-    [SerializeReference, SubclassSelector]
+    [SerializeReference]
     public IStackableEffect _status;
 
     public void ActivateSkill() => _status?.ActivateEffect();
