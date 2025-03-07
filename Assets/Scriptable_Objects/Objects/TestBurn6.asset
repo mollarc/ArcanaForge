@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1af3a1d78b729d40bc3b237238ac7ac, type: 3}
-  m_Name: TestEnemyMove
+  m_Script: {fileID: 11500000, guid: 806895d737e11754fad2cdc97736c144, type: 3}
+  m_Name: TestBurn6
   m_EditorClassIdentifier: 
-  healValue: 0
-  damageValue: 1
-  shieldValue: 0
-  type: 0
-  statusEffects:
-  - {fileID: 0}
+  permanent: 0
+  amount: 6
+  tickAmount: 1
+  effectName: Burn

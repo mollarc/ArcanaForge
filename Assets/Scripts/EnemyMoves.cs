@@ -15,7 +15,7 @@ public class EnemyMoves : MonoBehaviour
     public List<TempEnemyMove> enemyMoves;
     public List<TempEnemyMove> usedMoves;
 
-    public List<StackableEffectSO> statusEffects;
+    public List<StackableEffect> statusEffects;
 
     public int HealValue { get => healValue; set => healValue = value; }
     public int DamageValue { get => damageValue; set => damageValue = value; }
@@ -29,14 +29,16 @@ public class EnemyMoves : MonoBehaviour
 
     public void CalculateValues()
     {
+        print(currentMove.healValue);
         healValue = currentMove.healValue * modifierValue;
         damageValue = currentMove.damageValue * modifierValue;
         shieldValue = currentMove.shieldValue * modifierValue;
         if (currentMove.statusEffects != null)
         {
-            foreach(StackableEffectSO statusEffect in currentMove.statusEffects)
+            foreach(StackableEffectSO statusEffectData in currentMove.statusEffects)
             {
-                statusEffects.Add(statusEffect);
+                
+                //statusEffects.Add(statusEffect);
             }
         }
     }
@@ -48,7 +50,7 @@ public class EnemyMoves : MonoBehaviour
         CalculateValues();
         if(statusEffects != null)
         {
-            foreach(StackableEffectSO effectSO in statusEffects)
+            foreach(StackableEffect effectSO in statusEffects)
             {
                 //Show Enemy Intent
             }

@@ -46,21 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMoves:
-  - {fileID: 11400000, guid: 095db298b73ef274ca1fdb4a7163293b, type: 2}
-  - {fileID: 11400000, guid: 095db298b73ef274ca1fdb4a7163293b, type: 2}
-  - {fileID: 11400000, guid: 095db298b73ef274ca1fdb4a7163293b, type: 2}
+  - {fileID: 11400000, guid: f0bea251c19fda746b539f2711908a07, type: 2}
+  - {fileID: 11400000, guid: f0bea251c19fda746b539f2711908a07, type: 2}
+  - {fileID: 11400000, guid: f0bea251c19fda746b539f2711908a07, type: 2}
   usedMoves: []
-  statusEffects:
-  - {fileID: 11400000, guid: 0b91a0477ca94fa4ba6ed976990515c8, type: 2}
-  - {fileID: 11400000, guid: 0b91a0477ca94fa4ba6ed976990515c8, type: 2}
-  - {fileID: 11400000, guid: 0b91a0477ca94fa4ba6ed976990515c8, type: 2}
-  - {fileID: 11400000, guid: 0b91a0477ca94fa4ba6ed976990515c8, type: 2}
-  - {fileID: 11400000, guid: 0b91a0477ca94fa4ba6ed976990515c8, type: 2}
-  - {fileID: 11400000, guid: 0b91a0477ca94fa4ba6ed976990515c8, type: 2}
-  - {fileID: 11400000, guid: 0b91a0477ca94fa4ba6ed976990515c8, type: 2}
-  - {fileID: 11400000, guid: 0b91a0477ca94fa4ba6ed976990515c8, type: 2}
-  - {fileID: 11400000, guid: 0b91a0477ca94fa4ba6ed976990515c8, type: 2}
-  - {fileID: 11400000, guid: 0b91a0477ca94fa4ba6ed976990515c8, type: 2}
+  statusEffects: []
 --- !u!1 &5061705928852853113
 GameObject:
   m_ObjectHideFlags: 0

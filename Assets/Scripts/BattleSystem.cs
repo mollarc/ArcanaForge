@@ -242,10 +242,10 @@ public class BattleSystem : MonoBehaviour
                 if(enemy.enemyMoves.statusEffects != null)
                 {
                     print("Battle Status Not Null");
-                    foreach(StackableEffectSO effectSO in enemy.enemyMoves.statusEffects)
+                    foreach(StackableEffect stackEffect in enemy.enemyMoves.statusEffects)
                     {
-                        print(effectSO._status.GetEffectName());
-                        playerUnit.AddStatus(effectSO);
+                        print(stackEffect._status.GetEffectName());
+                        playerUnit.AddStatus(stackEffect);
                     }
                 }
 

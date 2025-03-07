@@ -10,7 +10,7 @@ public abstract class Unit : MonoBehaviour
 
     public bool isDead = false;
 
-    public List<StackableEffectSO> stackableEffects = new List<StackableEffectSO>();
+    public List<StackableEffect> stackableEffects = new List<StackableEffect>();
 
     public bool TakeDamage(int dmg)
     {
@@ -59,12 +59,12 @@ public abstract class Unit : MonoBehaviour
         currentShield = 0;
     }
 
-    public void AddStatus(StackableEffectSO _statusEffect)
+    public void AddStatus(StackableEffect _statusEffect)
     {
         print(_statusEffect._status.GetEffectName());
         if(stackableEffects != null)
         {
-            foreach(StackableEffectSO effect in stackableEffects)
+            foreach(StackableEffect effect in stackableEffects)
             {
                 if(effect._status == _statusEffect._status)
                 {
@@ -90,7 +90,7 @@ public abstract class Unit : MonoBehaviour
     {
         if(stackableEffects != null)
         {
-            foreach (StackableEffectSO effect in stackableEffects)
+            foreach (StackableEffect effect in stackableEffects)
             {
                 string effectName = effect._status.GetEffectName();
                 print(effectName);

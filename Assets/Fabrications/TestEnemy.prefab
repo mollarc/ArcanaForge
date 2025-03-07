@@ -57,7 +57,7 @@ MonoBehaviour:
   target: 0
   casting: 0
   enemyHUD: {fileID: 0}
-  enemyMoves: {fileID: 2657871825228579760}
+  enemyMoves: {fileID: 8213744943931798029, guid: 66077641db68b7c409a4aaadbb01378f, type: 3}
 --- !u!61 &8905856301992956472
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -273,11 +273,11 @@ PrefabInstance:
     - target: {fileID: 8213744943931798029, guid: eec188db456f3ca4c85afbed0b0f6521, type: 3}
       propertyPath: 'enemyMoves.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 095db298b73ef274ca1fdb4a7163293b, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 8213744943931798029, guid: eec188db456f3ca4c85afbed0b0f6521, type: 3}
       propertyPath: 'enemyMoves.Array.data[1]'
       value: 
-      objectReference: {fileID: 11400000, guid: 095db298b73ef274ca1fdb4a7163293b, type: 2}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5061705928852853113, guid: eec188db456f3ca4c85afbed0b0f6521, type: 3}
@@ -289,14 +289,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5235255633255316901, guid: eec188db456f3ca4c85afbed0b0f6521, type: 3}
   m_PrefabInstance: {fileID: 6133829943449350589}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2657871825228579760 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8213744943931798029, guid: eec188db456f3ca4c85afbed0b0f6521, type: 3}
-  m_PrefabInstance: {fileID: 6133829943449350589}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1221b30dd9789e64989c07d9f88db538, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
