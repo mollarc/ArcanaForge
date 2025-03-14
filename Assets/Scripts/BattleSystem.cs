@@ -239,16 +239,14 @@ public class BattleSystem : MonoBehaviour
                 enemy.enemyHUD.SetShield(enemy);
                 enemy.AttackAnim();
 
-                if(enemy.enemyMoves.statusEffects != null)
+                if (enemy.enemyMoves.statusEffects != null)
                 {
                     print("Battle Status Not Null");
-                    foreach(StackableEffect stackEffect in enemy.enemyMoves.statusEffects)
+                    foreach (StackableEffectSO stackEffectData in enemy.enemyMoves.statusEffects)
                     {
-                        print(stackEffect._status.GetEffectName());
-                        playerUnit.AddStatus(stackEffect);
+                        playerUnit.AddStatus(stackEffectData);
                     }
                 }
-
                 playerUnit.TakeDamage(enemy.enemyMoves.DamageValue);
                 playerHUD.SetHP(playerUnit.currentHP);
                 playerHUD.SetShield(playerUnit);

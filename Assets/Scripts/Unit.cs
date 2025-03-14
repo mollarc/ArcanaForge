@@ -10,11 +10,11 @@ public abstract class Unit : MonoBehaviour
 
     public bool isDead = false;
 
-    public List<StackableEffect> stackableEffects = new List<StackableEffect>();
+    public List<StackableEffectSO> stackableEffects = new List<StackableEffectSO>();
 
     public bool TakeDamage(int dmg)
     {
-        if(currentShield - dmg < 0)
+        if (currentShield - dmg < 0)
         {
             dmg -= currentShield;
             currentShield = 0;
@@ -59,17 +59,16 @@ public abstract class Unit : MonoBehaviour
         currentShield = 0;
     }
 
-    public void AddStatus(StackableEffect _statusEffect)
+    public void AddStatus(StackableEffectSO _statusEffect)
     {
-        print(_statusEffect._status.GetEffectName());
-        if(stackableEffects != null)
+        if (stackableEffects.Count == 0)
         {
-            foreach(StackableEffect effect in stackableEffects)
+            foreach (StackableEffectSO effect in stackableEffects)
             {
-                if(effect._status == _statusEffect._status)
+                if (effect.effectName == _statusEffect.effectName)
                 {
                     print("Adding to Status");
-                    effect._status.AddAmount(_statusEffect._status.GetAmount());
+                    //effect._status.AddAmount(_statusEffect._status.GetAmount());
                 }
                 else
                 {
@@ -88,30 +87,31 @@ public abstract class Unit : MonoBehaviour
 
     public void EndTurnEffects()
     {
-        if(stackableEffects != null)
+        if (stackableEffects != null)
         {
-            foreach (StackableEffect effect in stackableEffects)
-            {
-                string effectName = effect._status.GetEffectName();
-                print(effectName);
-                print(effect._status.GetAmount());
-                switch (effectName)
-                {
-                    case "Poison":
-                        TakeDamage(effect._status.GetAmount());
-                        effect._status.ActivateEffect();
-                        print(effect._status.GetAmount().ToString());
-                        break;
-                    case "Burn":
-                        TakeDamage(effect._status.GetAmount());
-                        effect._status.ActivateEffect();
-                        print(effect._status.GetAmount().ToString());
-                        break;
-                    default:
-                        print("Defaulted");
-                        break;
-                }
-            }
+            //    foreach (StackableEffectSO effect in stackableEffects)
+            //    {
+            //        string effectName = effect._status.GetEffectName();
+            //        print(effectName);
+            //        print(effect._status.GetAmount());
+            //        switch (effectName)
+            //        {
+            //            case "Poison":
+            //                TakeDamage(effect._status.GetAmount());
+            //                effect._status.ActivateEffect();
+            //                print(effect._status.GetAmount().ToString());
+            //                break;
+            //            case "Burn":
+            //                TakeDamage(effect._status.GetAmount());
+            //                effect._status.ActivateEffect();
+            //                print(effect._status.GetAmount().ToString());
+            //                break;
+            //            default:
+            //                print("Defaulted");
+            //                break;
+            //        }
+            //    }
+            //}
         }
     }
 }

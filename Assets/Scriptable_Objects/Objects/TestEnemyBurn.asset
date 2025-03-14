@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1af3a1d78b729d40bc3b237238ac7ac, type: 3}
   m_Name: TestEnemyBurn
   m_EditorClassIdentifier: 
+  moveName: TestBurn
   healValue: 0
   damageValue: 1
   shieldValue: 0
   type: 0
   statusEffects:
-  - {fileID: 11400000, guid: d6cdfcc01f9b75a4eb638bcc8ff9f6cb, type: 2}
+  - {fileID: 11400000, guid: 8e39dfca6102f0a439f32b2fe7ac97c0, type: 2}

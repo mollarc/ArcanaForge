@@ -11,7 +11,12 @@ public class StackableEffect : MonoBehaviour
 
     public Sprite effectIcon;
 
-    public StackableEffect(StackableEffectSO _effectData)
+    private void Start()
+    {
+
+    }
+
+    public void SetUP(StackableEffectSO _effectData)
     {
         permanent = _effectData.permanent;
         amount = _effectData.amount;
