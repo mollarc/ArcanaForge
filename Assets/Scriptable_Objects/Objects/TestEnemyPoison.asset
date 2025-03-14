@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84a1f4e0237ea924f9090c6f8b88b2b9, type: 3}
-  m_Name: TYPE 5 DMG
+  m_Script: {fileID: 11500000, guid: f1af3a1d78b729d40bc3b237238ac7ac, type: 3}
+  m_Name: TestEnemyPoison
   m_EditorClassIdentifier: 
-  componentName: Magic
-  componentType: TYPE
-  manaCost: 1
-  cooldown: 1
-  gemImage: {fileID: 2124294421, guid: 3b40f86dba31e4443a71815c4782fa53, type: 3}
+  moveName: TestPoison
   healValue: 0
-  damageValue: 5
+  damageValue: 1
   shieldValue: 0
-  targets: 0
+  type: 0
+  statusEffects:
+  - {fileID: 11400000, guid: b489be9c244830842bfcf5532f42149a, type: 2}

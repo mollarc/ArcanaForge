@@ -61,14 +61,14 @@ public abstract class Unit : MonoBehaviour
 
     public void AddStatus(StackableEffectSO _statusEffect)
     {
-        if (stackableEffects.Count == 0)
+        if (stackableEffects.Count != 0)
         {
             foreach (StackableEffectSO effect in stackableEffects)
             {
                 if (effect.effectName == _statusEffect.effectName)
                 {
                     print("Adding to Status");
-                    //effect._status.AddAmount(_statusEffect._status.GetAmount());
+                    effect.amount += _statusEffect.amount;
                 }
                 else
                 {
@@ -89,29 +89,25 @@ public abstract class Unit : MonoBehaviour
     {
         if (stackableEffects != null)
         {
-            //    foreach (StackableEffectSO effect in stackableEffects)
-            //    {
-            //        string effectName = effect._status.GetEffectName();
-            //        print(effectName);
-            //        print(effect._status.GetAmount());
-            //        switch (effectName)
-            //        {
-            //            case "Poison":
-            //                TakeDamage(effect._status.GetAmount());
-            //                effect._status.ActivateEffect();
-            //                print(effect._status.GetAmount().ToString());
-            //                break;
-            //            case "Burn":
-            //                TakeDamage(effect._status.GetAmount());
-            //                effect._status.ActivateEffect();
-            //                print(effect._status.GetAmount().ToString());
-            //                break;
-            //            default:
-            //                print("Defaulted");
-            //                break;
-            //        }
-            //    }
-            //}
+            foreach (StackableEffectSO effect in stackableEffects)
+            {
+                string effectName = effect.effectName;
+                switch (effectName)
+                {
+                    case "Poison":
+                        TakeDamage(effect.amount);
+                        effect.TickEffect();
+                        break;
+                    case "Burn":
+                        TakeDamage(effect.amount);
+                        effect.TickEffect();
+                        break;
+                    default:
+                        print("Defaulted");
+                        break;
+                }
+            }
         }
     }
 }
+

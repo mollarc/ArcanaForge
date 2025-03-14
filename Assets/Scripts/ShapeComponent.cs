@@ -9,6 +9,7 @@ public class ShapeComponent : WandComponent
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        base.SetUP();
         componentName = shapeComponentData.name;
         componentType = shapeComponentData.componentType;
         manaCost = shapeComponentData.manaCost;

@@ -119,6 +119,78 @@ public class WandObject : MonoBehaviour
         //DisplayTypeValues();
     }
 
+    public void MarkUsed()
+    {
+        if (wandTypeSlots.Count() != 0)
+        {
+            foreach (Slot typeSlot in wandTypeSlots)
+            {
+                if (typeSlot.currentItem != null)
+                {
+                    typeSlot.currentItem.GetComponent<TypeComponent>().wasUsed = true;
+                }
+            }
+        }
+        if (wandModifierSlots.Count() != 0)
+        {
+            //Buffs/Debuffs that affect values should adjust the modifier value
+            foreach (Slot modifierSlot in wandModifierSlots)
+            {
+                if (modifierSlot.currentItem != null)
+                {
+                    modifierSlot.currentItem.GetComponent<ModifierComponent>().wasUsed = true;
+                }
+            }
+        }
+
+        if (wandShapeSlots.Count() != 0)
+        {
+            foreach (Slot shapeSlot in wandShapeSlots)
+            {
+                if (shapeSlot.currentItem.GetComponent<ShapeComponent>().targets > targets)
+                {
+                    shapeSlot.currentItem.GetComponent<ShapeComponent>().wasUsed = true;
+                }
+            }
+        }
+    }
+
+    public void EndTurn()
+    {
+        if (wandTypeSlots.Count() != 0)
+        {
+            foreach (Slot typeSlot in wandTypeSlots)
+            {
+                if (typeSlot.currentItem != null)
+                {
+                    typeSlot.currentItem.GetComponent<TypeComponent>().EndTurn();
+                }
+            }
+        }
+        if (wandModifierSlots.Count() != 0)
+        {
+            //Buffs/Debuffs that affect values should adjust the modifier value
+            foreach (Slot modifierSlot in wandModifierSlots)
+            {
+                if (modifierSlot.currentItem != null)
+                {
+                    modifierSlot.currentItem.GetComponent<ModifierComponent>().EndTurn();
+                }
+            }
+        }
+
+        if (wandShapeSlots.Count() != 0)
+        {
+            foreach (Slot shapeSlot in wandShapeSlots)
+            {
+                if (shapeSlot.currentItem.GetComponent<ShapeComponent>().targets > targets)
+                {
+                    shapeSlot.currentItem.GetComponent<ShapeComponent>().EndTurn();
+                }
+            }
+        }
+    }
+
     public void ResetValues()
     {
         manaCost = 0;

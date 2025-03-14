@@ -146,13 +146,15 @@ public class BattleSystem : MonoBehaviour
         playerUnit.GainShield(wand1.ShieldValue);
         playerHUD.SetShield(playerUnit);
 
-        enemyHUD1.SetHP(enemyUnit1.currentHP);
-        enemyHUD2.SetHP(enemyUnit2.currentHP);
+        foreach (Enemy _enemy in enemies)
+        {
+            _enemy.enemyHUD.SetHP(_enemy.currentHP);
+            _enemy.enemyHUD.SetShield(_enemy);
+        }
 
-        enemyHUD1.SetShield(enemyUnit1);
-        enemyHUD2.SetShield(enemyUnit2);
-        //enemyHUD3.SetHP(enemyUnit3.currentHP);
         Debug.Log("Casted Wand!");
+
+        wand1.MarkUsed();
 
         yield return new WaitForSeconds(0.5f);
 
@@ -199,6 +201,7 @@ public class BattleSystem : MonoBehaviour
             enemy.EndTurnEffects();
             enemy.enemyHUD.SetHP(enemy.currentHP);
         }
+        wand1.EndTurn();
         state = BattleState.ENEMYTURN;
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(EnemyTurn());
@@ -244,6 +247,7 @@ public class BattleSystem : MonoBehaviour
                     print("Battle Status Not Null");
                     foreach (StackableEffectSO stackEffectData in enemy.enemyMoves.statusEffects)
                     {
+                        print(stackEffectData.effectName);
                         playerUnit.AddStatus(stackEffectData);
                     }
                 }

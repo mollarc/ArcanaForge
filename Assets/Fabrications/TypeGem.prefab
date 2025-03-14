@@ -102,6 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc8e1c1b8f994946bf720fdbd0ab2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 0}
+  player: {fileID: 0}
+  wandComponent: {fileID: 870041598486262062}
 --- !u!114 &870041598486262062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +121,7 @@ MonoBehaviour:
   componentType: 
   manaCost: 0
   cooldown: 0
+  currentCooldown: 0
   gemImage: {fileID: 0}
   typeComponentData: {fileID: 0}
   healValue: 0

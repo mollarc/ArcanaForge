@@ -3,8 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TypeComponent", menuName = "Scriptable Objects/TypeComponent")]
 public class TypeComponentSO : WandComponentSO
 {
-    public int manaCost;
-    public int cooldown;
     public int healValue;
     public int damageValue;
     public int shieldValue;

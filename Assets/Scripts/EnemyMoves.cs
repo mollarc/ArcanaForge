@@ -24,15 +24,12 @@ public class EnemyMoves : MonoBehaviour
 
     public void Start()
     {
-        healValue = 0;
-        damageValue = 0;
-        shieldValue = 0;
         modifierValue = 1;
     }
 
     public void CalculateValues()
     {
-        
+        statusEffects.Clear();
         healValue = currentMove.healValue * modifierValue;
         damageValue = currentMove.damageValue * modifierValue;
         shieldValue = currentMove.shieldValue * modifierValue;
@@ -40,8 +37,8 @@ public class EnemyMoves : MonoBehaviour
         {
             foreach(StackableEffectSO statusEffectData in currentMove.statusEffects)
             {
-                StackableEffectSO newScriptableObject = ScriptableObject.CreateInstance<StackableEffectSO>();
-                statusEffects.Add(statusEffectData);
+                StackableEffectSO stackableClone = Instantiate(statusEffectData);
+                statusEffects.Add(stackableClone);
             }
         }
     }

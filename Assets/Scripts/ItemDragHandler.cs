@@ -9,12 +9,22 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     CanvasGroup canvasGroup;
     public Animator playerAnimator;
     public GameObject player;
+    public WandComponent wandComponent;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         player = GameObject.FindWithTag("Player");
         playerAnimator = player.GetComponentInChildren<Animator>();
+    }
+
+    public bool CheckCooldown()
+    {
+        if (wandComponent.currentCooldown > 0)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void ComponentChange()
@@ -33,17 +43,25 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (CheckCooldown())
+        {
+            eventData.pointerDrag = null;
+            return;
+        }
         originalParent = transform.parent; //Save OG parent
         transform.SetParent(transform.root); //Above other Canvas'
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0.6f; //Semi-transparent during drag
         Slot originalSlot = originalParent.GetComponent<Slot>();
-        print(originalSlot.currentItem.GetComponent<WandComponent>().componentType);
         playerAnimator.SetBool("isSelecting", true);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (CheckCooldown())
+        {
+            return;
+        }
         transform.position = eventData.position;
     }
 

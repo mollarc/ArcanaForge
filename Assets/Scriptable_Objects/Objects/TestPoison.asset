@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 806895d737e11754fad2cdc97736c144, type: 3}
-  m_Name: TestBurn
+  m_Name: TestPoison
   m_EditorClassIdentifier: 
   permanent: 0
-  amount: 4
-  tickAmount: 0
-  effectName: Burn
+  amount: 3
+  tickAmount: 1
+  effectName: Poison
   effectIcon: {fileID: 0}
   _status:
-    rid: 444075488482164803
+    rid: 444075488482164804
   references:
     version: 2
     RefIds:
-    - rid: 444075488482164803
-      type: {class: DecreaseByHalf, ns: , asm: Assembly-CSharp}
-      data: 
+    - rid: 444075488482164804
+      type: {class: DecreaseByTick, ns: , asm: Assembly-CSharp}
+      data:
+        amount: 0
+        tick: 0
+        effectName: 

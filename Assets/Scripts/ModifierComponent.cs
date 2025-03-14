@@ -4,18 +4,14 @@ using UnityEngine.UI;
 public class ModifierComponent : WandComponent
 {
     public ModifierComponentSO modifierComponentData;
-    //Debuff Type
-    //Buff Type
-    //Debuff Duration
-    //Buff Duration
-    //Write percentages as decimals
-    public float modifierValue;
+    public float modifierValue;//Write percentages as decimals
     public int numberOfCasts;
     public int targets; //Int Values refer to "None,Single,Blast,All" in order starting from 0. Highest value takes priority.
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(modifierComponentData != null)
+        base.SetUP();
+        if (modifierComponentData != null)
         {
             LoadComponentData(modifierComponentData);
         }
