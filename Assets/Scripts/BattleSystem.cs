@@ -198,6 +198,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.EndTurnEffects();
         playerHUD.SetHP(playerUnit.currentHP);
         playerHUD.SetShield(playerUnit);
+        playerHUD.DisplayStatus(playerUnit.stackableEffects);
         foreach (var enemy in enemies)
         {
             enemy.EndTurnEffects();
@@ -226,7 +227,6 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
-        bool isDead;
         Debug.Log("Enemy Attacks!");
         foreach (var enemy in enemies)
         {
@@ -248,6 +248,7 @@ public class BattleSystem : MonoBehaviour
                 playerUnit.TakeDamage(enemy.enemyMoves.DamageValue);
                 playerHUD.SetHP(playerUnit.currentHP);
                 playerHUD.SetShield(playerUnit);
+                
                 if (enemy.enemyMoves.statusEffects != null)
                 {
                     print("Battle Status Not Null");
@@ -257,6 +258,7 @@ public class BattleSystem : MonoBehaviour
                         playerUnit.AddStatus(stackEffectData);
                     }
                 }
+                playerHUD.DisplayStatus(playerUnit.stackableEffects);
                 yield return new WaitForSeconds(1f);
             }
             if (playerUnit.isDead)

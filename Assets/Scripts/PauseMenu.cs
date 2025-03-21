@@ -5,9 +5,11 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
 
-    public Image helpImage;
+    public GameObject helpObject;
 
-    public Image glossaryImage;
+    public GameObject glossaryObject;
+
+    public GameObject pauseButtons;
 
     public bool isPaused;
 
@@ -20,9 +22,9 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
 
-        helpImage.gameObject.SetActive(false);
+        helpObject.SetActive(false);
 
-        glossaryImage.gameObject.SetActive(false);
+        glossaryObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -64,25 +66,29 @@ public class PauseMenu : MonoBehaviour
     public void ShowHelp()
     {
         inHelp = true;
-        helpImage.gameObject.SetActive(true);
+        helpObject.SetActive(true);
+        pauseButtons.SetActive(false);
+        pauseMenu.GetComponent<Image>().enabled = false;
     }
 
     public void HideHelp()
     {
         inHelp = false;
-        helpImage.gameObject.SetActive(false);
+        helpObject.SetActive(false);
+        pauseButtons.SetActive(true);
+        pauseMenu.GetComponent<Image>().enabled = true;
     }
 
     public void ShowGlossary()
     {
         inGlossary = true;
-        glossaryImage.gameObject .SetActive(true);
+        glossaryObject.SetActive(true);
     }
 
     public void HideGlossary()
     {
         inGlossary = false;
-        glossaryImage .gameObject .SetActive(false);
+        glossaryObject.SetActive(false);
     }
 
     public void MainMenu()

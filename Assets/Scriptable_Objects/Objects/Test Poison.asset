@@ -17,7 +17,7 @@ MonoBehaviour:
   tickAmount: 1
   type: 0
   effectName: Poison
-  effectIcon: {fileID: 0}
+  effectIcon: {fileID: 21300000, guid: a84e5cf74db2b5343925a256b0fbe3f7, type: 3}
   _status:
     rid: 444075488482164804
   references:

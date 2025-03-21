@@ -15,7 +15,7 @@ MonoBehaviour:
   componentName: Amp
   componentType: MODIFIER
   manaCost: 0
-  cooldown: 0
+  cooldown: 1
   gemImage: {fileID: 1235630590, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
   moveInfo: ' '
   modifierValue: 0.5
