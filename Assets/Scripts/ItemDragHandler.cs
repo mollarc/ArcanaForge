@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -10,12 +11,17 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public Animator playerAnimator;
     public GameObject player;
     public WandComponent wandComponent;
+    public UnityEvent componentMoved;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         player = GameObject.FindWithTag("Player");
         playerAnimator = player.GetComponentInChildren<Animator>();
+        foreach(var gameObject in GameObject.FindGameObjectsWithTag("Wand"))
+        {
+            componentMoved.AddListener(gameObject.GetComponent<WandObject>().CalculateValues);
+        }
     }
 
     public bool CheckCooldown()
@@ -69,7 +75,6 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         canvasGroup.blocksRaycasts = true; //Enable Raycasts
         canvasGroup.alpha = 1f; //No longer transparent
-
         Slot dropSlot = eventData.pointerEnter?.GetComponent<Slot>(); //Slot where item dropped
         if(dropSlot == null)
         {
@@ -123,5 +128,6 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
 
         GetComponent<RectTransform>().anchoredPosition = Vector2.zero; //Centers Item
+        componentMoved.Invoke();
     }
 }

@@ -18,4 +18,4 @@ MonoBehaviour:
   shieldValue: 0
   type: 0
   statusEffects:
-  - {fileID: 11400000, guid: 8e39dfca6102f0a439f32b2fe7ac97c0, type: 2}
+  - {fileID: 11400000, guid: b489be9c244830842bfcf5532f42149a, type: 2}

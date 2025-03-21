@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TypeComponentNS;
 
 public class TypeComponent : WandComponent
 {
@@ -8,6 +10,7 @@ public class TypeComponent : WandComponent
     public int damageValue;
     public int shieldValue;
     public int targets; //Int Values refer to "None,Single,Blast,All" in order starting from 0. Highest value takes priority.
+    public List<moves> moveInfos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,23 +20,23 @@ public class TypeComponent : WandComponent
             LoadComponentData(typeComponentData);
         }
     }
-
     // Update is called once per frame
     void Update()
     {
         
     }
 
-    public void LoadComponentData(TypeComponentSO componentData)
+    public new void LoadComponentData(TypeComponentSO componentData)
     {
-        componentName = componentData.name;
-        componentType = componentData.componentType;
-        manaCost = componentData.manaCost;
-        cooldown = componentData.cooldown;
-        gameObject.GetComponent<Image>().sprite = componentData.gemImage;
+        base.LoadComponentData(componentData);
         healValue = componentData.healValue;
         damageValue = componentData.damageValue;    
         shieldValue = componentData.shieldValue;
         targets = componentData.targets;
+        foreach(moves move in componentData.moveInfos)
+        {
+            moveInfos.Add(move);
+        }
+        
     }
 }

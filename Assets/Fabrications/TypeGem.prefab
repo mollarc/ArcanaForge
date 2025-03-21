@@ -105,6 +105,9 @@ MonoBehaviour:
   playerAnimator: {fileID: 0}
   player: {fileID: 0}
   wandComponent: {fileID: 870041598486262062}
+  componentMoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &870041598486262062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,9 +125,15 @@ MonoBehaviour:
   manaCost: 0
   cooldown: 0
   currentCooldown: 0
+  wasUsed: 0
   gemImage: {fileID: 0}
+  image: {fileID: 0}
+  canvasGroup: {fileID: 0}
+  inventoryController: {fileID: 0}
+  moveInfo: 
   typeComponentData: {fileID: 0}
   healValue: 0
   damageValue: 0
   shieldValue: 0
   targets: 0
+  moveInfos: 

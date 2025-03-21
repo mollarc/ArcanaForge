@@ -15,6 +15,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject enemyPrefab1;
 
+    public InventoryController inventoryController;
+
     public WandObject wand1;
     public WandObject wand2;
 
@@ -117,17 +119,17 @@ public class BattleSystem : MonoBehaviour
         {
             castingText.text = "Select an Enemy!";
         }
-
-        yield return TargetEnemies();
-
-        if (!isTarget)
+        if(wand1.targets != 0)
         {
-            print("Breaking2!");
-            playerUnit.ManaChange(wand1.ManaCost * -1, false);
-            state = BattleState.PLAYERTURN;
-            yield break;
+            yield return TargetEnemies();
+            if (!isTarget)
+            {
+                print("Breaking2!");
+                playerUnit.ManaChange(wand1.ManaCost * -1, false);
+                state = BattleState.PLAYERTURN;
+                yield break;
+            }
         }
-
         playerHUD.SetMana(playerUnit);
 
         playerAnimator.SetBool("Attacked", true);
@@ -201,6 +203,7 @@ public class BattleSystem : MonoBehaviour
             enemy.EndTurnEffects();
             enemy.enemyHUD.SetHP(enemy.currentHP);
         }
+        inventoryController.EndTurn();
         wand1.EndTurn();
         state = BattleState.ENEMYTURN;
         yield return new WaitForSeconds(0.5f);
@@ -216,7 +219,7 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetShield(playerUnit);
         foreach (var enemy in enemies)
         {
-            enemy.enemyHUD.SetMove(enemy.enemyMoves.LoadMove());
+            enemy.SetMove(enemy.enemyMoves.LoadMove());
         }
         Debug.Log("Player's Turn!");
     }
@@ -242,6 +245,9 @@ public class BattleSystem : MonoBehaviour
                 enemy.enemyHUD.SetShield(enemy);
                 enemy.AttackAnim();
 
+                playerUnit.TakeDamage(enemy.enemyMoves.DamageValue);
+                playerHUD.SetHP(playerUnit.currentHP);
+                playerHUD.SetShield(playerUnit);
                 if (enemy.enemyMoves.statusEffects != null)
                 {
                     print("Battle Status Not Null");
@@ -251,10 +257,6 @@ public class BattleSystem : MonoBehaviour
                         playerUnit.AddStatus(stackEffectData);
                     }
                 }
-                playerUnit.TakeDamage(enemy.enemyMoves.DamageValue);
-                playerHUD.SetHP(playerUnit.currentHP);
-                playerHUD.SetShield(playerUnit);
-
                 yield return new WaitForSeconds(1f);
             }
             if (playerUnit.isDead)

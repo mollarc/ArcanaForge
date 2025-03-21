@@ -9,13 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1af3a1d78b729d40bc3b237238ac7ac, type: 3}
-  m_Name: Slime Shield
+  m_Script: {fileID: 11500000, guid: 8b8536941900e2a4ea73c43282919d24, type: 3}
+  m_Name: MOD 6 BURN
   m_EditorClassIdentifier: 
-  moveName: SlimeShield
-  healValue: 0
-  damageValue: 0
-  shieldValue: 6
-  type: 1
-  moveInfo: X Shield
-  statusEffects: []
+  componentName: 
+  componentType: 
+  manaCost: 1
+  cooldown: 0
+  gemImage: {fileID: 0}
+  moveInfo: 
+  modifierValue: 0
+  numberOfCasts: 0
+  targets: 0
+  moveInfos: 01000000

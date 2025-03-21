@@ -14,6 +14,20 @@ public abstract class Unit : MonoBehaviour
 
     public bool TakeDamage(int dmg)
     {
+        if (stackableEffects != null)
+        {
+            foreach(StackableEffectSO s in stackableEffects)
+            {
+                if (s.effectName == "Frigid")
+                {
+                    dmg += s.amount;
+                    s.amount -= s.tickAmount;
+                }
+            }
+        }
+        {
+            
+        }
         if (currentShield - dmg < 0)
         {
             dmg -= currentShield;

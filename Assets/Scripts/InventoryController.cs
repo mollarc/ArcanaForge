@@ -42,4 +42,15 @@ public class InventoryController : MonoBehaviour
     {
         itemPrefabs.Add(item);
     }
+
+    public void EndTurn()
+    {
+        foreach(Slot slot in slotArray)
+        {
+            if (slot.currentItem != null)
+            {
+                slot.currentItem.gameObject.GetComponent<WandComponent>().EndTurn();
+            }
+        }
+    }
 }

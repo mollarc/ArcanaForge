@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: Amp
   componentType: MODIFIER
-  gemImage: {fileID: 1235630590, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
   manaCost: 0
   cooldown: 0
+  gemImage: {fileID: 1235630590, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
+  moveInfo: ' '
   modifierValue: 0.5
   numberOfCasts: 0
   targets: 0
+  moveInfos: 

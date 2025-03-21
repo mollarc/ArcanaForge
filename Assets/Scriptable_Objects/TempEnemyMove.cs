@@ -10,7 +10,7 @@ public class TempEnemyMove : ScriptableObject
     public int damageValue;
     public int shieldValue;
     public int type; //0 = Attack 1 = Shield 2 = Heal
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public string moveInfo; // Format should be " X Damage" and X is replaced by value in calculation
     public List<StackableEffectSO> statusEffects;
 
 }

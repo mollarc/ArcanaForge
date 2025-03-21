@@ -15,9 +15,11 @@ MonoBehaviour:
   componentName: Magic
   componentType: TYPE
   manaCost: 1
-  cooldown: 1
+  cooldown: 0
   gemImage: {fileID: 2124294421, guid: 3b40f86dba31e4443a71815c4782fa53, type: 3}
+  moveInfo: X Damage
   healValue: 0
   damageValue: 5
   shieldValue: 0
-  targets: 0
+  targets: 1
+  moveInfos: 00000000

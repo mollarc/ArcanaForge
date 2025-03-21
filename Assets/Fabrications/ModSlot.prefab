@@ -12,6 +12,26 @@ PrefabInstance:
       propertyPath: slotType
       value: MODIFIER
       objectReference: {fileID: 0}
+    - target: {fileID: 1510124733854962573, guid: c648fec8d0a6a1b4ead5d0db3116ec4b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1025498618, guid: 7c5acc41e8b4a9440a86a8dfff7b333b, type: 3}
+    - target: {fileID: 1510124733854962573, guid: c648fec8d0a6a1b4ead5d0db3116ec4b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510124733854962573, guid: c648fec8d0a6a1b4ead5d0db3116ec4b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510124733854962573, guid: c648fec8d0a6a1b4ead5d0db3116ec4b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510124733854962573, guid: c648fec8d0a6a1b4ead5d0db3116ec4b, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3971142841054085627, guid: c648fec8d0a6a1b4ead5d0db3116ec4b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -94,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5752139097542737255, guid: c648fec8d0a6a1b4ead5d0db3116ec4b, type: 3}
       propertyPath: m_Name
-      value: Slot Variant
+      value: ModSlot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

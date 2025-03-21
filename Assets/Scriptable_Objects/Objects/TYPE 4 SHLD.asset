@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: Buckler
   componentType: TYPE
-  gemImage: {fileID: -491205331, guid: a0d4ee17c90d68d47ad845c7fc8ae389, type: 3}
   manaCost: 1
   cooldown: 0
+  gemImage: {fileID: -491205331, guid: a0d4ee17c90d68d47ad845c7fc8ae389, type: 3}
+  moveInfo: X Shield
   healValue: 0
   damageValue: 0
   shieldValue: 4
   targets: 0
+  moveInfos: 01000000

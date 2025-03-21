@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveName: SlimeDmg
   healValue: 0
-  damageValue: 4
+  damageValue: 7
   shieldValue: 0
   type: 0
+  moveInfo: X Damage
   statusEffects: []

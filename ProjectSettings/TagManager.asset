@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - ComponentSelect
+  - Wand
   layers:
   - Default
   - TransparentFX

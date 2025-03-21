@@ -7,4 +7,5 @@ public class WandComponentSO : ScriptableObject
     public int manaCost;
     public int cooldown;
     public Sprite gemImage;
+    public string moveInfo; // Format should be " X Damage" and X is replaced by value in calculation
 }

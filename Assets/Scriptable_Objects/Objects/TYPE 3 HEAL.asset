@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: Bandage
   componentType: TYPE
-  gemImage: {fileID: -2073326816, guid: 5c967a4b7c5bdb8438c63fc2342e463b, type: 3}
   manaCost: 1
   cooldown: 0
+  gemImage: {fileID: -2073326816, guid: 5c967a4b7c5bdb8438c63fc2342e463b, type: 3}
+  moveInfo: X Heal
   healValue: 3
   damageValue: 0
   shieldValue: 0
   targets: 0
+  moveInfos: 02000000

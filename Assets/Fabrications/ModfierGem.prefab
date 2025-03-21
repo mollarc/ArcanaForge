@@ -122,7 +122,11 @@ MonoBehaviour:
   manaCost: 0
   cooldown: 0
   currentCooldown: 0
+  wasUsed: 0
   gemImage: {fileID: 0}
+  image: {fileID: 0}
+  canvasGroup: {fileID: 0}
+  inventoryController: {fileID: 0}
   modifierComponentData: {fileID: 0}
   modifierValue: 0
   numberOfCasts: 0

@@ -21,6 +21,8 @@ public class Enemy : Unit
 
     public EnemyMoves enemyMoves;
 
+    public TMP_Text moveText;
+
     Vector3 pointA;
     Vector3 pointB;
 
@@ -80,5 +82,10 @@ public class Enemy : Unit
     {
         target = false;
         this.GetComponentInChildren<SpriteRenderer>().color = m_OriginalColor;
+    }
+
+    public void SetMove(string move)
+    {
+        moveText.text = move;
     }
 }

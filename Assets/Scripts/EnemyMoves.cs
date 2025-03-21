@@ -45,6 +45,7 @@ public class EnemyMoves : MonoBehaviour
 
     public string LoadMove()
     {
+        string stringToReturn = "";
         currentMoveIndex = Random.Range(0, enemyMoves.Count);
         currentMove = enemyMoves[currentMoveIndex];
         CalculateValues();
@@ -52,20 +53,20 @@ public class EnemyMoves : MonoBehaviour
         {
             foreach(StackableEffectSO effectSO in statusEffects)
             {
-                //Show Enemy Intent
+                stringToReturn += effectSO.amount + " " + effectSO.effectName + " ";
             }
         }
         if (enemyMoves[currentMoveIndex].type ==0)
         {
-            return damageValue.ToString() + " DMG";
+            return stringToReturn += damageValue.ToString() + " DMG";
         }
         else if (enemyMoves[currentMoveIndex].type == 1)
         {
-            return shieldValue.ToString() + " SHLD";
+            return stringToReturn += shieldValue.ToString() + " SHLD";
         }
         else if (enemyMoves[currentMoveIndex].type == 2)
         {
-            return healValue.ToString() + " HEAL";
+            return stringToReturn += healValue.ToString() + " HEAL";
         }
         else
         {
