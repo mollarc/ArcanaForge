@@ -19,8 +19,6 @@ MonoBehaviour:
     rid: 2446823969637793792
   m_Scenes:
   - m_enabled: 0
-    m_path: Assets/Scenes/TurnBasedTesting.unity
-  - m_enabled: 0
     m_path: Assets/Scenes/BuildScene.unity
   - m_enabled: 1
     m_path: Assets/Scenes/MainMenu.unity
