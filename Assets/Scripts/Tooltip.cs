@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    
-    public Canvas canvas;
     public GameObject tooltipObj;
+    public TMP_Text tooltipText;
     private bool tooltipDisplay;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,23 +21,11 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         
     }
 
-    public void OnMouseOver()
+    public void ReplaceTooltipText(string text)
     {
-        if(tooltipDisplay)
+        if (tooltipText != null)
         {
-            return;
-        }
-        print("Displaying image");
-        tooltipObj.SetActive(true);
-        tooltipDisplay = true;
-    }
-
-    public void OnMouseExit()
-    {
-        if (tooltipDisplay)
-        {
-            tooltipDisplay = false;
-            tooltipObj.SetActive(false);
+            tooltipText.text = text;
         }
     }
 

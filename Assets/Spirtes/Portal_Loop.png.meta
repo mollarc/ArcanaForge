@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e
+guid: a31628c4ade0acf42ba9dfe93ecc5834
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -81,46 +81,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Win64
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -136,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HealingCrystal_0
+      name: Portal_Loop_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1824
-        width: 64
-        height: 96
+        y: 3264
+        width: 112
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,20 +112,174 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d65c5fdbd5fd1046a132929df6a8c31
-      internalID: 1191756143
+      spriteID: f948859cab8798141afcdf9234404c31
+      internalID: 1076050663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealingCrystal_1
+      name: Portal_Loop_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3072
+        width: 112
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c74f5f8a8a373e544a9ad204c7c414a8
+      internalID: -271571188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portal_Loop_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2880
+        width: 112
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b08e2558cb2e449adf601a6ed3fb72
+      internalID: 1815653155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portal_Loop_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2688
+        width: 112
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17a2ad6eaec29e6479971f7227e7d917
+      internalID: -1992284226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portal_Loop_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2496
+        width: 112
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35073b489d9ab7d4287646d5edddea6f
+      internalID: 1357961946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portal_Loop_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2304
+        width: 112
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4acfaac573e0a324fa67d4b3e1de2cbd
+      internalID: -1918529514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portal_Loop_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2112
+        width: 112
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96f6c072032bac0459082c83cf662b66
+      internalID: -1623536680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portal_Loop_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 112
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca86dcd2a4a14d14298a6f4938abed71
+      internalID: -390550401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portal_Loop_8
       rect:
         serializedVersion: 2
         x: 0
         y: 1728
-        width: 64
-        height: 96
+        width: 112
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,42 +288,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e7bca571dc870a49977bdf3e4d785f1
-      internalID: -160360875
+      spriteID: ff9882515b8332a458883f37e1fc91ed
+      internalID: 121385361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealingCrystal_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1632
-        width: 64
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ea2fc5e01060b554d9e69293a14285b3
-      internalID: 1629361508
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealingCrystal_3
+      name: Portal_Loop_9
       rect:
         serializedVersion: 2
         x: 0
         y: 1536
-        width: 64
-        height: 96
+        width: 112
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,42 +310,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6c251c50ec3d9d42b725e8bcb650bb1
-      internalID: 1848364666
+      spriteID: 839772fa1f44eb14b99d766f64936152
+      internalID: 562200048
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealingCrystal_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1440
-        width: 64
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9b9f84700f3b3334b91f69dee6a7510e
-      internalID: -285292820
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealingCrystal_5
+      name: Portal_Loop_10
       rect:
         serializedVersion: 2
         x: 0
         y: 1344
-        width: 64
-        height: 96
+        width: 112
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -261,42 +332,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebd42805dea61a7448dd3153c7f9c00f
-      internalID: 734625203
+      spriteID: d8b1392cd27bda047951cd47b75c99e7
+      internalID: 1067033660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealingCrystal_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1248
-        width: 64
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2d07325055b0c8248bd2d02387c16a91
-      internalID: 311360183
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealingCrystal_7
+      name: Portal_Loop_11
       rect:
         serializedVersion: 2
         x: 0
         y: 1152
-        width: 64
-        height: 96
+        width: 112
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -305,42 +354,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6ffcc64653daf445a11d8865eb7bf98
-      internalID: 2111338430
+      spriteID: 5f37dd17222d3714581a28b4b9dc582c
+      internalID: -293204079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealingCrystal_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1056
-        width: 64
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2f11370f6797ee847957bd10a47a46b9
-      internalID: -739540971
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealingCrystal_9
+      name: Portal_Loop_12
       rect:
         serializedVersion: 2
         x: 0
         y: 960
-        width: 64
-        height: 96
+        width: 112
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -349,42 +376,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f18a79209a5ccf24f977d2c3d6b2fa33
-      internalID: 1007587044
+      spriteID: 9a7d2fae5da198143ae20b4a3d3cc622
+      internalID: -15428524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealingCrystal_10
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 864
-        width: 64
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2614d50c3c2dcd941925bd38eec430af
-      internalID: -1986583926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealingCrystal_11
+      name: Portal_Loop_13
       rect:
         serializedVersion: 2
         x: 0
         y: 768
-        width: 64
-        height: 96
+        width: 112
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -393,42 +398,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f747a6ef36f78744aa85df74c0a229ac
-      internalID: -1318041666
+      spriteID: 4e0c51dd885533d47bef966b3ebefd28
+      internalID: -534578308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealingCrystal_12
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 672
-        width: 64
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 27429e590e0872546b24e4326988ddbd
-      internalID: 1910093842
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealingCrystal_13
+      name: Portal_Loop_14
       rect:
         serializedVersion: 2
         x: 0
         y: 576
-        width: 64
-        height: 96
+        width: 112
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -437,42 +420,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1d5fbfd6a82f7641afb92791905abda
-      internalID: -776949595
+      spriteID: 15081410de8a33f489ab1d967416d1fd
+      internalID: 297554767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealingCrystal_14
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 480
-        width: 64
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 813428d9157fed04192b8bd454896a4f
-      internalID: 181450801
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealingCrystal_15
+      name: Portal_Loop_15
       rect:
         serializedVersion: 2
         x: 0
         y: 384
-        width: 64
-        height: 96
+        width: 112
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -481,42 +442,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05aa162d85ccacb439698d690271299e
-      internalID: 2048461151
+      spriteID: f1b18bcc985e1cf42b9ef9525ae26acd
+      internalID: -2065180859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealingCrystal_16
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 288
-        width: 64
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91ca38b908653af4c8642ec8c548799a
-      internalID: -265810955
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealingCrystal_17
+      name: Portal_Loop_16
       rect:
         serializedVersion: 2
         x: 0
         y: 192
-        width: 64
-        height: 96
+        width: 112
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -525,42 +464,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4286079aee47e8c48a163e269629d1bf
-      internalID: -1946938629
+      spriteID: 7679bee01dfe40847bc3675a0de4f93e
+      internalID: -108666495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HealingCrystal_18
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 64
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce894d6fdc9d97c4e89e780092e8f23d
-      internalID: -1631775106
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: HealingCrystal_19
+      name: Portal_Loop_17
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 96
+        width: 112
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -569,8 +486,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c15da5248c5c83344b71abbcadabce40
-      internalID: -207878726
+      spriteID: ec571f512b8cdb1419a2fe78f1680ee9
+      internalID: 319759294
       vertices: []
       indices: 
       edges: []
@@ -579,7 +496,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a465766b63e7c2149b9a48cc834d1697
+    spriteID: da86bc8154744d7489a9845bb270ed19
     internalID: 0
     vertices: []
     indices: 
@@ -587,26 +504,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HealingCrystal_0: 1191756143
-      HealingCrystal_1: -160360875
-      HealingCrystal_10: -1986583926
-      HealingCrystal_11: -1318041666
-      HealingCrystal_12: 1910093842
-      HealingCrystal_13: -776949595
-      HealingCrystal_14: 181450801
-      HealingCrystal_15: 2048461151
-      HealingCrystal_16: -265810955
-      HealingCrystal_17: -1946938629
-      HealingCrystal_18: -1631775106
-      HealingCrystal_19: -207878726
-      HealingCrystal_2: 1629361508
-      HealingCrystal_3: 1848364666
-      HealingCrystal_4: -285292820
-      HealingCrystal_5: 734625203
-      HealingCrystal_6: 311360183
-      HealingCrystal_7: 2111338430
-      HealingCrystal_8: -739540971
-      HealingCrystal_9: 1007587044
+      Portal_Loop_0: 1076050663
+      Portal_Loop_1: -271571188
+      Portal_Loop_10: 1067033660
+      Portal_Loop_11: -293204079
+      Portal_Loop_12: -15428524
+      Portal_Loop_13: -534578308
+      Portal_Loop_14: 297554767
+      Portal_Loop_15: -2065180859
+      Portal_Loop_16: -108666495
+      Portal_Loop_17: 319759294
+      Portal_Loop_2: 1815653155
+      Portal_Loop_3: -1992284226
+      Portal_Loop_4: 1357961946
+      Portal_Loop_5: -1918529514
+      Portal_Loop_6: -1623536680
+      Portal_Loop_7: -390550401
+      Portal_Loop_8: 121385361
+      Portal_Loop_9: 562200048
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

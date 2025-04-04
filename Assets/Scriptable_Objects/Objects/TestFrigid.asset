@@ -17,7 +17,8 @@ MonoBehaviour:
   tickAmount: 1
   type: 0
   effectName: Frigid
-  effectIcon: {fileID: 0}
+  effectIcon: {fileID: 21300000, guid: e3d9f831f8710bf4a849e35a4ff98d5c, type: 3}
+  effectTooltip: Take X Damage on next hit and decrease stacks by 1.
   _status:
     rid: 444075488482164804
   references:

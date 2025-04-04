@@ -11,6 +11,7 @@ public class StackableEffectSO : ScriptableObject
     public int type; //Type of effect. 0: DOT effect 1:Passive Buffs/Debuffs 2:Buffs/Debuffs that Add buffs/debuffs per turn
     public string effectName;
     public Sprite effectIcon;
+    public string effectTooltip;
 
     [SerializeReference, SubclassSelector]
     public IStackableEffect _status;
