@@ -1,18 +1,18 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Tooltip : MonoBehaviour
+public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     
-    public Sprite tooltipImage;
-    private GameObject tooltipObj;
+    public Canvas canvas;
+    public GameObject tooltipObj;
     private bool tooltipDisplay;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        tooltipObj = new GameObject("Tooltip");
-        SpriteRenderer spriteRenderer = tooltipObj.AddComponent<SpriteRenderer>();
-        tooltipObj.GetComponent<SpriteRenderer>().sprite = tooltipImage;
+        tooltipDisplay = false;
         tooltipObj.SetActive(false);
     }
 
@@ -31,7 +31,6 @@ public class Tooltip : MonoBehaviour
         print("Displaying image");
         tooltipObj.SetActive(true);
         tooltipDisplay = true;
-        tooltipObj.transform.position = gameObject.transform.position + new Vector3(0,5f,0);
     }
 
     public void OnMouseExit()
@@ -43,5 +42,23 @@ public class Tooltip : MonoBehaviour
         }
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (tooltipDisplay)
+        {
+            return;
+        }
+        print("Displaying image");
+        tooltipObj.SetActive(true);
+        tooltipDisplay = true;
+    }
 
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (tooltipDisplay)
+        {
+            tooltipDisplay = false;
+            tooltipObj.SetActive(false);
+        }
+    }
 }
