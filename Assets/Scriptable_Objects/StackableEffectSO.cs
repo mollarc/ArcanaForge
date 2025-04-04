@@ -12,6 +12,7 @@ public class StackableEffectSO : ScriptableObject
     public string effectName;
     public Sprite effectIcon;
     public string effectTooltip;
+    public string effectColor;
 
     [SerializeReference, SubclassSelector]
     public IStackableEffect _status;
