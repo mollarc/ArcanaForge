@@ -5670,14 +5670,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4780072770720950627, guid: 17cbdb65576db0f46bbd26dd4e1214d8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9015d9eaf897bcd4ba1c0e1e58b99267, type: 2}
     - target: {fileID: -615309114576341211, guid: 17cbdb65576db0f46bbd26dd4e1214d8, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -3593796460079602192, guid: 17cbdb65576db0f46bbd26dd4e1214d8, type: 3}
+      objectReference: {fileID: 2100000, guid: 9015d9eaf897bcd4ba1c0e1e58b99267, type: 2}
     - target: {fileID: 919132149155446097, guid: 17cbdb65576db0f46bbd26dd4e1214d8, type: 3}
       propertyPath: m_Name
       value: Cliff
       objectReference: {fileID: 0}
+    - target: {fileID: 4253280567622488715, guid: 17cbdb65576db0f46bbd26dd4e1214d8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9015d9eaf897bcd4ba1c0e1e58b99267, type: 2}
+    - target: {fileID: 4949500779163840672, guid: 17cbdb65576db0f46bbd26dd4e1214d8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9015d9eaf897bcd4ba1c0e1e58b99267, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
