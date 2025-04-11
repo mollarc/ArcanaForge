@@ -18,6 +18,17 @@ MonoBehaviour:
   cooldown: 1
   gemImage: {fileID: 1235630590, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
   moveInfo: ' '
+  sprites:
+  - {fileID: 1235630590, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
+  - {fileID: -63052546, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
+  - {fileID: 594162723, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
+  - {fileID: 1673004224, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
+  - {fileID: -1564151396, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
+  - {fileID: -1311439369, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
+  - {fileID: -1536453336, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
+  - {fileID: 784425591, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
+  - {fileID: -2072597365, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
+  - {fileID: 579783024, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
   modifierValue: 0.5
   numberOfCasts: 0
   targets: 0

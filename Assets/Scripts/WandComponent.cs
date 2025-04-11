@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class WandComponent : MonoBehaviour
 {
@@ -17,6 +15,7 @@ public class WandComponent : MonoBehaviour
     public Image image;
     public CanvasGroup canvasGroup;
     public InventoryController inventoryController;
+    public ImageFlipAnimation flipAnimation;
     public string moveInfo;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,6 +44,7 @@ public class WandComponent : MonoBehaviour
         manaCost = componentData.manaCost;
         cooldown = componentData.cooldown;
         gameObject.GetComponent<Image>().sprite = componentData.gemImage;
+        flipAnimation.sprites = componentData.sprites;
     }
 
     public void LoadComponentData(ModifierComponentSO componentData)
@@ -54,6 +54,7 @@ public class WandComponent : MonoBehaviour
         manaCost = componentData.manaCost;
         cooldown = componentData.cooldown;
         gameObject.GetComponent<Image>().sprite = componentData.gemImage;
+        flipAnimation.sprites.AddRange(componentData.sprites);
     }
 
     public void MoveComponent()

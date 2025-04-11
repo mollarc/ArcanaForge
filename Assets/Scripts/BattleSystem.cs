@@ -52,6 +52,7 @@ public class BattleSystem : MonoBehaviour
     {
         GameObject playerGO = Instantiate(playerPrefab, playerSpawn);
         playerUnit = playerGO.GetComponent<Player>();
+        playerHUD = playerGO.GetComponentInChildren<BattleHUD>();
         playerAnimator = playerGO.GetComponentInChildren<Animator>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -81,8 +82,7 @@ public class BattleSystem : MonoBehaviour
         enemies.Add(enemyUnit2);
         //enemies.Add(enemyUnit3);
 
-        enemyUnit1.enemyHUD = enemyHUD1;
-        enemyUnit2.enemyHUD = enemyHUD2;
+
         //enemyUnit3.enemyHUD = enemyHUD3;
 
         playerHUD.SetHUD(playerUnit);

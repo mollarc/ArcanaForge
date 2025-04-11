@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WandComponentSO : ScriptableObject
@@ -8,4 +9,5 @@ public class WandComponentSO : ScriptableObject
     public int cooldown;
     public Sprite gemImage;
     public string moveInfo; // Format should be " X Damage" and X is replaced by value in calculation
+    public List<Sprite> sprites;
 }

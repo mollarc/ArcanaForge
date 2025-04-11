@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5489985975564361543}
   - component: {fileID: 3024078699915335031}
   - component: {fileID: -4061743820461895072}
+  - component: {fileID: 8432533769880708806}
   m_Layer: 0
   m_Name: ModfierGem
   m_TagString: Untagged
@@ -105,6 +106,9 @@ MonoBehaviour:
   playerAnimator: {fileID: 0}
   player: {fileID: 0}
   wandComponent: {fileID: -4061743820461895072}
+  componentMoved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-4061743820461895072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +131,25 @@ MonoBehaviour:
   image: {fileID: 0}
   canvasGroup: {fileID: 0}
   inventoryController: {fileID: 0}
+  flipAnimation: {fileID: 8432533769880708806}
+  moveInfo: 
   modifierComponentData: {fileID: 0}
   modifierValue: 0
   numberOfCasts: 0
   targets: 0
+  moveInfos: 
+--- !u!114 &8432533769880708806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2415953237952369590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ce40a67ee6f51458d2aa1c5d04bea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites: []
+  image: {fileID: 517694833835118472}
+  fps: 10
