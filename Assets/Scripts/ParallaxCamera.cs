@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class ParallaxCamera : MonoBehaviour
 {
@@ -20,29 +21,26 @@ public class ParallaxCamera : MonoBehaviour
     private float yR = 0.0f;
     private float xR = 0.0f;
 
+    public Vector3 mouseWorldPosition;
+
+    public GameObject pointToLook;
+
     void Update()
     {
         x -= speedX * Input.GetAxis("Mouse X");
         y -= speedY * Input.GetAxis("Mouse Y");
         yR += speedYRotate * Input.GetAxis("Mouse X");
         xR += speedXRotate * Input.GetAxis("Mouse Y");
-        if ( minX <= x && x <= maxX)
+        mouseWorldPosition= Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,Input.mousePosition.y, 0.01f));
+        if ( minX <= mouseWorldPosition.x && mouseWorldPosition.x <= maxX)
         {
-            transform.position = new Vector3(x, transform.position.y, 0.0f);
-            
+            transform.position = new Vector3(mouseWorldPosition.x, transform.position.y, 0.0f);
+
         }
-        if(-maxXRotation <= xR && xR<= maxXRotation)
+        if (minY <= mouseWorldPosition.y && mouseWorldPosition.y <= maxY)
         {
-            transform.eulerAngles = new Vector3(xR, transform.eulerAngles.y, 0.0f);
+            transform.position = new Vector3(transform.position.x, mouseWorldPosition.y, 0.0f);
         }
-        if (minY <= y && y <= maxY)
-        {
-            transform.position = new Vector3(transform.position.x, y, 0.0f);
-            
-        }
-        if (-maxYRotation <= yR && yR <= maxYRotation)
-        {
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, yR, 0.0f);
-        }
+        transform.LookAt(pointToLook.transform);
     }
 }
