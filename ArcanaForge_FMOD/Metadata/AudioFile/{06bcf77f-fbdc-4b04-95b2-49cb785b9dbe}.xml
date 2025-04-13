@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{06bcf77f-fbdc-4b04-95b2-49cb785b9dbe}">
+		<property name="assetPath">
+			<value>ArcanaForge_Heal.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>5.333333333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{22dc195f-7b60-4b29-b748-617d0a8c75e2}</destination>
+		</relationship>
+	</object>
+</objects>
