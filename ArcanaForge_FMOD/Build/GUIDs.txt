@@ -1,0 +1,9 @@
+{9fcbbc66-e77f-49fe-915a-3b3299d9e4b3} bank:/Master
+{07d69cb2-9604-05bc-1713-b1cc682ae22b} bank:/Master.strings
+{de64e348-bf7a-4500-9480-9874528781ce} bus:/
+{77abafe3-c91c-4e5a-add2-62925abf6c4b} bus:/Reverb
+{41489fff-68a3-4843-a862-02d9e8945dc8} event:/SFX_Attack
+{4c73b057-05e0-4cec-aab6-ac59c57b6106} event:/SFX_ComponentSlot
+{84cc73e0-dcbd-4c27-be6d-1feba7a7928f} event:/SFX_Heal
+{a1085798-6a24-4ed0-b450-ea391d924cc8} event:/SFX_Shield
+{21d4c1f5-adf3-426b-9c49-fb79f57c7266} parameter:/Boost
