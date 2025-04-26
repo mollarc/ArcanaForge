@@ -16,6 +16,7 @@ public class WandComponent : MonoBehaviour
     public CanvasGroup canvasGroup;
     public InventoryController inventoryController;
     public ImageFlipAnimation flipAnimation;
+    //public Fmodsound
     public string moveInfo;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,6 +46,7 @@ public class WandComponent : MonoBehaviour
         cooldown = componentData.cooldown;
         gameObject.GetComponent<Image>().sprite = componentData.gemImage;
         flipAnimation.sprites = componentData.sprites;
+        //fmodsound = componentdata.fmodsound
     }
 
     public void LoadComponentData(ModifierComponentSO componentData)
@@ -55,6 +57,7 @@ public class WandComponent : MonoBehaviour
         cooldown = componentData.cooldown;
         gameObject.GetComponent<Image>().sprite = componentData.gemImage;
         flipAnimation.sprites.AddRange(componentData.sprites);
+
     }
 
     public void MoveComponent()

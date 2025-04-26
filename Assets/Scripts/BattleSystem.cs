@@ -59,6 +59,9 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         state = BattleState.START;
+        GameObject manaUI = GameObject.FindGameObjectWithTag("ManaUI");
+        playerHUD.manaSlider = manaUI.GetComponentInChildren<Slider>();
+        playerHUD.manaText = manaUI.GetComponentInChildren<TMP_Text>();
         StartCoroutine(SetupBattle());
     }
 
@@ -133,6 +136,9 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetMana(playerUnit);
 
         playerAnimator.SetBool("Attacked", true);
+
+        //Danny Look Here
+        //StartCortoutine(PLaySoundIenumerator)
 
         foreach (Enemy enemy in enemies)
         {

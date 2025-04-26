@@ -8,6 +8,8 @@ TagManager:
   - ComponentSelect
   - Wand
   - Canvas
+  - ManaUI
+  - InventoryPanel
   layers:
   - Default
   - TransparentFX

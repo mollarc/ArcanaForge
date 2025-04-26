@@ -30,6 +30,7 @@ public class WandObject : MonoBehaviour
     public Slot[] wandTypeSlots;
     public Slot[] wandModifierSlots;
     public Slot[] wandShapeSlots;
+    //public list fmodsound
 
     
 
@@ -88,6 +89,7 @@ public class WandObject : MonoBehaviour
                     healValue += typeComponent.healValue;
                     damageValue += typeComponent.damageValue;
                     shieldValue += typeComponent.shieldValue;
+                    //fmod sound list . add(typecomponent.fmodsound)
                     if(typeComponent.targets > targets)
                     {
                         targets = typeComponent.targets;

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryController : MonoBehaviour
 {
@@ -14,21 +15,6 @@ public class InventoryController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        slotArray = new Slot[slotCount];
-        componentDB = gameObject.GetComponent<ComponentDB>();
-        itemPrefabs = componentDB.CreateAllComponents();
-        for (int i = 0; i < slotCount; i++)
-        {
-            Slot slot = Instantiate(slotPrefab, inventoryPanel.transform).GetComponent<Slot>();
-            slotArray[i] = slot;
-            if (i < itemPrefabs.Count)
-            {
-                GameObject item = Instantiate(itemPrefabs[i], slot.transform);
-                
-                item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                slot.currentItem = item;
-            }
-        }
         
     }
 
@@ -36,6 +22,26 @@ public class InventoryController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void CreateInventory()
+    {
+        GameObject inventory = Instantiate(inventoryPanel,GameObject.FindWithTag("Canvas").transform);
+        slotArray = new Slot[slotCount];
+        componentDB = gameObject.GetComponent<ComponentDB>();
+        itemPrefabs = componentDB.CreateAllComponents();
+        for (int i = 0; i < slotCount; i++)
+        {
+            Slot slot = Instantiate(slotPrefab, inventory.GetComponentInChildren<GridLayoutGroup>().gameObject.transform).GetComponent<Slot>();
+            slotArray[i] = slot;
+            if (i < itemPrefabs.Count)
+            {
+                GameObject item = Instantiate(itemPrefabs[i], slot.transform);
+
+                item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                slot.currentItem = item;
+            }
+        }
     }
 
     public void AddItem(GameObject item)
