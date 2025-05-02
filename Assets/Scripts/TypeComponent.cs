@@ -11,6 +11,7 @@ public class TypeComponent : WandComponent
     public int shieldValue;
     public int targets; //Int Values refer to "None,Single,Blast,All" in order starting from 0. Highest value takes priority.
     public List<moves> moveInfos;
+    public string FmodEventPath;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,6 +34,7 @@ public class TypeComponent : WandComponent
         damageValue = componentData.damageValue;    
         shieldValue = componentData.shieldValue;
         targets = componentData.targets;
+        FmodEventPath = componentData.FmodEventPath;
         foreach(moves move in componentData.moveInfos)
         {
             moveInfos.Add(move);

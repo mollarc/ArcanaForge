@@ -31,7 +31,7 @@ RectTransform:
   m_GameObject: {fileID: 2415953237952369590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -109,6 +109,8 @@ MonoBehaviour:
   componentMoved:
     m_PersistentCalls:
       m_Calls: []
+  inventory: {fileID: 0}
+  inventoryController: {fileID: 0}
 --- !u!114 &-4061743820461895072
 MonoBehaviour:
   m_ObjectHideFlags: 0

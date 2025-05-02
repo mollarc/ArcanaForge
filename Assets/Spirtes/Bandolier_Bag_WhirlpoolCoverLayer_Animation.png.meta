@@ -134,19 +134,433 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3264
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb35995ab174f74d927e0b04dd1b5c0
+      internalID: -210954437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3072
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7d981a08b3aff14299d35dcaaed34a1
+      internalID: -1651909638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2880
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e64bcc2a77a659c4b881fcd507544e88
+      internalID: -182754466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2688
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad7c6d9d09685fa4194aad702c434f8c
+      internalID: -426423859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2496
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd29736253021e5459ad84e7e3531eba
+      internalID: -1285565835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2304
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd5859f5166b244f8db9acc8df97172
+      internalID: -1919425731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2112
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4278a228df9231545a2e29b074471f3f
+      internalID: 483656247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1920
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc26ef74853d3b44d92be573876fc2b9
+      internalID: -839261843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1728
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0197a729fe759784ab0f854bb7fe748f
+      internalID: -844674162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b9080d19a089f4fb2ec81d284c52e3
+      internalID: 2039301960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1344
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3053a0f645d406245b4e221a7399c24f
+      internalID: 1126294221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b3fb78e70f3af047b8dbd7da64a2cc5
+      internalID: 1670948698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5905e43da523e34c885e7282555a379
+      internalID: -855306182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 720e6db58d2079e4d8a1e2c6903a4fc0
+      internalID: -1100281397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caa686b6894037c498cd82bf8cb4ad74
+      internalID: -1223025423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ea51cdc91bc8e14481483b10e2c8007
+      internalID: -2008649734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e372bd956ea9d0c47a7e3a7f1d18bdf9
+      internalID: -912163478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bandolier_Bag_WhirlpoolCoverLayer_Animation_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 208
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f22d2a357acff54686c6d32c068b70f
+      internalID: -1482954861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: dcba3cf3d62230941b7d921d598c4c4f
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_0: -210954437
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_1: -1651909638
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_10: 1126294221
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_11: 1670948698
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_12: -855306182
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_13: -1100281397
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_14: -1223025423
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_15: -2008649734
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_16: -912163478
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_17: -1482954861
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_2: -182754466
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_3: -426423859
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_4: -1285565835
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_5: -1919425731
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_6: 483656247
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_7: -839261843
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_8: -844674162
+      Bandolier_Bag_WhirlpoolCoverLayer_Animation_9: 2039301960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

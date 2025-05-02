@@ -44,3 +44,4 @@ MonoBehaviour:
   shieldValue: 0
   targets: 1
   moveInfos: 00000000
+  FmodEventPath: event:/SFX_Attack

@@ -44,3 +44,4 @@ MonoBehaviour:
   shieldValue: 0
   targets: 0
   moveInfos: 02000000
+  FmodEventPath: event:/SFX_Heal

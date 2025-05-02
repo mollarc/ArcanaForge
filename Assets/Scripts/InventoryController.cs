@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using Mono.Cecil;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 using WandComponentNS;
@@ -41,8 +39,9 @@ public class InventoryController : MonoBehaviour
             slot.slotIndex = i;
             if (i < itemPrefabs.Count)
             {
+                Vector3 originalScale = itemPrefabs[i].transform.localScale;
                 itemPrefabs[i].transform.SetParent(slot.transform);
-
+                itemPrefabs[i].transform.localScale = originalScale;                
                 itemPrefabs[i].GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 inventoryScript.displayedGems.Add(itemPrefabs[i]);
                 slot.currentItem = itemPrefabs[i];
@@ -168,7 +167,7 @@ public class InventoryController : MonoBehaviour
     {
         foreach (Slot slot in slotArray)
         {
-            if (slot.currentItem != null)
+            if (slot != null && slot.currentItem != null)
             {
                 slot.currentItem.gameObject.GetComponent<WandComponent>().EndTurn();
             }

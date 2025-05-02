@@ -44,3 +44,4 @@ MonoBehaviour:
   shieldValue: 4
   targets: 0
   moveInfos: 01000000
+  FmodEventPath: event:/SFX_Shield

@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -137,8 +138,7 @@ public class BattleSystem : MonoBehaviour
 
         playerAnimator.SetBool("Attacked", true);
 
-        //Danny Look Here
-        //StartCortoutine(PLaySoundIenumerator)
+        StartCoroutine(PlayWandSound(wand1));
 
         foreach (Enemy enemy in enemies)
         {
@@ -197,6 +197,20 @@ public class BattleSystem : MonoBehaviour
                 EndBattle();
             }
         }
+    }
+
+    IEnumerator PlayWandSound(WandObject wand)
+    {
+        foreach(string eventpath in wand.FmodSoundPaths)
+        {
+            EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(eventpath);
+            if(eventInstance.isValid())
+            {
+                eventInstance.start();
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        yield break;
     }
 
     IEnumerator EndTurn()

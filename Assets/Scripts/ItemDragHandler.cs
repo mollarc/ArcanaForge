@@ -39,6 +39,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void ComponentChange()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX_ComponentSlot");
         playerAnimator.SetBool("Swapped", true);
         playerAnimator.SetBool("isSelecting", false);
         StartCoroutine(ChangeSwapped());
@@ -89,7 +90,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 dropSlot = dropItem.GetComponentInParent<Slot>();
             }
             playerAnimator.SetBool("isSelecting", false);
-            if (originalSlot.slotType != componentType.Any)
+            if (originalSlot.slotType != componentType.Any) // Move gem to empty inventory slot if gem was in wand
             {
                 foreach (Slot slot in inventoryController.slotArray)
                 {
@@ -100,6 +101,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                         slot.currentItem = gameObject;
                         slot.currentItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                         originalSlot.currentItem = null;
+                        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX_ComponentSlot");
                         return;
                     }
                 }
@@ -131,7 +133,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                             StartCoroutine(ChangeSwapped());
                         }
                     }
-                    else
+                    else //Stops swap if swapped item cannnot go in orignal slot
                     {
                         transform.SetParent(originalParent);
                         playerAnimator.SetBool("isSelecting", false);
@@ -159,6 +161,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 }
                 else
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX_ComponentSlot");
                     playerAnimator.SetBool("isSelecting", false);
                 }
             }
