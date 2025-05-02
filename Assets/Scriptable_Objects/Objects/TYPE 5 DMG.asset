@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TYPE 5 DMG
   m_EditorClassIdentifier: 
   componentName: Magic
-  componentType: TYPE
+  componentType: 1
   manaCost: 1
   cooldown: 0
   gemImage: {fileID: 2124294421, guid: 3b40f86dba31e4443a71815c4782fa53, type: 3}

@@ -1,4 +1,5 @@
 using UnityEngine;
+using WandComponentNS;
 
 [CreateAssetMenu(fileName = "WandObject", menuName = "Scriptable Objects/WandObject")]
 public class WandObjectSO : ScriptableObject

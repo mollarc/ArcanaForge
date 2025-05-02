@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-
+using WandComponentNS;
 public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     Transform originalParent;
@@ -12,13 +12,17 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public GameObject player;
     public WandComponent wandComponent;
     public UnityEvent componentMoved;
+    public Inventory inventory;
+    public InventoryController inventoryController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         player = GameObject.FindWithTag("Player");
         playerAnimator = player.GetComponentInChildren<Animator>();
-        foreach(var gameObject in GameObject.FindGameObjectsWithTag("Wand"))
+        inventory = GameObject.FindWithTag("GameController").GetComponent<Inventory>();
+        inventoryController = GameObject.FindWithTag("GameController").GetComponent<InventoryController>();
+        foreach (var gameObject in GameObject.FindGameObjectsWithTag("Wand"))
         {
             componentMoved.AddListener(gameObject.GetComponent<WandObject>().CalculateValues);
         }
@@ -76,20 +80,35 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup.blocksRaycasts = true; //Enable Raycasts
         canvasGroup.alpha = 1f; //No longer transparent
         Slot dropSlot = eventData.pointerEnter?.GetComponent<Slot>(); //Slot where item dropped
-        if(dropSlot == null)
+        Slot originalSlot = originalParent.GetComponent<Slot>();
+        if (dropSlot == null)
         {
             GameObject dropItem = eventData.pointerEnter;
-            if(dropItem != null )
+            if (dropItem != null)
             {
                 dropSlot = dropItem.GetComponentInParent<Slot>();
             }
             playerAnimator.SetBool("isSelecting", false);
+            if (originalSlot.slotType != componentType.Any)
+            {
+                foreach (Slot slot in inventoryController.slotArray)
+                {
+                    if (slot != null && slot.currentItem == null)
+                    {
+                        inventory.RemoveGemFromWand(gameObject, slot.slotIndex);
+                        transform.SetParent(slot.transform);
+                        slot.currentItem = gameObject;
+                        slot.currentItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                        originalSlot.currentItem = null;
+                        return;
+                    }
+                }
+            }
         }
-        Slot originalSlot = originalParent.GetComponent<Slot>();
 
-        if(dropSlot != null)
+        if (dropSlot != null)
         {
-            if (dropSlot.slotType != originalSlot.currentItem.GetComponent<WandComponent>().componentType && dropSlot.slotType != "ANY")
+            if (dropSlot.slotType != originalSlot.currentItem.GetComponent<WandComponent>().componentType && dropSlot.slotType != componentType.Any)
             {
                 transform.SetParent(originalParent);
                 playerAnimator.SetBool("isSelecting", false);
@@ -98,10 +117,28 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             {
                 if (dropSlot.currentItem != null)
                 {
-                    //Slot has an item - swap items
-                    dropSlot.currentItem.transform.SetParent(originalSlot.transform);
-                    originalSlot.currentItem = dropSlot.currentItem;
-                    dropSlot.currentItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                    if (originalSlot.slotType == dropSlot.currentItem.GetComponent<WandComponent>().componentType || originalSlot.slotType == componentType.Any)
+                    {
+                        //Slot has an item - swap items
+                        dropSlot.currentItem.transform.SetParent(originalSlot.transform);
+                        originalSlot.currentItem = dropSlot.currentItem;
+                        dropSlot.currentItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                        if (dropSlot.slotType != componentType.Any || originalSlot.slotType != componentType.Any)
+                        {
+                            playerAnimator.SetBool("Swapped", true);
+                            playerAnimator.SetBool("isSelecting", false);
+                            inventory.AddGemToWand(originalSlot.currentItem);
+                            StartCoroutine(ChangeSwapped());
+                        }
+                    }
+                    else
+                    {
+                        transform.SetParent(originalParent);
+                        playerAnimator.SetBool("isSelecting", false);
+                        GetComponent<RectTransform>().anchoredPosition = Vector2.zero; //Centers Item
+                        componentMoved.Invoke();
+                        return;
+                    }
                 }
                 else
                 {
@@ -109,10 +146,15 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 }
 
                 //Move Item Drop Slot
+                if (originalSlot.slotType != componentType.Any)
+                {
+                    inventory.RemoveGemFromWand(gameObject, dropSlot.slotIndex);
+                }
                 transform.SetParent(dropSlot.transform);
                 dropSlot.currentItem = gameObject;
-                if(dropSlot.slotType != "ANY")
+                if (dropSlot.slotType != componentType.Any)
                 {
+                    inventory.AddGemToWand(gameObject);
                     ComponentChange();
                 }
                 else

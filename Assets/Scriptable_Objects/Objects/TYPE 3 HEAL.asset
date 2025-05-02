@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TYPE 3 HEAL
   m_EditorClassIdentifier: 
   componentName: Bandage
-  componentType: TYPE
+  componentType: 1
   manaCost: 1
   cooldown: 0
   gemImage: {fileID: -160360875, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}

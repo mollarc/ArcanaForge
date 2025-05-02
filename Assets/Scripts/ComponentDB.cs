@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using WandComponentNS;
 public class ComponentDB : MonoBehaviour
 {
     public GameObject typeComponent;
@@ -23,7 +23,7 @@ public class ComponentDB : MonoBehaviour
     {
         int randomIndex = Random.Range(0,components.Count);
         WandComponentSO component = components[randomIndex];
-        if (component.componentType == "TYPE")
+        if (component.componentType == componentType.Type)
         {
             var tempList1 = new List<WandComponentSO>();
             tempList1.Add(component);
@@ -32,7 +32,7 @@ public class ComponentDB : MonoBehaviour
             newTypeComponent.GetComponent<TypeComponent>().LoadComponentData(templist2[0]);
             return newTypeComponent;
         }
-        else if(component.componentType == "MODIFIER")
+        else if(component.componentType == componentType.Modifier)
         {
             var tempList1 = new List<WandComponentSO>();
             tempList1.Add(component);
@@ -49,7 +49,7 @@ public class ComponentDB : MonoBehaviour
         List<GameObject> list = new List<GameObject>();
         foreach(WandComponentSO component in components)
         {
-            if (component.componentType == "TYPE")
+            if (component.componentType == componentType.Type)
             {
                 var tempList1 = new List<WandComponentSO>();
                 tempList1.Add(component);
@@ -58,7 +58,7 @@ public class ComponentDB : MonoBehaviour
                 newTypeComponent.GetComponent<TypeComponent>().LoadComponentData(templist2[0]);
                 list.Add(newTypeComponent);
             }
-            else if (component.componentType == "MODIFIER")
+            else if (component.componentType == componentType.Modifier)
             {
                 var tempList1 = new List<WandComponentSO>();
                 tempList1.Add(component);

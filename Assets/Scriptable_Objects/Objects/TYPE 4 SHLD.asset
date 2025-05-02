@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TYPE 4 SHLD
   m_EditorClassIdentifier: 
   componentName: Buckler
-  componentType: TYPE
+  componentType: 1
   manaCost: 1
   cooldown: 0
   gemImage: {fileID: -491205331, guid: a0d4ee17c90d68d47ad845c7fc8ae389, type: 3}

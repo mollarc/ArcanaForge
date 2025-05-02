@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8536941900e2a4ea73c43282919d24, type: 3}
   m_Name: MOD 6 BURN
   m_EditorClassIdentifier: 
-  componentName: 
-  componentType: 
+  componentName: Singe
+  componentType: 2
   manaCost: 1
   cooldown: 0
   gemImage: {fileID: 0}
   moveInfo: 
+  sprites: []
   modifierValue: 0
   numberOfCasts: 0
   targets: 0

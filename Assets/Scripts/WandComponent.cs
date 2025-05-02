@@ -1,12 +1,12 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-
+using WandComponentNS;
 
 public class WandComponent : MonoBehaviour
 {
     public string componentName;
-    public string componentType;
+    public componentType componentType;
     public int manaCost;
     public int cooldown;
     public int currentCooldown;
@@ -27,7 +27,7 @@ public class WandComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SetUP()
@@ -108,7 +108,7 @@ public class WandComponent : MonoBehaviour
         {
             wasUsed = false;
             currentCooldown += cooldown;
-            if(currentCooldown == 0)
+            if (currentCooldown == 0)
             {
                 return false;
             }
@@ -118,13 +118,13 @@ public class WandComponent : MonoBehaviour
             color.b *= .5f;
             image.color = color;
         }
-        else if(currentCooldown > 0)
+        else if (currentCooldown > 0)
         {
             wasUsed = false;
             currentCooldown -= 1;
             if (currentCooldown == 0)
             {
-                canvasGroup.alpha = 1f;                
+                canvasGroup.alpha = 1f;
                 color.r *= 2f;
                 color.g *= 2f;
                 color.b *= 2f;
