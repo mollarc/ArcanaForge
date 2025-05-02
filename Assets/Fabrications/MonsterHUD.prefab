@@ -334,7 +334,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 7d8b98917eafb4a4e89c7351244769a8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -912,7 +912,6 @@ MonoBehaviour:
   shieldText: {fileID: 6710885600959345380}
   moveText: {fileID: 0}
   hpSlider: {fileID: 5351602938516757008}
-  manaSlider: {fileID: 0}
   statusPanel: {fileID: 2773017498946521213}
   statusEffect: {fileID: 6458010405037485509, guid: 91e4058fe501e0b48bf3ec40f9b87d82, type: 3}
   statusEffectList: []

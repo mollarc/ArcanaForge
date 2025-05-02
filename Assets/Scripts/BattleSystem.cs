@@ -61,7 +61,6 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.START;
         GameObject manaUI = GameObject.FindGameObjectWithTag("ManaUI");
-        playerHUD.manaSlider = manaUI.GetComponentInChildren<Slider>();
         playerHUD.manaText = manaUI.GetComponentInChildren<TMP_Text>();
         StartCoroutine(SetupBattle());
     }

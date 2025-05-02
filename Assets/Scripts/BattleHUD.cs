@@ -14,7 +14,6 @@ public class BattleHUD : MonoBehaviour
     public TMP_Text shieldText;
     public TMP_Text moveText;
     public Slider hpSlider;
-    public Slider manaSlider;
 
     public GameObject statusPanel;
 
@@ -34,10 +33,7 @@ public class BattleHUD : MonoBehaviour
 
     public void SetHUDPlayer(Player player)
     {
-        manaSlider.maxValue = player.maxMana;
-        manaSlider.value = player.currentMana;
-
-        manaText.text = manaSlider.value + "\n/\n" + manaSlider.maxValue;
+        manaText.text = player.currentMana + "\n/\n" + player.maxMana;
     }
 
     public void SetHP(int hp)
@@ -49,8 +45,7 @@ public class BattleHUD : MonoBehaviour
     public void SetMana(Player player)
     {
         //Things that cost mana should be inputted as a negative number
-        manaSlider.value = player.currentMana;
-        manaText.text = manaText.text = manaSlider.value + "\n/\n" + manaSlider.maxValue;
+        manaText.text = manaText.text = player.currentMana + "\n/\n" + player.maxMana;
     }
 
     public void SetShield(Unit unit)
