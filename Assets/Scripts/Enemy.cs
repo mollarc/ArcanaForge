@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
@@ -6,12 +7,6 @@ using UnityEngine.UI;
 
 public class Enemy : Unit
 {
-    //When the mouse hovers over the GameObject, it turns to this color (red)
-    Color m_MouseOverColor = Color.red;
-
-    //This stores the GameObject’s original color
-    Color m_OriginalColor;
-
     //Get the GameObject’s mesh renderer to access the GameObject’s material and color
     public SpriteRenderer m_Renderer;
 
@@ -25,6 +20,7 @@ public class Enemy : Unit
 
     public Image moveImage;
 
+    public SceneFade fade;
     public GameObject targetingImagePrefab;
     public GameObject tempTargetingImage;
     GameObject canvas;
@@ -33,28 +29,36 @@ public class Enemy : Unit
 
     Vector3 pointA;
     Vector3 pointB;
+    Vector3 pointC;
+
+    Vector3 originalScale;
 
     void Start()
     {
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         tempTargetingImage = Instantiate(targetingImagePrefab);
+        originalScale = targetingImagePrefab.transform.localScale;
         //Fetch the mesh renderer component from the GameObject
         m_Renderer = GetComponentInChildren<SpriteRenderer>();
         //Fetch the original color of the GameObject
-        m_OriginalColor = m_Renderer.color;
         pointA = transform.position;
         pointB = transform.position + Vector3.left;
+        pointC = transform.position + Vector3.right;
     }
 
     public void AttackAnim()
     {
-        StartCoroutine(MoveOverTime());
+        StartCoroutine(AttackMoveOverTime());
     }
 
-    IEnumerator MoveOverTime()
+    public void AttackedAnim()
+    {
+        StartCoroutine(AttackedMoveOverTime());
+    }
+
+    IEnumerator AttackMoveOverTime()
     {
         float elapsedTime = 0;
-
         while (elapsedTime <= 0.5f)
         {
             transform.position = Vector3.Lerp(pointA, pointB, elapsedTime);
@@ -69,8 +73,43 @@ public class Enemy : Unit
         }
         transform.position = pointA;
     }
+
+    IEnumerator AttackedMoveOverTime()
+    {
+        float elapsedTime = 0;
+        float animDuration = 0.2f;
+        Vector3 threeQuartersVectorxX = new Vector3(0.75f, 0, 0);
+        while (elapsedTime <= animDuration)
+        {
+            transform.position = Vector3.Lerp(pointA, pointC- threeQuartersVectorxX, elapsedTime/animDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        elapsedTime = 0;
+        while (elapsedTime <= animDuration)
+        {
+            transform.position = Vector3.Lerp(pointC - threeQuartersVectorxX, pointA, elapsedTime/animDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = pointA;
+    }
+
+    public new void TakeDamage(int dmg)
+    {
+        base.TakeDamage(dmg);
+        if (isDead)
+        {
+            Destroy(tempTargetingImage);
+        }
+    }
+
     private void OnMouseOver()
     {
+        if (isDead)
+        {
+            return;
+        }
         //this is your object that you want to have the UI element hovering over
         
 
@@ -80,16 +119,18 @@ public class Enemy : Unit
         //first you need the RectTransform component of your canvas
         RectTransform CanvasRect = canvas.GetComponent<RectTransform>();
         tempTargetingImage.transform.SetParent(canvas.transform);
+        tempTargetingImage.transform.localScale = originalScale;
         //then you calculate the position of the UI element
         //0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. Because of this, you need to subtract the height / width of the canvas * 0.5 to get the correct position.
 
         Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(gameObject.transform.position);
         Vector2 WorldObject_ScreenPosition = new Vector2(
         ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
-        ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f))-(ViewportPosition.y * CanvasRect.sizeDelta.y*0.5f));
+        ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f))-(ViewportPosition.y * CanvasRect.sizeDelta.y*0.625f));
 
         //now you can set the position of the ui element
         image.rectTransform.anchoredPosition = WorldObject_ScreenPosition;
+        
     }
 
     private void OnMouseExit()
@@ -99,22 +140,26 @@ public class Enemy : Unit
             return;
         }
         tempTargetingImage.transform.SetParent(gameObject.transform);
+        tempTargetingImage.transform.localScale = originalScale;
     }
 
     public void TargetSelect()
     {
         target = true;
         tempTargetingImage.transform.SetParent(canvas.transform);
+        tempTargetingImage.transform.localScale = originalScale;
     }
 
     public void TargetDeselect()
     {
         target = false;
         tempTargetingImage.transform.SetParent(gameObject.transform);
+        tempTargetingImage.transform.localScale = originalScale;
     }
 
     public void SetMove()
     {
+        StartCoroutine(fade.FadeOutEffect());
         tooltip.tooltipDescription = enemyMoves.LoadMove();
         moveImage.sprite = enemyMoves.moveImage;
         tooltip.tooltipSprite = m_Renderer.sprite;

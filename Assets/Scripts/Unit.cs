@@ -12,7 +12,7 @@ public abstract class Unit : MonoBehaviour
 
     public List<StackableEffectSO> stackableEffects = new List<StackableEffectSO>();
 
-    public bool TakeDamage(int dmg)
+    public void TakeDamage(int dmg)
     {
         if (stackableEffects != null)
         {
@@ -43,11 +43,6 @@ public abstract class Unit : MonoBehaviour
         if (currentHP <= 0)
         {
             isDead = true;
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 

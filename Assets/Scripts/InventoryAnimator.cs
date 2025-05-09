@@ -5,14 +5,14 @@ public class InventoryAnimator : MonoBehaviour
 {
     public HorizontalLayoutGroup horizontalLayoutGroup;
     RectTransform rect;
-    public GameObject scrollbarAreaObj;
-    public Image scrollbarImage;
+    public GameObject sliderObj;
+    public Image sliderImage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rect = GetComponent<RectTransform>();
-        scrollbarAreaObj.SetActive(false);
-        scrollbarImage.enabled = false;
+        sliderObj.SetActive(false);
+        sliderImage.enabled = false;
     }
 
     // Update is called once per frame
@@ -30,10 +30,10 @@ public class InventoryAnimator : MonoBehaviour
             horizontalLayoutGroup.padding = tempPadding;
             LayoutRebuilder.MarkLayoutForRebuild(rect);
         }
-        else if(scrollbarAreaObj.activeSelf == false)
+        else if(sliderObj.activeSelf == false)
         {
-            scrollbarAreaObj.SetActive(true);
-            scrollbarImage.enabled=true;
+            sliderObj.SetActive(true);
+            sliderImage.enabled=true;
         }
     }
 }

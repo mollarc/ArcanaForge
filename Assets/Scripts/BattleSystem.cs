@@ -148,7 +148,8 @@ public class BattleSystem : MonoBehaviour
             if (enemy.target)
             {
                 enemy.TargetDeselect();
-                bool isDead = enemy.TakeDamage(wand1.DamageValue);
+                enemy.AttackedAnim();
+                enemy.TakeDamage(wand1.DamageValue);
             }
         }
 
@@ -288,6 +289,7 @@ public class BattleSystem : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
             if (playerUnit.isDead)
+
             {
                 state = BattleState.LOST;
                 EndBattle();

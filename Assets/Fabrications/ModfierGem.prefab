@@ -163,6 +163,7 @@ MonoBehaviour:
   tooltipSprite: {fileID: 0}
   itemInspector: {fileID: 0}
   WandComponent: {fileID: -4061743820461895072}
+  image: {fileID: 517694833835118472}
 --- !u!114 &8432533769880708806
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,26 +1,24 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Scrollbar))]
-public class FIX_Scrollbar : MonoBehaviour
+public class SliderToScrollbar : MonoBehaviour
 {
     public Slider slider;
-    public Scrollbar scrollbar;
+    public ScrollRect scrollRect;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    public void ChangeSliderPosition()
+    public void ChangeScrollPosition()
     {
-         slider.value = scrollbar.value;
+        scrollRect.horizontalNormalizedPosition = slider.value;
     }
 }

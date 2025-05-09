@@ -271,6 +271,7 @@ public class WandObject : MonoBehaviour
                 {
                     if (typeSlot.currentItem.GetComponent<TypeComponent>().EndTurn())
                     {
+                        print("Moving Component");
                         typeSlot.currentItem.GetComponent<TypeComponent>().MoveComponent();
                     }
                 }

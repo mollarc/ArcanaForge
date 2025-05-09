@@ -361,6 +361,7 @@ MonoBehaviour:
   enemyHUD: {fileID: 5021012314577486363}
   enemyMoves: {fileID: 7007811501562065567}
   moveImage: {fileID: 3196545386984011140}
+  fade: {fileID: 2166558759443220373}
   targetingImagePrefab: {fileID: 4094055564976525389, guid: ad2ab36cd69fdd340bd50aafcc34f21e, type: 3}
   tempTargetingImage: {fileID: 0}
   tooltip: {fileID: 3045410741114429619}
@@ -633,6 +634,7 @@ GameObject:
   - component: {fileID: 3045410741114429619}
   - component: {fileID: 845579228656838588}
   - component: {fileID: 3196545386984011140}
+  - component: {fileID: 2166558759443220373}
   m_Layer: 0
   m_Name: MoveImage
   m_TagString: Untagged
@@ -715,6 +717,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2166558759443220373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857788444917331308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1abd43482f943fb49843d91f9011e435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.75
 --- !u!1 &4108410840082762530
 GameObject:
   m_ObjectHideFlags: 0

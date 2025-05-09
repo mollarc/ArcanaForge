@@ -140,6 +140,10 @@ public class WandComponent : MonoBehaviour
                 cooldownText.text = "";
             }
         }
+        else if(!wasUsed)
+        {
+            return false;
+        }
         wasUsed = false;
         return true;
     }
