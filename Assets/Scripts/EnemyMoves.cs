@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class EnemyMoves : MonoBehaviour
@@ -11,6 +10,9 @@ public class EnemyMoves : MonoBehaviour
     private int currentMoveIndex;
 
     private TempEnemyMove currentMove;
+    
+    public Sprite moveImage;
+    public string moveName;
 
     public List<TempEnemyMove> enemyMoves;
     public List<TempEnemyMove> usedMoves;
@@ -49,6 +51,8 @@ public class EnemyMoves : MonoBehaviour
         currentMoveIndex = Random.Range(0, enemyMoves.Count);
         currentMove = enemyMoves[currentMoveIndex];
         CalculateValues();
+        moveImage = currentMove.moveImage;
+        moveName = currentMove.moveName;
         if(statusEffects != null)
         {
             foreach(StackableEffectSO effectSO in statusEffects)

@@ -1,11 +1,13 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : Unit
 {
     //When the mouse hovers over the GameObject, it turns to this color (red)
-    Color m_MouseOverColor = Color.green;
+    Color m_MouseOverColor = Color.red;
 
     //This stores the GameObject’s original color
     Color m_OriginalColor;
@@ -21,13 +23,21 @@ public class Enemy : Unit
 
     public EnemyMoves enemyMoves;
 
-    public TMP_Text moveText;
+    public Image moveImage;
+
+    public GameObject targetingImagePrefab;
+    public GameObject tempTargetingImage;
+    GameObject canvas;
+
+    public Tooltip tooltip;
 
     Vector3 pointA;
     Vector3 pointB;
 
     void Start()
     {
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
+        tempTargetingImage = Instantiate(targetingImagePrefab);
         //Fetch the mesh renderer component from the GameObject
         m_Renderer = GetComponentInChildren<SpriteRenderer>();
         //Fetch the original color of the GameObject
@@ -61,31 +71,53 @@ public class Enemy : Unit
     }
     private void OnMouseOver()
     {
-        if (BattleSystem.state == BattleState.CASTING)
-        {
-            m_Renderer.color = m_MouseOverColor;
-        }
+        //this is your object that you want to have the UI element hovering over
+        
+
+        //this is the ui element
+        
+        Image image = tempTargetingImage.GetComponent<Image>();
+        //first you need the RectTransform component of your canvas
+        RectTransform CanvasRect = canvas.GetComponent<RectTransform>();
+        tempTargetingImage.transform.SetParent(canvas.transform);
+        //then you calculate the position of the UI element
+        //0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. Because of this, you need to subtract the height / width of the canvas * 0.5 to get the correct position.
+
+        Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+        Vector2 WorldObject_ScreenPosition = new Vector2(
+        ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
+        ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f))-(ViewportPosition.y * CanvasRect.sizeDelta.y*0.5f));
+
+        //now you can set the position of the ui element
+        image.rectTransform.anchoredPosition = WorldObject_ScreenPosition;
     }
 
     private void OnMouseExit()
     {
-        m_Renderer.color = m_OriginalColor;
+        if (target)
+        {
+            return;
+        }
+        tempTargetingImage.transform.SetParent(gameObject.transform);
     }
 
     public void TargetSelect()
     {
         target = true;
-        //this.GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        tempTargetingImage.transform.SetParent(canvas.transform);
     }
 
     public void TargetDeselect()
     {
         target = false;
-        this.GetComponentInChildren<SpriteRenderer>().color = m_OriginalColor;
+        tempTargetingImage.transform.SetParent(gameObject.transform);
     }
 
-    public void SetMove(string move)
+    public void SetMove()
     {
-        moveText.text = move;
+        tooltip.tooltipDescription = enemyMoves.LoadMove();
+        moveImage.sprite = enemyMoves.moveImage;
+        tooltip.tooltipSprite = m_Renderer.sprite;
+        tooltip.tooltipName = enemyMoves.moveName;
     }
 }

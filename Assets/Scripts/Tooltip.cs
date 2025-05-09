@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public GameObject tooltipObj;
-    public TMP_Text tooltipText;
+    public string tooltipDescription;
+    public string tooltipName;
+    public string tooltipMana = "";
+    public string tooltipCooldown = "";
+    public Sprite tooltipSprite;
     private bool tooltipDisplay;
+
+    public ItemInspector itemInspector;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        itemInspector = GameObject.FindGameObjectWithTag("Inspector").GetComponent<ItemInspector>();
         tooltipDisplay = false;
-        tooltipObj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,23 +26,14 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         
     }
 
-    public void ReplaceTooltipText(string text)
-    {
-        if (tooltipText != null)
-        {
-            tooltipText.text = text;
-        }
-    }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (tooltipDisplay)
         {
             return;
         }
-        print("Displaying image");
-        tooltipObj.SetActive(true);
         tooltipDisplay = true;
+        itemInspector.LoadTooltipData(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -45,7 +41,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (tooltipDisplay)
         {
             tooltipDisplay = false;
-            tooltipObj.SetActive(false);
+            itemInspector.ClearInspector();
         }
     }
 }

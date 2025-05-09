@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1af3a1d78b729d40bc3b237238ac7ac, type: 3}
   m_Name: Slime DMG
   m_EditorClassIdentifier: 
-  moveName: SlimeDmg
+  moveName: Slime Slap
   healValue: 0
   damageValue: 7
   shieldValue: 0
   type: 0
   moveInfo: X Damage
+  moveImage: {fileID: 21300000, guid: f8a8611bcb7e653418e493c34b011d67, type: 3}
   statusEffects: []

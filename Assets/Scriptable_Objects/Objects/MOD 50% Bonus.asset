@@ -16,19 +16,19 @@ MonoBehaviour:
   componentType: 2
   manaCost: 0
   cooldown: 1
-  gemImage: {fileID: 1235630590, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
-  moveInfo: ' '
+  gemImage: {fileID: -1710442146, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  moveInfo: Increase all values by 50%
   sprites:
-  - {fileID: 1235630590, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
-  - {fileID: -63052546, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
-  - {fileID: 594162723, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
-  - {fileID: 1673004224, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
-  - {fileID: -1564151396, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
-  - {fileID: -1311439369, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
-  - {fileID: -1536453336, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
-  - {fileID: 784425591, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
-  - {fileID: -2072597365, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
-  - {fileID: 579783024, guid: 40528435f93c8e9439423cba3ed83916, type: 3}
+  - {fileID: -1020007278, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  - {fileID: -1322266353, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  - {fileID: -1235452073, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  - {fileID: 949849831, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  - {fileID: 1540974916, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  - {fileID: 1498676378, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  - {fileID: -2145123226, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  - {fileID: 1853360110, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  - {fileID: 22373594, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  - {fileID: -1710442146, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
   modifierValue: 0.5
   numberOfCasts: 0
   targets: 0

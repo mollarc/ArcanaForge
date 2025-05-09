@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -37,6 +38,8 @@ public class BattleSystem : MonoBehaviour
 
     public TMP_Text castingText;
 
+    public CinemachineCameraLogic cinemachineScript;
+
     Player playerUnit;
     Enemy enemyUnit1;
     Enemy enemyUnit2;
@@ -60,8 +63,10 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         state = BattleState.START;
-        GameObject manaUI = GameObject.FindGameObjectWithTag("ManaUI");
-        playerHUD.manaText = manaUI.GetComponentInChildren<TMP_Text>();
+        GameObject currentManaUI = GameObject.FindGameObjectWithTag("CurrentManaUI");
+        playerHUD.currentManaText = currentManaUI.GetComponentInChildren<TMP_Text>();
+        GameObject maxManaUI = GameObject.FindGameObjectWithTag("MaxManaUI");
+        playerHUD.maxManaText = maxManaUI.GetComponentInChildren<TMP_Text>();
         StartCoroutine(SetupBattle());
     }
 
@@ -72,8 +77,6 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        
-
         GameObject enemyGO = Instantiate(enemyPrefab1, enemySpawn1);
         enemyUnit1 = enemyGO.GetComponent<Enemy>();
         GameObject enemyGO2 = Instantiate(enemyPrefab1, enemySpawn2);
@@ -137,12 +140,14 @@ public class BattleSystem : MonoBehaviour
 
         playerAnimator.SetBool("Attacked", true);
 
+        //Logic for hitting enemies
         StartCoroutine(PlayWandSound(wand1));
 
         foreach (Enemy enemy in enemies)
         {
             if (enemy.target)
             {
+                enemy.TargetDeselect();
                 bool isDead = enemy.TakeDamage(wand1.DamageValue);
             }
         }
@@ -214,6 +219,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EndTurn()
     {
+        cinemachineScript.BattleEndTurnCamera();
         playerUnit.EndTurnEffects();
         playerHUD.SetHP(playerUnit.currentHP);
         playerHUD.SetShield(playerUnit);
@@ -232,6 +238,7 @@ public class BattleSystem : MonoBehaviour
 
     void PlayerTurn()
     {
+        cinemachineScript.BattlePlayerTurnCamera();
         playerUnit.ManaChange(3, false);
         playerUnit.ResetShield();
         playerHUD.SetHUD(playerUnit);
@@ -239,7 +246,7 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetShield(playerUnit);
         foreach (var enemy in enemies)
         {
-            enemy.SetMove(enemy.enemyMoves.LoadMove());
+            enemy.SetMove();
         }
         Debug.Log("Player's Turn!");
     }

@@ -10,7 +10,8 @@ public class BattleHUD : MonoBehaviour
 
     public TMP_Text nameText;
     public TMP_Text hpText;
-    public TMP_Text manaText;
+    public TMP_Text currentManaText;
+    public TMP_Text maxManaText;
     public TMP_Text shieldText;
     public TMP_Text moveText;
     public Slider hpSlider;
@@ -28,24 +29,26 @@ public class BattleHUD : MonoBehaviour
         hpSlider.value = unit.currentHP;
         shieldText.text = unit.currentShield.ToString();
     
-        hpText.text = hpSlider.value + "/" + hpSlider.maxValue;
+        hpText.text = hpSlider.value + " / " + hpSlider.maxValue;
     }
 
     public void SetHUDPlayer(Player player)
     {
-        manaText.text = player.currentMana + "\n/\n" + player.maxMana;
+        currentManaText.text = player.currentMana.ToString();
+        maxManaText.text = player.maxMana.ToString();
     }
 
     public void SetHP(int hp)
     {
         hpSlider.value=hp;
-        hpText.text = hpSlider.value + "/" + hpSlider.maxValue;
+        hpText.text = hpSlider.value + " / " + hpSlider.maxValue;
     }
 
     public void SetMana(Player player)
     {
         //Things that cost mana should be inputted as a negative number
-        manaText.text = manaText.text = player.currentMana + "\n/\n" + player.maxMana;
+        currentManaText.text = player.currentMana.ToString();
+        maxManaText.text = player.maxMana.ToString();
     }
 
     public void SetShield(Unit unit)
@@ -84,8 +87,11 @@ public class BattleHUD : MonoBehaviour
                 GameObject item = Instantiate(statusEffect, statusPanel.transform);
                 item.GetComponentInChildren<TMP_Text>().text = effect.amount.ToString();
                 item.GetComponentInChildren<Image>().sprite = effect.effectIcon;
-                string tooltipText = "<color=" +effect.effectColor + ">" + effect.effectName.ToUpper() + "</color>: " + effect.effectTooltip.Replace("X", "<color=" + effect.effectColor +">" + effect.amount.ToString() + "</color>");
-                item.GetComponentInChildren<Tooltip>().ReplaceTooltipText(tooltipText);
+                string tooltipText = effect.effectTooltip.Replace("X", "<color=" + effect.effectColor +">" + effect.amount.ToString() + "</color>");
+                Tooltip tooltip = item.GetComponentInChildren<Tooltip>();
+                tooltip.tooltipDescription = tooltipText;
+                tooltip.tooltipName = "<color=" + effect.effectColor + ">" + effect.effectName.ToUpper() + "</color>";
+                tooltip.tooltipSprite = effect.effectIcon;
                 statusEffectList.Add(item);
             }
         }

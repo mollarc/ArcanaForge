@@ -13,6 +13,7 @@ public class InventoryController : MonoBehaviour
     public ComponentDB componentDB;
     public Inventory inventoryScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         slotArray = new Slot[slotCount];
@@ -158,6 +159,22 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    public void AddDisabledGems()
+    {
+        print("DisablingGemsAdded");
+        foreach (Slot slot in slotArray) //Goes through each slot
+        {
+            if (slot != null && slot.currentItem != null)
+            {
+                if(slot.currentItem.GetComponent<WandComponent>().currentCooldown > 0) //If gem has a cooldown active
+                {
+                    print(slot.slotIndex);
+                    inventoryScript.RemoveGemFromWand(slot.currentItem, slot.slotIndex);
+                }
+            }
+        }
+    }
+
     public void AddItem(GameObject item)
     {
         itemPrefabs.Add(item);
@@ -169,7 +186,11 @@ public class InventoryController : MonoBehaviour
         {
             if (slot != null && slot.currentItem != null)
             {
-                slot.currentItem.gameObject.GetComponent<WandComponent>().EndTurn();
+                slot.currentItem.GetComponent<WandComponent>().EndTurn();
+                if (slot.currentItem.GetComponent<WandComponent>().currentCooldown > 0) //If gem has a cooldown active
+                {
+                    inventoryScript.RemoveGemFromWand(slot.currentItem.GetComponent<WandComponent>().gameObject, slot.slotIndex);
+                }
             }
         }
     }

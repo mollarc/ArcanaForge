@@ -1,4 +1,5 @@
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using WandComponentNS;
@@ -16,8 +17,9 @@ public class WandComponent : MonoBehaviour
     public CanvasGroup canvasGroup;
     public InventoryController inventoryController;
     public ImageFlipAnimation flipAnimation;
-    //public Fmodsound
     public string moveInfo;
+    public Tooltip tooltip;
+    public TMP_Text cooldownText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,24 +42,24 @@ public class WandComponent : MonoBehaviour
 
     public void LoadComponentData(TypeComponentSO componentData)
     {
-        componentName = componentData.name;
+        componentName = componentData.componentName;
         componentType = componentData.componentType;
         manaCost = componentData.manaCost;
         cooldown = componentData.cooldown;
-        gameObject.GetComponent<Image>().sprite = componentData.gemImage;
+        gemImage = componentData.gemImage;
         flipAnimation.sprites = componentData.sprites;
-        //fmodsound = componentdata.fmodsound
+        moveInfo = componentData.moveInfo;
     }
 
     public void LoadComponentData(ModifierComponentSO componentData)
     {
-        componentName = componentData.name;
+        componentName = componentData.componentName;
         componentType = componentData.componentType;
         manaCost = componentData.manaCost;
         cooldown = componentData.cooldown;
-        gameObject.GetComponent<Image>().sprite = componentData.gemImage;
+        gemImage = componentData.gemImage;
         flipAnimation.sprites.AddRange(componentData.sprites);
-
+        moveInfo = componentData.moveInfo;
     }
 
     public void MoveComponent()
@@ -76,6 +78,7 @@ public class WandComponent : MonoBehaviour
                 break;
             }
         }
+        inventoryController.AddDisabledGems();
     }
 
     public void AdjustCooldown(int _adjustment)
@@ -89,6 +92,7 @@ public class WandComponent : MonoBehaviour
             color.b *= 2f;
             image.color = color;
             currentCooldown = 0;
+            cooldownText.text = "";
         }
         else if (currentCooldown > 0)
         {
@@ -97,6 +101,7 @@ public class WandComponent : MonoBehaviour
             color.g *= .5f;
             color.b *= .5f;
             image.color = color;
+            cooldownText.text = currentCooldown.ToString();
             MoveComponent();
         }
     }
@@ -108,8 +113,10 @@ public class WandComponent : MonoBehaviour
         {
             wasUsed = false;
             currentCooldown += cooldown;
+            cooldownText.text = currentCooldown.ToString();
             if (currentCooldown == 0)
             {
+                cooldownText.text = "";
                 return false;
             }
             canvasGroup.alpha = 0.8f;
@@ -122,6 +129,7 @@ public class WandComponent : MonoBehaviour
         {
             wasUsed = false;
             currentCooldown -= 1;
+            cooldownText.text = currentCooldown.ToString();
             if (currentCooldown == 0)
             {
                 canvasGroup.alpha = 1f;
@@ -129,9 +137,19 @@ public class WandComponent : MonoBehaviour
                 color.g *= 2f;
                 color.b *= 2f;
                 image.color = color;
+                cooldownText.text = "";
             }
         }
         wasUsed = false;
         return true;
+    }
+
+    public void UpdateTooltip()
+    {
+        tooltip.tooltipName = componentName;
+        tooltip.tooltipDescription = moveInfo;
+        tooltip.tooltipMana = manaCost.ToString();
+        tooltip.tooltipCooldown = cooldown.ToString();
+        tooltip.tooltipSprite = gemImage;
     }
 }

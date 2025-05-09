@@ -15,11 +15,7 @@ public class TypeComponent : WandComponent
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        base.SetUP();
-        if(typeComponentData != null)
-        {
-            LoadComponentData(typeComponentData);
-        }
+        SetUP();
     }
     // Update is called once per frame
     void Update()
@@ -39,6 +35,26 @@ public class TypeComponent : WandComponent
         {
             moveInfos.Add(move);
         }
-        
+        UpdateTooltip();
+    }
+
+    public new void UpdateTooltip()
+    {
+        base.UpdateTooltip();
+        foreach (moves move in moveInfos)
+        {
+            switch (move.ToString())
+            {
+                case "Damage":
+                    tooltip.tooltipDescription += damageValue.ToString() + " Damage ";
+                    break;
+                case "Shield":
+                    tooltip.tooltipDescription += shieldValue.ToString() + " Shield ";
+                    break;
+                case "Heal":
+                    tooltip.tooltipDescription += healValue.ToString() + " Heal ";
+                    break;
+            }
+        }
     }
 }

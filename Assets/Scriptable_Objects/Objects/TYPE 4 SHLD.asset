@@ -16,8 +16,8 @@ MonoBehaviour:
   componentType: 1
   manaCost: 1
   cooldown: 0
-  gemImage: {fileID: -491205331, guid: a0d4ee17c90d68d47ad845c7fc8ae389, type: 3}
-  moveInfo: X Shield
+  gemImage: {fileID: 1785040241, guid: 97dc1c35fb055404a9bc04a48985ca8a, type: 3}
+  moveInfo: 
   sprites:
   - {fileID: -678387411, guid: 97dc1c35fb055404a9bc04a48985ca8a, type: 3}
   - {fileID: 1697153725, guid: 97dc1c35fb055404a9bc04a48985ca8a, type: 3}

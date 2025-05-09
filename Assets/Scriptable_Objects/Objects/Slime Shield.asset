@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1af3a1d78b729d40bc3b237238ac7ac, type: 3}
   m_Name: Slime Shield
   m_EditorClassIdentifier: 
-  moveName: SlimeShield
+  moveName: Hard Slime
   healValue: 0
   damageValue: 0
   shieldValue: 6
   type: 1
   moveInfo: X Shield
+  moveImage: {fileID: 21300000, guid: dff8a737a729e39428a12d596c8bd157, type: 3}
   statusEffects: []

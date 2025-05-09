@@ -33,11 +33,14 @@ public class Inventory : MonoBehaviour
         WandComponentSO component = components[randomIndex];
         if (component.componentType == componentType.Type)
         {
-            var tempList1 = new List<WandComponentSO>();
-            tempList1.Add(component);
+            var tempList1 = new List<WandComponentSO>
+            {
+                component
+            };
             var templist2 = tempList1.Cast<TypeComponentSO>().ToArray();
             var newTypeComponent = Instantiate(typeComponent);
             newTypeComponent.GetComponent<TypeComponent>().LoadComponentData(templist2[0]);
+            newTypeComponent.GetComponent<TypeComponent>().UpdateTooltip();
             return newTypeComponent;
         }
         else if (component.componentType == componentType.Modifier)

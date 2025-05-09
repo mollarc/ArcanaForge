@@ -4,7 +4,9 @@ public class Player : Unit
 {
     public int maxMana;
     public int currentMana;
+    public PlayerStatistics currentStatistics = new PlayerStatistics();
 
+    public static Player playerInstance;
     public bool ManaChange(int manaChange, bool casting)
     {
         if (currentMana + manaChange > maxMana)
@@ -26,5 +28,11 @@ public class Player : Unit
             currentMana += manaChange;
             return false;
         }
+    }
+    public void SavePlayer()
+    {
+        currentStatistics.currentHP = currentHP;
+        currentStatistics.maxHP = maxHP;
+        GlobalController.Instance.savedStatistics = currentStatistics;
     }
 }

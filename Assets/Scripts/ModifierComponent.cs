@@ -34,5 +34,6 @@ public class ModifierComponent : WandComponent
         {
             moveInfos.Add(move);
         }
+        UpdateTooltip();
     }
 }

@@ -16,8 +16,8 @@ MonoBehaviour:
   componentType: 2
   manaCost: 1
   cooldown: 1
-  gemImage: {fileID: -1485488481, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  moveInfo: ' '
+  gemImage: {fileID: 328189732, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  moveInfo: Increase all values by 150%
   sprites:
   - {fileID: 436941846, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
   - {fileID: -1950526729, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}

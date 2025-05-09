@@ -305,6 +305,7 @@ public class WandObject : MonoBehaviour
                 }
             }
         }
+        CalculateValues();
     }
 
     public void ResetValues()
