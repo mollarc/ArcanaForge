@@ -18,6 +18,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject enemyPrefab1;
 
     public InventoryController inventoryController;
+    public BattleWin winScreen;
 
     public WandObject wand1;
     public WandObject wand2;
@@ -71,8 +72,9 @@ public class BattleSystem : MonoBehaviour
     {
         StartCoroutine(PlayerStartCutscene());
         fightData = FightDB.Instance.GetSequentialFight();
-        for(int i =0; i< fightData.enemyDataList.Count; i++)
+        for (int i = 0; i < fightData.enemyDataList.Count; i++)
         {
+            print(i);
             GameObject enemyGo = Instantiate(fightData.enemyDataList[i], enemySpawns[i]);
             enemies.Add(enemyGo.GetComponent<Enemy>());
             enemyHUDS.Add(enemies[i].GetComponent<BattleHUD>());
@@ -81,7 +83,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.SetHUD();
         playerHUD.SetHUDPlayer(playerUnit);
 
-        foreach(Enemy enemy in enemies)
+        foreach (Enemy enemy in enemies)
         {
             enemy.SetHUD();
         }
@@ -114,7 +116,7 @@ public class BattleSystem : MonoBehaviour
         {
             castingText.text = "Select an Enemy!";
         }
-        if(wand1.targets != 0)
+        if (wand1.targets != 0)
         {
             yield return TargetEnemies();
             if (!isTarget)
@@ -131,14 +133,24 @@ public class BattleSystem : MonoBehaviour
 
         //Logic for hitting enemies
         StartCoroutine(PlayWandSound(wand1));
-
         foreach (Enemy enemy in enemies)
         {
             if (enemy.target)
             {
                 enemy.TargetDeselect();
                 enemy.AttackedAnim();
-                enemy.TakeDamage(wand1.DamageValue);
+                enemy.TakeDamage(wand1.DamageValue, true);
+                print(wand1.cloneStatusEffects[0].effectName);
+                if (wand1.cloneStatusEffects != null)
+                {
+                    print("Battle Status Not Null");
+                    foreach (StackableEffectSO stackEffectData in wand1.cloneStatusEffects)
+                    {
+                        print(stackEffectData.effectName);
+                        enemy.AddStatus(stackEffectData);
+                    }
+                    enemy.battleHUD.DisplayStatus(enemy.stackableEffects);
+                }
             }
         }
 
@@ -161,6 +173,106 @@ public class BattleSystem : MonoBehaviour
 
         playerAnimator.SetBool("Attacked", false);
 
+        CheckEnemys();
+
+        wand1.CheckMana();
+    }
+
+    IEnumerator PlayWandSound(WandObject wand)
+    {
+        foreach (string eventpath in wand.FmodSoundPaths)
+        {
+            EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(eventpath);
+            if (eventInstance.isValid())
+            {
+                eventInstance.start();
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        yield break;
+    }
+
+    IEnumerator EndTurn()
+    {
+        cinemachineScript.BattleEndTurnCamera();
+        playerUnit.EndTurnEffects();
+        playerHUD.SetHP(playerUnit.currentHP);
+        playerHUD.SetShield(playerUnit);
+        playerHUD.DisplayStatus(playerUnit.stackableEffects);
+        foreach (var enemy in enemies)
+        {
+            enemy.EndTurnEffects();
+            enemy.SetHUD();
+            enemy.battleHUD.DisplayStatus(enemy.stackableEffects);
+        }
+        inventoryController.EndTurn();
+        wand1.EndTurn();
+        state = BattleState.ENEMYTURN;
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(EnemyTurn());
+        CheckEnemys();
+    }
+
+    void PlayerTurn()
+    {
+        cinemachineScript.BattlePlayerTurnCamera();
+        playerUnit.ManaChange(3, false);
+        playerUnit.ResetShield();
+        playerUnit.SetHUD();
+        playerHUD.SetMana(playerUnit);
+        foreach (var enemy in enemies)
+        {
+            enemy.SetMove();
+        }
+        Debug.Log("Player's Turn!");
+    }
+
+    IEnumerator EnemyTurn()
+    {
+        Debug.Log("Enemy Attacks!");
+        foreach (var enemy in enemies)
+        {
+            if (enemy.gameObject.activeSelf)
+            {
+                enemy.ResetShield();
+                yield return new WaitForSeconds(1f);
+
+                enemy.enemyMoves.UseMove();
+
+                enemy.HealDamage(enemy.enemyMoves.HealValue);
+                enemy.GainShield(enemy.enemyMoves.ShieldValue);
+                enemy.SetHUD();
+                enemy.AttackAnim();
+
+                playerUnit.TakeDamage(enemy.enemyMoves.DamageValue, true);
+                playerHUD.SetHP(playerUnit.currentHP);
+                playerHUD.SetShield(playerUnit);
+
+                if (enemy.enemyMoves.statusEffects != null)
+                {
+                    print("Battle Status Not Null");
+                    foreach (StackableEffectSO stackEffectData in enemy.enemyMoves.statusEffects)
+                    {
+                        print(stackEffectData.effectName);
+                        playerUnit.AddStatus(stackEffectData);
+                    }
+                }
+                playerHUD.DisplayStatus(playerUnit.stackableEffects);
+                yield return new WaitForSeconds(1f);
+            }
+            if (playerUnit.isDead)
+
+            {
+                state = BattleState.LOST;
+                EndBattle();
+            }
+        }
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
+    }
+
+    private void CheckEnemys()
+    {
         foreach (var enemy in enemies)
         {
             if (enemy.isDead)
@@ -190,107 +302,15 @@ public class BattleSystem : MonoBehaviour
                 EndBattle();
             }
         }
-        wand1.CheckMana();
-    }
-
-    IEnumerator PlayWandSound(WandObject wand)
-    {
-        foreach(string eventpath in wand.FmodSoundPaths)
-        {
-            EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(eventpath);
-            if(eventInstance.isValid())
-            {
-                eventInstance.start();
-                yield return new WaitForSeconds(0.5f);
-            }
-        }
-        yield break;
-    }
-
-    IEnumerator EndTurn()
-    {
-        cinemachineScript.BattleEndTurnCamera();
-        playerUnit.EndTurnEffects();
-        playerHUD.SetHP(playerUnit.currentHP);
-        playerHUD.SetShield(playerUnit);
-        playerHUD.DisplayStatus(playerUnit.stackableEffects);
-        foreach (var enemy in enemies)
-        {
-            enemy.EndTurnEffects();
-            enemy.SetHUD();
-        }
-        inventoryController.EndTurn();
-        wand1.EndTurn();
-        state = BattleState.ENEMYTURN;
-        yield return new WaitForSeconds(0.5f);
-        StartCoroutine(EnemyTurn());
-    }
-
-    void PlayerTurn()
-    {
-        cinemachineScript.BattlePlayerTurnCamera();
-        playerUnit.ManaChange(3, false);
-        playerUnit.ResetShield();
-        playerUnit.SetHUD();
-        playerHUD.SetMana(playerUnit);
-        foreach (var enemy in enemies)
-        {
-            enemy.SetMove();
-        }
-        Debug.Log("Player's Turn!");
-    }
-
-    IEnumerator EnemyTurn()
-    {
-        Debug.Log("Enemy Attacks!");
-        foreach (var enemy in enemies)
-        {
-            if (enemy.gameObject.activeSelf)
-            {
-                enemy.ResetShield();
-                yield return new WaitForSeconds(1f);
-
-                enemy.enemyMoves.UseMove();
-
-                
-
-                enemy.HealDamage(enemy.enemyMoves.HealValue);
-                enemy.GainShield(enemy.enemyMoves.ShieldValue);
-                enemy.SetHUD();
-                enemy.AttackAnim();
-
-                playerUnit.TakeDamage(enemy.enemyMoves.DamageValue);
-                playerHUD.SetHP(playerUnit.currentHP);
-                playerHUD.SetShield(playerUnit);
-                
-                if (enemy.enemyMoves.statusEffects != null)
-                {
-                    print("Battle Status Not Null");
-                    foreach (StackableEffectSO stackEffectData in enemy.enemyMoves.statusEffects)
-                    {
-                        print(stackEffectData.effectName);
-                        playerUnit.AddStatus(stackEffectData);
-                    }
-                }
-                playerHUD.DisplayStatus(playerUnit.stackableEffects);
-                yield return new WaitForSeconds(1f);
-            }
-            if (playerUnit.isDead)
-
-            {
-                state = BattleState.LOST;
-                EndBattle();
-            }
-        }
-        state = BattleState.PLAYERTURN;
-        PlayerTurn();
     }
 
     private void EndBattle()
     {
+        StopAllCoroutines();
         if (state == BattleState.WON)
         {
             Debug.Log("You Won!");
+            winScreen.GetRandomRewards();
         }
         else if (state == BattleState.LOST)
         {
@@ -329,7 +349,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator TargetEnemies()
     {
-        print("targeting");   
+        print("targeting");
         if (enemies.Count == 1)
         {
             enemies[0].TargetSelect();
@@ -340,7 +360,7 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
         var rayhit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()));
 
-        
+
 
         if (!rayhit.collider)
         {
@@ -369,7 +389,7 @@ public class BattleSystem : MonoBehaviour
         float elapsedTime = 0;
         float animDuration = 1.5f;
 
-        Vector3 playerLeft = playerSpawn.position - new Vector3(10,0,0);
+        Vector3 playerLeft = playerSpawn.position - new Vector3(10, 0, 0);
 
         while (elapsedTime <= animDuration)
         {

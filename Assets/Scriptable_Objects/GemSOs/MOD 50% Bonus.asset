@@ -17,7 +17,7 @@ MonoBehaviour:
   manaCost: 0
   cooldown: 1
   gemImage: {fileID: -1710442146, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
-  moveInfo: Increase all values by 50%
+  moveInfo: Increase all gem values by 50%
   sprites:
   - {fileID: -1020007278, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
   - {fileID: -1322266353, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}

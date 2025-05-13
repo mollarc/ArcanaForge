@@ -47,7 +47,7 @@ public class WandComponent : MonoBehaviour
         manaCost = componentData.manaCost;
         cooldown = componentData.cooldown;
         gemImage = componentData.gemImage;
-        flipAnimation.sprites = componentData.sprites;
+        flipAnimation.sprites.AddRange(componentData.sprites);
         moveInfo = componentData.moveInfo;
     }
 
@@ -140,7 +140,7 @@ public class WandComponent : MonoBehaviour
                 cooldownText.text = "";
             }
         }
-        else if(!wasUsed)
+        else if (!wasUsed)
         {
             return false;
         }

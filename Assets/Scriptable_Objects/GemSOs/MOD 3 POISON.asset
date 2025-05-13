@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b8536941900e2a4ea73c43282919d24, type: 3}
-  m_Name: MOD 6 BURN
+  m_Name: MOD 3 POISON
   m_EditorClassIdentifier: 
-  componentName: Singe
+  componentName: Venom
   componentType: 2
   manaCost: 1
   cooldown: 0
   gemImage: {fileID: -1485488481, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  moveInfo: Apply 6 Burn
+  moveInfo: Apply 3 Poison
   sprites:
   - {fileID: -1485488481, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
   - {fileID: 523359236, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
@@ -32,6 +32,6 @@ MonoBehaviour:
   modifierValue: 0
   numberOfCasts: 0
   targets: 1
-  moveInfos: 01000000
+  moveInfos: 00000000
   statusEffects:
-  - {fileID: 11400000, guid: 8e39dfca6102f0a439f32b2fe7ac97c0, type: 2}
+  - {fileID: 11400000, guid: 7d9abe8527f235f4693f8004d06fb22c, type: 2}

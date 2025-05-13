@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ public class WandObject : MonoBehaviour
     private float modifierValue;
     public int targets;
     public List<string> moveInfos = new List<string>();
+    public List<StackableEffectSO> cloneStatusEffects = new List<StackableEffectSO>();
     public TMP_Text wandMoveText;
     public TMP_Text manaCostText;
     public Image castButton;
@@ -132,15 +134,19 @@ public class WandObject : MonoBehaviour
         }
         if(wandModifierSlots.Count() != 0)
         {
+            
             //Buffs/Debuffs that affect values should adjust the modifier value
             foreach (Slot modifierSlot in wandModifierSlots)
             {
                 if (modifierSlot.currentItem != null)
                 {
-                    print("RanModSlotCheck");
                     ModifierComponent modifierComponent = modifierSlot.currentItem.GetComponent<ModifierComponent>();
                     manaCost += modifierSlot.currentItem.GetComponent<ModifierComponent>().manaCost;
                     modifierValue += modifierSlot.currentItem.GetComponent<ModifierComponent>().modifierValue;
+                    if (modifierComponent.targets > targets)
+                    {
+                        targets = modifierComponent.targets;
+                    }
                     foreach (var move in modifierComponent.moveInfos)
                     {
                         List<string> tempList = new List<string>();
@@ -170,6 +176,14 @@ public class WandObject : MonoBehaviour
                         else
                         {
                             moveInfos.Add(move.ToString());
+                        }
+                    }
+                    if (modifierComponent.statusEffects != null)
+                    {
+                        foreach (StackableEffectSO statusEffectData in modifierComponent.statusEffects)
+                        {
+                            StackableEffectSO stackableClone = Instantiate(statusEffectData);
+                            cloneStatusEffects.Add(stackableClone);
                         }
                     }
                 }
@@ -213,14 +227,23 @@ public class WandObject : MonoBehaviour
                     case "Heal":
                         wandMoveText.text += healValue.ToString() + " Heal ";
                         break;
+                }
+            }
+        }
+        if(cloneStatusEffects != null)
+        {
+            foreach(StackableEffectSO stackableEffectSO in cloneStatusEffects)
+            {
+                switch (stackableEffectSO.effectName)
+                {
                     case "Poison":
-                        wandMoveText.text += damageValue.ToString() + " Poison ";
+                        wandMoveText.text += stackableEffectSO.amount.ToString() + " Poison ";
                         break;
                     case "Burn":
-                        wandMoveText.text += shieldValue.ToString() + " Burn ";
+                        wandMoveText.text += stackableEffectSO.amount.ToString() + " Burn ";
                         break;
                     case "Frigid":
-                        wandMoveText.text += healValue.ToString() + " Frigid ";
+                        wandMoveText.text += stackableEffectSO.amount.ToString() + " Frigid ";
                         break;
                 }
             }
@@ -331,6 +354,7 @@ public class WandObject : MonoBehaviour
         damageValue = 0;
         shieldValue = 0;
         modifierValue = 1;
+        cloneStatusEffects.Clear();
         FmodSoundPaths.Clear();
     }
 }

@@ -14,13 +14,12 @@ public class FightDB : MonoBehaviour
     {
         if (Instance == null)
         {
-            print("FightDataStatic");
             DontDestroyOnLoad(gameObject);
             Instance = this;
         }
         else if (Instance != this)
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created

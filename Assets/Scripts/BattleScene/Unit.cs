@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Unit : MonoBehaviour
@@ -23,13 +25,13 @@ public abstract class Unit : MonoBehaviour
         battleHUD.hpText.text = battleHUD.hpSlider.value + " / " + battleHUD.hpSlider.maxValue;
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(int dmg,bool isHit)
     {
         if (stackableEffects != null)
         {
             foreach(StackableEffectSO s in stackableEffects)
             {
-                if (s.effectName == "Frigid")
+                if (s.effectName == "Frigid" && isHit)
                 {
                     dmg += s.amount;
                     s.amount -= s.tickAmount;
@@ -58,6 +60,19 @@ public abstract class Unit : MonoBehaviour
 
         SetHUD();
     }
+
+    public void TakeHPLoss(int hpLoss)
+    {
+        currentHP -= hpLoss;
+
+        if (currentHP <= 0)
+        {
+            isDead = true;
+        }
+
+        SetHUD();
+    }
+
 
     public void HealDamage(int healing)
     {
@@ -109,6 +124,7 @@ public abstract class Unit : MonoBehaviour
 
     public void EndTurnEffects()
     {
+        List<StackableEffectSO> effectsToRemove = new List<StackableEffectSO>();
         if (stackableEffects != null)
         {
             foreach (StackableEffectSO effect in stackableEffects)
@@ -117,18 +133,32 @@ public abstract class Unit : MonoBehaviour
                 switch (effectName)
                 {
                     case "Poison":
-                        TakeDamage(effect.amount);
+                        TakeHPLoss(effect.amount);
                         effect.TickEffect();
+                        if(effect.amount <= 0)
+                        {
+                            effectsToRemove.Add(effect);
+                            battleHUD.RemoveStatus(stackableEffects.IndexOf(effect));
+                        }
                         break;
                     case "Burn":
-                        TakeDamage(effect.amount);
+                        TakeDamage(effect.amount,false);
                         effect.TickEffect();
+                        if (effect.amount <= 0)
+                        {
+                            effectsToRemove.Add(effect);
+                            battleHUD.RemoveStatus(stackableEffects.IndexOf(effect));
+                        }
                         break;
                     default:
                         print("Defaulted");
                         break;
                 }
             }
+        }
+        foreach(StackableEffectSO effect in effectsToRemove)
+        {
+            stackableEffects.Remove(effect);
         }
         SetHUD();
     }

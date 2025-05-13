@@ -92,9 +92,9 @@ public class Enemy : Unit
         transform.position = pointA;
     }
 
-    public new void TakeDamage(int dmg)
+    public new void TakeDamage(int dmg, bool i)
     {
-        base.TakeDamage(dmg);
+        base.TakeDamage(dmg,i);
         if (isDead)
         {
             Destroy(tempTargetingImage);

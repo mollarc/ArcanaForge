@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestFrigid
   m_EditorClassIdentifier: 
   permanent: 0
-  amount: 3
+  amount: 8
   tickAmount: 1
   type: 0
   effectName: Frigid
