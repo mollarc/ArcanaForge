@@ -22,16 +22,6 @@ public class BattleHUD : MonoBehaviour
 
     public List<GameObject> statusEffectList;
 
-    public void SetHUD(Unit unit)
-    {
-        nameText.text = unit.unitName;
-        hpSlider.maxValue = unit.maxHP;
-        hpSlider.value = unit.currentHP;
-        shieldText.text = unit.currentShield.ToString();
-    
-        hpText.text = hpSlider.value + " / " + hpSlider.maxValue;
-    }
-
     public void SetHUDPlayer(Player player)
     {
         currentManaText.text = player.currentMana.ToString();

@@ -14,8 +14,6 @@ public class Enemy : Unit
 
     public bool casting = false;
 
-    public BattleHUD enemyHUD;
-
     public EnemyMoves enemyMoves;
 
     public Image moveImage;
@@ -78,17 +76,16 @@ public class Enemy : Unit
     {
         float elapsedTime = 0;
         float animDuration = 0.2f;
-        Vector3 threeQuartersVectorxX = new Vector3(0.75f, 0, 0);
         while (elapsedTime <= animDuration)
         {
-            transform.position = Vector3.Lerp(pointA, pointC- threeQuartersVectorxX, elapsedTime/animDuration);
+            transform.position = Vector3.Lerp(pointA, pointC- new Vector3(0.75f, 0, 0), elapsedTime/animDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         elapsedTime = 0;
         while (elapsedTime <= animDuration)
         {
-            transform.position = Vector3.Lerp(pointC - threeQuartersVectorxX, pointA, elapsedTime/animDuration);
+            transform.position = Vector3.Lerp(pointC - new Vector3(0.75f, 0, 0), pointA, elapsedTime/animDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }

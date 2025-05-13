@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR;
 
 public class WandObject : MonoBehaviour
@@ -22,6 +23,7 @@ public class WandObject : MonoBehaviour
     public List<string> moveInfos = new List<string>();
     public TMP_Text wandMoveText;
     public TMP_Text manaCostText;
+    public Image castButton;
     public GameObject typePanel;
     public GameObject modifierPanel;
     public GameObject slotTypePrefab;
@@ -49,7 +51,7 @@ public class WandObject : MonoBehaviour
 
     void Update()
     {
-
+        
     }
 
     public void SetUP()
@@ -222,6 +224,19 @@ public class WandObject : MonoBehaviour
                         break;
                 }
             }
+        }
+        CheckMana();
+    }
+
+    public void CheckMana()
+    {
+        if (manaCost * -1 > Player.playerInstance.currentMana)
+        {
+            castButton.color = Color.red;
+        }
+        else
+        {
+            castButton.color = Color.white;
         }
     }
 

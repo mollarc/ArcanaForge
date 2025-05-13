@@ -7,10 +7,21 @@ public abstract class Unit : MonoBehaviour
     public int maxHP;
     public int currentHP;
     public int currentShield;
+    public BattleHUD battleHUD;
 
     public bool isDead = false;
 
     public List<StackableEffectSO> stackableEffects = new List<StackableEffectSO>();
+
+    public void SetHUD()
+    {
+        battleHUD.nameText.text = unitName;
+        battleHUD.hpSlider.maxValue = maxHP;
+        battleHUD.hpSlider.value = currentHP;
+        battleHUD.shieldText.text = currentShield.ToString();
+
+        battleHUD.hpText.text = battleHUD.hpSlider.value + " / " + battleHUD.hpSlider.maxValue;
+    }
 
     public void TakeDamage(int dmg)
     {
@@ -44,6 +55,8 @@ public abstract class Unit : MonoBehaviour
         {
             isDead = true;
         }
+
+        SetHUD();
     }
 
     public void HealDamage(int healing)
@@ -117,6 +130,7 @@ public abstract class Unit : MonoBehaviour
                 }
             }
         }
+        SetHUD();
     }
 }
 

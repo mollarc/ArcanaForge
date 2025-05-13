@@ -1,12 +1,28 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using UnityEngine;
 using WandComponentNS;
 public class ComponentDB : MonoBehaviour
 {
+    public static ComponentDB Instance;
+
     public GameObject typeComponent;
     public GameObject modifierComponent;
     public List<WandComponentSO> components = new List<WandComponentSO>();
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            //Destroy(gameObject);
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

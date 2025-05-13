@@ -7,6 +7,11 @@ public class Player : Unit
     public PlayerStatistics currentStatistics = new PlayerStatistics();
 
     public static Player playerInstance;
+    private void Awake()
+    {
+        playerInstance = this;
+    }
+
     public bool ManaChange(int manaChange, bool casting)
     {
         if (currentMana + manaChange > maxMana)

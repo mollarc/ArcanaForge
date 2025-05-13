@@ -8,9 +8,7 @@ public class GlobalController : MonoBehaviour
 
     public PlayerStatistics savedStatistics = new PlayerStatistics();
 
-    public WandObject wand1;
-    public WandObject wand2;
-
+    public WandObject[] wands = new WandObject[2];
     public List<WandComponent> gemInventory;
 
     void Awake()
@@ -22,7 +20,7 @@ public class GlobalController : MonoBehaviour
         }
         else if (Instance != this)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

@@ -22,28 +22,20 @@ public class BattleSystem : MonoBehaviour
     public WandObject wand1;
     public WandObject wand2;
 
+    public FightsDataSO fightData;
+
     public Transform playerSpawn;
     public BattleHUD playerHUD;
 
-    public Transform enemySpawn1;
-    public BattleHUD enemyHUD1;
-
-    public Transform enemySpawn2;
-    public BattleHUD enemyHUD2;
-
-    public Transform enemySpawn3;
-    public BattleHUD enemyHUD3;
-
-    public List<Enemy> enemies;
+    public List<Enemy> enemies = new List<Enemy>();
+    public List<Transform> enemySpawns = new List<Transform>();
+    public List<BattleHUD> enemyHUDS = new List<BattleHUD>();
 
     public TMP_Text castingText;
 
     public CinemachineCameraLogic cinemachineScript;
 
     Player playerUnit;
-    Enemy enemyUnit1;
-    Enemy enemyUnit2;
-    Enemy enemyUnit3;
 
     bool isTarget = false;
 
@@ -77,25 +69,22 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        GameObject enemyGO = Instantiate(enemyPrefab1, enemySpawn1);
-        enemyUnit1 = enemyGO.GetComponent<Enemy>();
-        GameObject enemyGO2 = Instantiate(enemyPrefab1, enemySpawn2);
-        enemyUnit2 = enemyGO2.GetComponent<Enemy>();
-        //GameObject enemyGO3 = Instantiate(enemyPrefab1, enemySpawn3);
-        //enemyUnit3 = enemyGO3.GetComponent<Enemy>();
+        StartCoroutine(PlayerStartCutscene());
+        fightData = FightDB.Instance.GetSequentialFight();
+        for(int i =0; i< fightData.enemyDataList.Count; i++)
+        {
+            GameObject enemyGo = Instantiate(fightData.enemyDataList[i], enemySpawns[i]);
+            enemies.Add(enemyGo.GetComponent<Enemy>());
+            enemyHUDS.Add(enemies[i].GetComponent<BattleHUD>());
+        }
 
-        enemies.Add(enemyUnit1);
-        enemies.Add(enemyUnit2);
-        //enemies.Add(enemyUnit3);
-
-
-        //enemyUnit3.enemyHUD = enemyHUD3;
-
-        playerHUD.SetHUD(playerUnit);
+        playerUnit.SetHUD();
         playerHUD.SetHUDPlayer(playerUnit);
-        enemyUnit1.enemyHUD.SetHUD(enemyUnit1);
-        enemyUnit2.enemyHUD.SetHUD(enemyUnit2);
-        //enemyUnit3.enemyHUD.SetHUD(enemyUnit3);
+
+        foreach(Enemy enemy in enemies)
+        {
+            enemy.SetHUD();
+        }
 
         yield return new WaitForSeconds(2f);
 
@@ -161,8 +150,7 @@ public class BattleSystem : MonoBehaviour
 
         foreach (Enemy _enemy in enemies)
         {
-            _enemy.enemyHUD.SetHP(_enemy.currentHP);
-            _enemy.enemyHUD.SetShield(_enemy);
+            _enemy.SetHUD();
         }
 
         Debug.Log("Casted Wand!");
@@ -178,7 +166,7 @@ public class BattleSystem : MonoBehaviour
             if (enemy.isDead)
             {
                 enemy.gameObject.SetActive(false);
-                enemy.enemyHUD.gameObject.SetActive(false);
+                enemy.battleHUD.gameObject.SetActive(false);
             }
             else
             {
@@ -202,6 +190,7 @@ public class BattleSystem : MonoBehaviour
                 EndBattle();
             }
         }
+        wand1.CheckMana();
     }
 
     IEnumerator PlayWandSound(WandObject wand)
@@ -228,7 +217,7 @@ public class BattleSystem : MonoBehaviour
         foreach (var enemy in enemies)
         {
             enemy.EndTurnEffects();
-            enemy.enemyHUD.SetHP(enemy.currentHP);
+            enemy.SetHUD();
         }
         inventoryController.EndTurn();
         wand1.EndTurn();
@@ -242,9 +231,8 @@ public class BattleSystem : MonoBehaviour
         cinemachineScript.BattlePlayerTurnCamera();
         playerUnit.ManaChange(3, false);
         playerUnit.ResetShield();
-        playerHUD.SetHUD(playerUnit);
+        playerUnit.SetHUD();
         playerHUD.SetMana(playerUnit);
-        playerHUD.SetShield(playerUnit);
         foreach (var enemy in enemies)
         {
             enemy.SetMove();
@@ -267,9 +255,8 @@ public class BattleSystem : MonoBehaviour
                 
 
                 enemy.HealDamage(enemy.enemyMoves.HealValue);
-                enemy.enemyHUD.SetHP(enemy.currentHP);
                 enemy.GainShield(enemy.enemyMoves.ShieldValue);
-                enemy.enemyHUD.SetShield(enemy);
+                enemy.SetHUD();
                 enemy.AttackAnim();
 
                 playerUnit.TakeDamage(enemy.enemyMoves.DamageValue);
@@ -374,5 +361,24 @@ public class BattleSystem : MonoBehaviour
         }
         Debug.Log(rayhit.collider.gameObject.name);
         yield break;
+    }
+
+    IEnumerator PlayerStartCutscene()
+    {
+        playerAnimator.SetBool("Dashing", true);
+        float elapsedTime = 0;
+        float animDuration = 1.5f;
+
+        Vector3 playerLeft = playerSpawn.position - new Vector3(10,0,0);
+
+        while (elapsedTime <= animDuration)
+        {
+            playerUnit.gameObject.transform.position = Vector3.Lerp(playerLeft, playerSpawn.transform.position, elapsedTime / animDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        playerUnit.gameObject.transform.position = playerSpawn.transform.position;
+        playerAnimator.SetBool("Dashing", false);
+
     }
 }

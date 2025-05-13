@@ -963,6 +963,7 @@ MonoBehaviour:
   maxHP: 80
   currentHP: 80
   currentShield: 0
+  battleHUD: {fileID: 8690407489344305390}
   isDead: 0
   stackableEffects: []
   maxMana: 10

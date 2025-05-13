@@ -335,6 +335,7 @@ Transform:
   - {fileID: 4889364621505021153}
   - {fileID: 2479074103215735675}
   - {fileID: 6348658952799812919}
+  - {fileID: 3430864239507149163}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-6898545311652284167
@@ -353,12 +354,12 @@ MonoBehaviour:
   maxHP: 43
   currentHP: 43
   currentShield: 0
+  battleHUD: {fileID: 5021012314577486363}
   isDead: 0
   stackableEffects: []
   m_Renderer: {fileID: 0}
   target: 0
   casting: 0
-  enemyHUD: {fileID: 5021012314577486363}
   enemyMoves: {fileID: 7007811501562065567}
   moveImage: {fileID: 3196545386984011140}
   fade: {fileID: 2166558759443220373}
@@ -966,6 +967,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &6428796461491338010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3430864239507149163}
+  m_Layer: 0
+  m_Name: SpawnFloor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3430864239507149163
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6428796461491338010}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2811887978474442546}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6786871377193355152
 GameObject:
   m_ObjectHideFlags: 0
