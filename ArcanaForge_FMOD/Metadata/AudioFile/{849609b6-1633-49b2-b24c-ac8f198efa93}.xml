@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{849609b6-1633-49b2-b24c-ac8f198efa93}">
+		<property name="assetPath">
+			<value>cyborg-ninja-kevin-macleod-main-version-7993-03-00.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>180.06204081632654</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{22dc195f-7b60-4b29-b748-617d0a8c75e2}</destination>
+		</relationship>
+	</object>
+</objects>
