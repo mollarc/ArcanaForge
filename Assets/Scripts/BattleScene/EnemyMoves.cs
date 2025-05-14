@@ -1,13 +1,17 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemyMoves : MonoBehaviour
 {
-    private int healValue;
-    private int damageValue;
-    private int shieldValue;
-    private int modifierValue;
-    private int currentMoveIndex;
+    public int healValue;
+    public int damageValue;
+    public int shieldValue;
+    public float modifierValue;
+    public int modifierValueFlat;
+    public int currentMoveIndex;
+
+    public TMP_Text moveValue;
 
     private TempEnemyMove currentMove;
     
@@ -19,22 +23,20 @@ public class EnemyMoves : MonoBehaviour
 
     public List<StackableEffectSO> statusEffects;
 
-    public int HealValue { get => healValue; set => healValue = value; }
-    public int DamageValue { get => damageValue; set => damageValue = value; }
-    public int ShieldValue { get => shieldValue; set => shieldValue = value; }
-    public int ModifierValue { get => modifierValue; set => modifierValue = value; }
-
     public void Start()
     {
-        modifierValue = 1;
+        modifierValue = 1f;
+        print(modifierValue);
     }
 
     public void CalculateValues()
     {
         statusEffects.Clear();
-        healValue = currentMove.healValue * modifierValue;
-        damageValue = currentMove.damageValue * modifierValue;
-        shieldValue = currentMove.shieldValue * modifierValue;
+        print(currentMove.damageValue);
+        print(Mathf.Round(currentMove.damageValue * modifierValue));
+        healValue = (int)Mathf.Round(currentMove.healValue);
+        damageValue = (int)Mathf.Round(currentMove.damageValue * modifierValue) + modifierValueFlat;
+        shieldValue = (int)Mathf.Round(currentMove.shieldValue);
         if (currentMove.statusEffects != null)
         {
             foreach(StackableEffectSO statusEffectData in currentMove.statusEffects)
@@ -62,14 +64,51 @@ public class EnemyMoves : MonoBehaviour
         }
         if (enemyMoves[currentMoveIndex].type ==0)
         {
+            moveValue.text = damageValue.ToString();
             return stringToReturn += damageValue.ToString() + " DMG";
         }
         else if (enemyMoves[currentMoveIndex].type == 1)
         {
+            moveValue.text = shieldValue.ToString();
             return stringToReturn += shieldValue.ToString() + " SHLD";
         }
         else if (enemyMoves[currentMoveIndex].type == 2)
         {
+            moveValue.text = healValue.ToString();
+            return stringToReturn += healValue.ToString() + " HEAL";
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public string RefreshMoveInfo()
+    {
+        string stringToReturn = "";
+        CalculateValues();
+        moveImage = currentMove.moveImage;
+        moveName = currentMove.moveName;
+        if (statusEffects != null)
+        {
+            foreach (StackableEffectSO effectSO in statusEffects)
+            {
+                stringToReturn += effectSO.amount + " " + effectSO.effectName + " ";
+            }
+        }
+        if (enemyMoves[currentMoveIndex].type == 0)
+        {
+            moveValue.text = damageValue.ToString();
+            return stringToReturn += damageValue.ToString() + " DMG";
+        }
+        else if (enemyMoves[currentMoveIndex].type == 1)
+        {
+            moveValue.text = shieldValue.ToString();
+            return stringToReturn += shieldValue.ToString() + " SHLD";
+        }
+        else if (enemyMoves[currentMoveIndex].type == 2)
+        {
+            moveValue.text = healValue.ToString();
             return stringToReturn += healValue.ToString() + " HEAL";
         }
         else

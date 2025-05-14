@@ -678,7 +678,8 @@ MonoBehaviour:
   tooltipName: 
   tooltipMana: 
   tooltipCooldown: 
-  tooltipSprite: {fileID: 0}
+  tooltipUses: 
+  tooltipSprite: {fileID: 21300000, guid: b2c6c65ac5709a24aa614480aebb151a, type: 3}
   itemInspector: {fileID: 0}
 --- !u!222 &845579228656838588
 CanvasRenderer:

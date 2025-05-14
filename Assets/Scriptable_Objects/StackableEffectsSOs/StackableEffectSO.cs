@@ -21,7 +21,10 @@ public class StackableEffectSO : ScriptableObject
 
     public void TickEffect()
     {
-        amount = TickLogic(amount, tickAmount);
+        if(!permanent)
+        {
+            amount = TickLogic(amount, tickAmount);
+        }
     }
 }
 public interface IStackableEffect

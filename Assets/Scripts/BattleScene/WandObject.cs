@@ -20,6 +20,7 @@ public class WandObject : MonoBehaviour
     private int damageValue;
     private int shieldValue;
     private float modifierValue;
+    public float outSideModifierPercent = 1f;
     public int targets;
     public List<string> moveInfos = new List<string>();
     public List<StackableEffectSO> cloneStatusEffects = new List<StackableEffectSO>();
@@ -210,7 +211,7 @@ public class WandObject : MonoBehaviour
         manaCostText.text = manaCost.ToString();
         manaCost *= -1;
         healValue = (int)Mathf.Round(healValue * modifierValue);
-        damageValue = (int)Mathf.Round(damageValue * modifierValue);
+        damageValue = (int)Mathf.Round(damageValue * modifierValue * outSideModifierPercent);
         shieldValue = (int)Mathf.Round(shieldValue * modifierValue);
         if (moveInfos != null)
         {
@@ -244,6 +245,15 @@ public class WandObject : MonoBehaviour
                         break;
                     case "Frigid":
                         wandMoveText.text += stackableEffectSO.amount.ToString() + " Frigid ";
+                        break;
+                    case "Weak":
+                        wandMoveText.text += stackableEffectSO.amount.ToString() + " Weak ";
+                        break;
+                    case "Fragile":
+                        wandMoveText.text += stackableEffectSO.amount.ToString() + " Fragile ";
+                        break;
+                    case "Power":
+                        wandMoveText.text += stackableEffectSO.amount.ToString() + " Power ";
                         break;
                 }
             }

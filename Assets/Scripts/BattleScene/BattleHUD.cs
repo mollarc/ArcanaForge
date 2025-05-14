@@ -77,7 +77,15 @@ public class BattleHUD : MonoBehaviour
                 GameObject item = Instantiate(statusEffect, statusPanel.transform);
                 item.GetComponentInChildren<TMP_Text>().text = effect.amount.ToString();
                 item.GetComponentInChildren<Image>().sprite = effect.effectIcon;
-                string tooltipText = effect.effectTooltip.Replace("X", "<color=" + effect.effectColor +">" + effect.amount.ToString() + "</color>");
+                string tooltipText;
+                if(effect.type == 0)
+                {
+                    tooltipText = effect.effectTooltip.Replace("X", "<color=" + effect.effectColor + ">" + effect.amount.ToString() + "</color>");
+                }
+                else
+                {
+                    tooltipText = effect.effectTooltip;
+                }
                 Tooltip tooltip = item.GetComponentInChildren<Tooltip>();
                 tooltip.tooltipDescription = tooltipText;
                 tooltip.tooltipName = "<color=" + effect.effectColor + ">" + effect.effectName.ToUpper() + "</color>";

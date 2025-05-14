@@ -968,9 +968,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 131319029}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -927, y: 259}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 33.30005, y: 259}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &64383471
@@ -7924,9 +7924,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 131319029}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -499, y: 259}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 460.7, y: 259}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &858818251
@@ -16991,6 +16991,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5c1880a77edfce4abd54b63b82c9b43, type: 2}
   - {fileID: 11400000, guid: 28251f797f1c0ec439c844e38aa72116, type: 2}
   - {fileID: 11400000, guid: a504a75c23b47a9418a2cab69a8ff66c, type: 2}
+  - {fileID: 11400000, guid: 04f044eaa714f534b862359318673f0c, type: 2}
+  - {fileID: 11400000, guid: 09110e16a8fd77f418ddecf55d54a4e8, type: 2}
 --- !u!4 &1837159885
 Transform:
   m_ObjectHideFlags: 0

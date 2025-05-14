@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -10,6 +11,11 @@ public abstract class Unit : MonoBehaviour
     public int currentHP;
     public int currentShield;
     public BattleHUD battleHUD;
+
+    public float dmgIncomingPercent;
+    public float dmgOutgoingPercent;
+    public int dmgIncomingFlat;
+    public int dmgOutgoingFlat;
 
     public bool isDead = false;
 
@@ -25,22 +31,25 @@ public abstract class Unit : MonoBehaviour
         battleHUD.hpText.text = battleHUD.hpSlider.value + " / " + battleHUD.hpSlider.maxValue;
     }
 
-    public void TakeDamage(int dmg,bool isHit)
+    public void TakeDamage(int dmg, bool isHit)
     {
         if (stackableEffects != null)
         {
-            foreach(StackableEffectSO s in stackableEffects)
+            foreach (StackableEffectSO s in stackableEffects)
             {
-                if (s.effectName == "Frigid" && isHit)
+                if (isHit)
                 {
-                    dmg += s.amount;
-                    s.amount -= s.tickAmount;
+                    switch(s.effectName)
+                    {
+                        case "Frigid":
+                            dmgIncomingFlat += s.amount;
+                            break;
+                    }
                 }
             }
         }
-        {
-            
-        }
+        dmg = (int)Mathf.Round(dmg * dmgIncomingPercent);
+        dmg += dmgIncomingFlat;
         if (currentShield - dmg < 0)
         {
             dmg -= currentShield;
@@ -135,14 +144,14 @@ public abstract class Unit : MonoBehaviour
                     case "Poison":
                         TakeHPLoss(effect.amount);
                         effect.TickEffect();
-                        if(effect.amount <= 0)
+                        if (effect.amount <= 0)
                         {
                             effectsToRemove.Add(effect);
                             battleHUD.RemoveStatus(stackableEffects.IndexOf(effect));
                         }
                         break;
                     case "Burn":
-                        TakeDamage(effect.amount,false);
+                        TakeDamage(effect.amount, false);
                         effect.TickEffect();
                         if (effect.amount <= 0)
                         {
@@ -151,16 +160,46 @@ public abstract class Unit : MonoBehaviour
                         }
                         break;
                     default:
+                        effect.TickEffect();
+                        if (effect.amount <= 0)
+                        {
+                            effectsToRemove.Add(effect);
+                            battleHUD.RemoveStatus(stackableEffects.IndexOf(effect));
+                        }
+                        break;
+                }
+            }
+        }
+        foreach (StackableEffectSO effect in effectsToRemove)
+        {
+            stackableEffects.Remove(effect);
+        }
+        SetHUD();
+    }
+
+    public void GetModifiers()
+    {
+        foreach (StackableEffectSO stackableEffect in stackableEffects)
+        {
+            if (stackableEffect.type == 1)
+            {
+                switch (stackableEffect.effectName)
+                {
+                    case "Weak":
+                        dmgOutgoingPercent = -0.25f;
+                        break;
+                    case "Fragile":
+                        dmgIncomingPercent = 1.5f;
+                        break;
+                    case "Power":
+                        dmgOutgoingFlat = stackableEffect.amount;
+                        break;
+                    default:
                         print("Defaulted");
                         break;
                 }
             }
         }
-        foreach(StackableEffectSO effect in effectsToRemove)
-        {
-            stackableEffects.Remove(effect);
-        }
-        SetHUD();
     }
 }
 

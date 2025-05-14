@@ -11,8 +11,9 @@ public class Enemy : Unit
     public SpriteRenderer m_Renderer;
 
     public bool target = false;
-
     public bool casting = false;
+
+    private bool isHovered = false;
 
     public EnemyMoves enemyMoves;
 
@@ -21,6 +22,7 @@ public class Enemy : Unit
     public SceneFade fade;
     public GameObject targetingImagePrefab;
     public GameObject tempTargetingImage;
+    public WandObject currentWand;
     GameObject canvas;
 
     public Tooltip tooltip;
@@ -34,6 +36,7 @@ public class Enemy : Unit
     void Start()
     {
         canvas = GameObject.FindGameObjectWithTag("Canvas");
+        currentWand = GameObject.FindGameObjectWithTag("Wand").GetComponent<WandObject>();
         tempTargetingImage = Instantiate(targetingImagePrefab);
         originalScale = targetingImagePrefab.transform.localScale;
         //Fetch the mesh renderer component from the GameObject
@@ -63,7 +66,7 @@ public class Enemy : Unit
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        while(elapsedTime <= 1f)
+        while (elapsedTime <= 1f)
         {
             transform.position = Vector3.Lerp(pointB, pointA, elapsedTime);
             elapsedTime += Time.deltaTime;
@@ -78,14 +81,14 @@ public class Enemy : Unit
         float animDuration = 0.2f;
         while (elapsedTime <= animDuration)
         {
-            transform.position = Vector3.Lerp(pointA, pointC- new Vector3(0.75f, 0, 0), elapsedTime/animDuration);
+            transform.position = Vector3.Lerp(pointA, pointC - new Vector3(0.75f, 0, 0), elapsedTime / animDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
         elapsedTime = 0;
         while (elapsedTime <= animDuration)
         {
-            transform.position = Vector3.Lerp(pointC - new Vector3(0.75f, 0, 0), pointA, elapsedTime/animDuration);
+            transform.position = Vector3.Lerp(pointC - new Vector3(0.75f, 0, 0), pointA, elapsedTime / animDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -94,7 +97,7 @@ public class Enemy : Unit
 
     public new void TakeDamage(int dmg, bool i)
     {
-        base.TakeDamage(dmg,i);
+        base.TakeDamage(dmg, i);
         if (isDead)
         {
             Destroy(tempTargetingImage);
@@ -107,11 +110,12 @@ public class Enemy : Unit
         {
             return;
         }
-        //this is your object that you want to have the UI element hovering over
-        
-
-        //this is the ui element
-        
+        if (!isHovered)
+        {
+            currentWand.outSideModifierPercent = dmgIncomingPercent;
+            currentWand.CalculateValues();
+            isHovered = true;
+        }
         Image image = tempTargetingImage.GetComponent<Image>();
         //first you need the RectTransform component of your canvas
         RectTransform CanvasRect = canvas.GetComponent<RectTransform>();
@@ -123,15 +127,21 @@ public class Enemy : Unit
         Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(gameObject.transform.position);
         Vector2 WorldObject_ScreenPosition = new Vector2(
         ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
-        ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f))-(ViewportPosition.y * CanvasRect.sizeDelta.y*0.625f));
+        ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)) - (ViewportPosition.y * CanvasRect.sizeDelta.y * 0.625f));
 
         //now you can set the position of the ui element
         image.rectTransform.anchoredPosition = WorldObject_ScreenPosition;
-        
+
     }
 
     private void OnMouseExit()
     {
+        if (isHovered)
+        {
+            currentWand.outSideModifierPercent = 1f;
+            currentWand.CalculateValues();
+            isHovered = false;
+        }
         if (target)
         {
             return;
@@ -157,7 +167,23 @@ public class Enemy : Unit
     public void SetMove()
     {
         StartCoroutine(fade.FadeOutEffect());
+        GetModifiers();
+        enemyMoves.modifierValue = 1f;
+        enemyMoves.modifierValue += dmgOutgoingPercent;
+        enemyMoves.modifierValueFlat += dmgOutgoingFlat;
         tooltip.tooltipDescription = enemyMoves.LoadMove();
+        moveImage.sprite = enemyMoves.moveImage;
+        tooltip.tooltipSprite = m_Renderer.sprite;
+        tooltip.tooltipName = enemyMoves.moveName;
+    }
+
+    public void RefreshMove()
+    {
+        GetModifiers();
+        enemyMoves.modifierValue = 1f;
+        enemyMoves.modifierValue += dmgOutgoingPercent;
+        enemyMoves.modifierValueFlat += dmgOutgoingFlat;
+        tooltip.tooltipDescription = enemyMoves.RefreshMoveInfo();
         moveImage.sprite = enemyMoves.moveImage;
         tooltip.tooltipSprite = m_Renderer.sprite;
         tooltip.tooltipName = enemyMoves.moveName;

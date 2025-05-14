@@ -87,7 +87,7 @@ public class BattleSystem : MonoBehaviour
             enemy.SetHUD();
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         state = BattleState.PLAYERTURN;
         PlayerTurn();
@@ -141,10 +141,10 @@ public class BattleSystem : MonoBehaviour
                 {
                     foreach (StackableEffectSO stackEffectData in wand1.cloneStatusEffects)
                     {
-                        print(stackEffectData.effectName);
                         enemy.AddStatus(stackEffectData);
                     }
                     enemy.battleHUD.DisplayStatus(enemy.stackableEffects);
+                    enemy.RefreshMove();
                 }
             }
         }
@@ -235,12 +235,12 @@ public class BattleSystem : MonoBehaviour
 
                 enemy.enemyMoves.UseMove();
 
-                enemy.HealDamage(enemy.enemyMoves.HealValue);
-                enemy.GainShield(enemy.enemyMoves.ShieldValue);
+                enemy.HealDamage(enemy.enemyMoves.healValue);
+                enemy.GainShield(enemy.enemyMoves.shieldValue);
                 enemy.SetHUD();
                 enemy.AttackAnim();
 
-                playerUnit.TakeDamage(enemy.enemyMoves.DamageValue, true);
+                playerUnit.TakeDamage(enemy.enemyMoves.damageValue, true);
                 playerHUD.SetHP(playerUnit.currentHP);
                 playerHUD.SetShield(playerUnit);
 
@@ -339,13 +339,12 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator TargetEnemies()
     {
-        print("targeting");
-        if (enemies.Count == 1)
-        {
-            enemies[0].TargetSelect();
-            isTarget = true;
-            yield break;
-        }
+        //if (enemies.Count == 1)
+        //{
+        //    enemies[0].TargetSelect();
+        //    isTarget = true;
+        //    yield break;
+        //}
         castingText.enabled = true;
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
         var rayhit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()));
