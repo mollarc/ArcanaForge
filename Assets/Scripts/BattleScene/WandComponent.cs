@@ -11,7 +11,10 @@ public class WandComponent : MonoBehaviour
     public int manaCost;
     public int cooldown;
     public int currentCooldown;
+    public int uses;
+    public int currentUses;
     public bool wasUsed;
+    public bool wasDisabled;
     public Sprite gemImage;
     public Image image;
     public CanvasGroup canvasGroup;
@@ -20,6 +23,11 @@ public class WandComponent : MonoBehaviour
     public string moveInfo;
     public Tooltip tooltip;
     public TMP_Text cooldownText;
+
+    void Awake()
+    {
+        SetUP();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -46,6 +54,8 @@ public class WandComponent : MonoBehaviour
         componentType = componentData.componentType;
         manaCost = componentData.manaCost;
         cooldown = componentData.cooldown;
+        uses = componentData.uses;
+        currentUses = uses;
         gemImage = componentData.gemImage;
         flipAnimation.sprites.AddRange(componentData.sprites);
         moveInfo = componentData.moveInfo;
@@ -57,6 +67,8 @@ public class WandComponent : MonoBehaviour
         componentType = componentData.componentType;
         manaCost = componentData.manaCost;
         cooldown = componentData.cooldown;
+        uses = componentData.uses;
+        currentUses = uses;
         gemImage = componentData.gemImage;
         flipAnimation.sprites.AddRange(componentData.sprites);
         moveInfo = componentData.moveInfo;
@@ -78,6 +90,7 @@ public class WandComponent : MonoBehaviour
                 break;
             }
         }
+        wasDisabled = true;
         inventoryController.AddDisabledGems();
     }
 
@@ -85,12 +98,16 @@ public class WandComponent : MonoBehaviour
     {
         Color color = image.color;
         currentCooldown += _adjustment;
-        if (currentCooldown < 0)
+        if (currentCooldown <= 0)
         {
-            color.r *= 2f;
-            color.g *= 2f;
-            color.b *= 2f;
-            image.color = color;
+            if (wasDisabled)
+            {
+                color.r *= 2f;
+                color.g *= 2f;
+                color.b *= 2f;
+                image.color = color;
+                wasDisabled = false;
+            }
             currentCooldown = 0;
             cooldownText.text = "";
         }
@@ -106,6 +123,37 @@ public class WandComponent : MonoBehaviour
         }
     }
 
+    public void AdjustUses(int _adjustment)
+    {
+        if (uses < 0)
+        {
+            return;
+        }
+        Color color = image.color;
+        currentUses += _adjustment;
+        if (currentUses == 0)
+        {
+            canvasGroup.alpha = 0.8f;
+            color.r *= .5f;
+            color.g *= .5f;
+            color.b *= .5f;
+            image.color = color;
+            MoveComponent();
+        }
+        else if (currentUses > 0)
+        {
+            if (wasDisabled)
+            {
+                color.r *= 2f;
+                color.g *= 2f;
+                color.b *= 2f;
+                image.color = color;
+                wasDisabled = false;
+            }
+        }
+        UpdateTooltip();
+    }
+
     public bool EndTurn()
     {
         Color color = image.color;
@@ -114,6 +162,8 @@ public class WandComponent : MonoBehaviour
             wasUsed = false;
             currentCooldown += cooldown;
             cooldownText.text = currentCooldown.ToString();
+            currentUses--;
+            UpdateTooltip();
             if (currentCooldown == 0)
             {
                 cooldownText.text = "";
@@ -132,12 +182,15 @@ public class WandComponent : MonoBehaviour
             cooldownText.text = currentCooldown.ToString();
             if (currentCooldown == 0)
             {
-                canvasGroup.alpha = 1f;
-                color.r *= 2f;
-                color.g *= 2f;
-                color.b *= 2f;
-                image.color = color;
                 cooldownText.text = "";
+                if (currentUses > 0)
+                {
+                    canvasGroup.alpha = 1f;
+                    color.r *= 2f;
+                    color.g *= 2f;
+                    color.b *= 2f;
+                    image.color = color;
+                }
             }
         }
         else if (!wasUsed)
@@ -154,6 +207,14 @@ public class WandComponent : MonoBehaviour
         tooltip.tooltipDescription = moveInfo;
         tooltip.tooltipMana = manaCost.ToString();
         tooltip.tooltipCooldown = cooldown.ToString();
+        if (currentUses > 0)
+        {
+            tooltip.tooltipUses = currentUses.ToString();
+        }
+        else if(currentUses == 0)
+        {
+            tooltip.tooltipUses = "<color=#FF0005>" + currentUses.ToString() + "</color>";
+        }
         tooltip.tooltipSprite = gemImage;
     }
 }

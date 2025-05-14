@@ -9,15 +9,20 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public string tooltipName;
     public string tooltipMana = "";
     public string tooltipCooldown = "";
+    public string tooltipUses = "";
     public Sprite tooltipSprite;
     private bool tooltipDisplay;
 
     public ItemInspector itemInspector;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void Start()
+    void Awake()
     {
         itemInspector = GameObject.FindGameObjectWithTag("Inspector").GetComponent<ItemInspector>();
         tooltipDisplay = false;
+    }
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public void Start()
+    {
+        
     }
 
     // Update is called once per frame

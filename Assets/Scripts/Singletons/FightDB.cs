@@ -6,7 +6,7 @@ public class FightDB : MonoBehaviour
 {
     public static FightDB Instance;
 
-    int currentIndex;
+    int currentIndex =-1;
 
     public List<FightsDataSO> fightList = new List<FightsDataSO>();
 
@@ -36,12 +36,6 @@ public class FightDB : MonoBehaviour
 
     public FightsDataSO GetSequentialFight()
     {
-        print("getFight");
-        if(currentIndex == 0)
-        {
-            print(fightList[0].enemyDataList[0].name);
-            return fightList[currentIndex];
-        }
         currentIndex++;
         return fightList[currentIndex];
     }

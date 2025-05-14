@@ -16,6 +16,7 @@ MonoBehaviour:
   componentType: 2
   manaCost: 1
   cooldown: 0
+  uses: -1
   gemImage: {fileID: -1485488481, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
   moveInfo: Apply 3 Poison
   sprites:

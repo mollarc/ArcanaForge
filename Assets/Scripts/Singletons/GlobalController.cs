@@ -9,7 +9,7 @@ public class GlobalController : MonoBehaviour
     public PlayerStatistics savedStatistics = new PlayerStatistics();
 
     public WandObject[] wands = new WandObject[2];
-    public List<WandComponent> gemInventory;
+    public List<WandComponentSO> gemInventory;
 
     void Awake()
     {

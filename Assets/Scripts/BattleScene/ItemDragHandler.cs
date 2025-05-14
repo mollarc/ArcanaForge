@@ -28,9 +28,9 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
     }
 
-    public bool CheckCooldown()
+    public bool CheckUsable()
     {
-        if (wandComponent.currentCooldown > 0)
+        if (wandComponent.currentCooldown > 0 || wandComponent.currentUses == 0)
         {
             return true;
         }
@@ -54,7 +54,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (CheckCooldown())
+        if (CheckUsable())
         {
             eventData.pointerDrag = null;
             return;
@@ -69,7 +69,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (CheckCooldown())
+        if (CheckUsable())
         {
             return;
         }

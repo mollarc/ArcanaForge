@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, CASTING }
+public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, CASTING , ENDING}
 
 public class BattleSystem : MonoBehaviour
 {
@@ -74,7 +74,6 @@ public class BattleSystem : MonoBehaviour
         fightData = FightDB.Instance.GetSequentialFight();
         for (int i = 0; i < fightData.enemyDataList.Count; i++)
         {
-            print(i);
             GameObject enemyGo = Instantiate(fightData.enemyDataList[i], enemySpawns[i]);
             enemies.Add(enemyGo.GetComponent<Enemy>());
             enemyHUDS.Add(enemies[i].GetComponent<BattleHUD>());
@@ -97,8 +96,6 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator WandCast1()
     {
-        state = BattleState.CASTING;
-
         wand1.CalculateValues();
 
         if (playerUnit.ManaChange(wand1.ManaCost, true))
@@ -128,7 +125,7 @@ public class BattleSystem : MonoBehaviour
             }
         }
         playerHUD.SetMana(playerUnit);
-
+        wand1.CheckMana();
         playerAnimator.SetBool("Attacked", true);
 
         //Logic for hitting enemies
@@ -140,10 +137,8 @@ public class BattleSystem : MonoBehaviour
                 enemy.TargetDeselect();
                 enemy.AttackedAnim();
                 enemy.TakeDamage(wand1.DamageValue, true);
-                print(wand1.cloneStatusEffects[0].effectName);
                 if (wand1.cloneStatusEffects != null)
                 {
-                    print("Battle Status Not Null");
                     foreach (StackableEffectSO stackEffectData in wand1.cloneStatusEffects)
                     {
                         print(stackEffectData.effectName);
@@ -174,8 +169,7 @@ public class BattleSystem : MonoBehaviour
         playerAnimator.SetBool("Attacked", false);
 
         CheckEnemys();
-
-        wand1.CheckMana();
+        state = BattleState.PLAYERTURN;
     }
 
     IEnumerator PlayWandSound(WandObject wand)
@@ -207,7 +201,6 @@ public class BattleSystem : MonoBehaviour
         }
         inventoryController.EndTurn();
         wand1.EndTurn();
-        state = BattleState.ENEMYTURN;
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(EnemyTurn());
         CheckEnemys();
@@ -215,8 +208,10 @@ public class BattleSystem : MonoBehaviour
 
     void PlayerTurn()
     {
+        state = BattleState.PLAYERTURN;
         cinemachineScript.BattlePlayerTurnCamera();
         playerUnit.ManaChange(3, false);
+        wand1.CheckMana();
         playerUnit.ResetShield();
         playerUnit.SetHUD();
         playerHUD.SetMana(playerUnit);
@@ -229,6 +224,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        state = BattleState.ENEMYTURN;
         Debug.Log("Enemy Attacks!");
         foreach (var enemy in enemies)
         {
@@ -250,7 +246,6 @@ public class BattleSystem : MonoBehaviour
 
                 if (enemy.enemyMoves.statusEffects != null)
                 {
-                    print("Battle Status Not Null");
                     foreach (StackableEffectSO stackEffectData in enemy.enemyMoves.statusEffects)
                     {
                         print(stackEffectData.effectName);
@@ -267,7 +262,6 @@ public class BattleSystem : MonoBehaviour
                 EndBattle();
             }
         }
-        state = BattleState.PLAYERTURN;
         PlayerTurn();
     }
 
@@ -279,10 +273,6 @@ public class BattleSystem : MonoBehaviour
             {
                 enemy.gameObject.SetActive(false);
                 enemy.battleHUD.gameObject.SetActive(false);
-            }
-            else
-            {
-                state = BattleState.PLAYERTURN;
             }
         }
         foreach (var enemy in enemies)
@@ -324,7 +314,7 @@ public class BattleSystem : MonoBehaviour
         {
             return;
         }
-
+        state = BattleState.CASTING;
         StartCoroutine(WandCast1());
     }
 
@@ -334,7 +324,7 @@ public class BattleSystem : MonoBehaviour
         {
             return;
         }
-
+        state = BattleState.ENDING;
         StartCoroutine(EndTurn());
     }
 

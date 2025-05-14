@@ -8,6 +8,7 @@ public class ItemInspector : MonoBehaviour
     public TMP_Text itemDescription;
     public TMP_Text manaValue;
     public TMP_Text cooldownValue;
+    public TMP_Text usesValue;
     public Image itemImage;
     public Sprite emptyImage;
 
@@ -29,6 +30,7 @@ public class ItemInspector : MonoBehaviour
         itemDescription.text = tooltip.tooltipDescription;
         manaValue.text = tooltip.tooltipMana;
         cooldownValue.text = tooltip.tooltipCooldown;
+        usesValue.text = tooltip.tooltipUses;
         itemImage.sprite = tooltip.tooltipSprite;
     }
 
@@ -38,6 +40,7 @@ public class ItemInspector : MonoBehaviour
         itemDescription.text = "";
         manaValue.text = "";
         cooldownValue.text = "";
+        usesValue.text = "";
         itemImage.sprite = emptyImage;
     }
 }

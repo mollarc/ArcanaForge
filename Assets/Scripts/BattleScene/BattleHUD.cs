@@ -90,5 +90,6 @@ public class BattleHUD : MonoBehaviour
     public void RemoveStatus(int index)
     {
         Destroy(statusEffectList[index]);
+        statusEffectList.RemoveAt(index);
     }
 }

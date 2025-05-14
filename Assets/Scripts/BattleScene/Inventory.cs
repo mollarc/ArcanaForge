@@ -14,11 +14,14 @@ public class Inventory : MonoBehaviour
     public List<GameObject> displayedGems = new List<GameObject>();
     public List<GameObject> undisplayedGems = new List<GameObject>();
     public List<GameObject> wandGems = new List<GameObject>();
-
+    void Awake()
+    {
+        
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        components.AddRange(GlobalController.Instance.gemInventory);
     }
 
     // Update is called once per frame

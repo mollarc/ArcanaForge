@@ -15,7 +15,7 @@ public class TypeComponent : WandComponent
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SetUP();
+        
     }
     // Update is called once per frame
     void Update()
