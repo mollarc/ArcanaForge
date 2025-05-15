@@ -20,7 +20,12 @@ public abstract class Unit : MonoBehaviour
     public bool isDead = false;
 
     public List<StackableEffectSO> stackableEffects = new List<StackableEffectSO>();
+    public List<StackableEffectSO> effectsThatAffectOthers = new List<StackableEffectSO>();
 
+    public void Start()
+    {
+        dmgIncomingPercent = 1f;
+    }
     public void SetHUD()
     {
         battleHUD.nameText.text = unitName;
@@ -33,23 +38,31 @@ public abstract class Unit : MonoBehaviour
 
     public void TakeDamage(int dmg, bool isHit)
     {
+        dmgIncomingFlat = 0;
         if (stackableEffects != null)
         {
             foreach (StackableEffectSO s in stackableEffects)
             {
                 if (isHit)
                 {
-                    switch(s.effectName)
+                    switch (s.effectName)
                     {
                         case "Frigid":
+                            if(dmg <= 0)
+                            {
+                                break;
+                            }
                             dmgIncomingFlat += s.amount;
                             break;
                     }
                 }
             }
         }
-        dmg = (int)Mathf.Round(dmg * dmgIncomingPercent);
-        dmg += dmgIncomingFlat;
+        if (isHit)
+        {
+            dmg = (int)Mathf.Round(dmg * dmgIncomingPercent);
+            dmg += dmgIncomingFlat;
+        }
         if (currentShield - dmg < 0)
         {
             dmg -= currentShield;
@@ -107,6 +120,7 @@ public abstract class Unit : MonoBehaviour
 
     public void AddStatus(StackableEffectSO _statusEffect)
     {
+        List<StackableEffectSO> effectsToAdd = new List<StackableEffectSO>();
         if (stackableEffects.Count != 0)
         {
             foreach (StackableEffectSO effect in stackableEffects)
@@ -118,55 +132,95 @@ public abstract class Unit : MonoBehaviour
                 }
                 else
                 {
-                    print("Adding Status");
-                    stackableEffects.Add(_statusEffect);
+                    effectsToAdd.Add(_statusEffect);
                 }
             }
         }
         else
         {
-            print("Adding Status");
-            stackableEffects.Add(_statusEffect);
+            effectsToAdd.Add(_statusEffect);
         }
+        stackableEffects.AddRange(effectsToAdd);
         print("End of Add Status");
     }
 
-    public void EndTurnEffects()
+    public void StartTurnEffects()
     {
+        print("Start Turn Tick");
         List<StackableEffectSO> effectsToRemove = new List<StackableEffectSO>();
         if (stackableEffects != null)
         {
             foreach (StackableEffectSO effect in stackableEffects)
             {
-                string effectName = effect.effectName;
-                switch (effectName)
+                if (effect.turnStartTick)
                 {
-                    case "Poison":
-                        TakeHPLoss(effect.amount);
-                        effect.TickEffect();
-                        if (effect.amount <= 0)
-                        {
-                            effectsToRemove.Add(effect);
-                            battleHUD.RemoveStatus(stackableEffects.IndexOf(effect));
-                        }
-                        break;
-                    case "Burn":
-                        TakeDamage(effect.amount, false);
-                        effect.TickEffect();
-                        if (effect.amount <= 0)
-                        {
-                            effectsToRemove.Add(effect);
-                            battleHUD.RemoveStatus(stackableEffects.IndexOf(effect));
-                        }
-                        break;
-                    default:
-                        effect.TickEffect();
-                        if (effect.amount <= 0)
-                        {
-                            effectsToRemove.Add(effect);
-                            battleHUD.RemoveStatus(stackableEffects.IndexOf(effect));
-                        }
-                        break;
+                    string effectName = effect.effectName;
+                    switch (effectName)
+                    {
+                        default:
+                            effect.TickEffect();
+                            if (effect.amount <= 0)
+                            {
+                                effectsToRemove.Add(effect);
+                                battleHUD.RemoveStatus(stackableEffects.IndexOf(effect));
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+        foreach (StackableEffectSO effect in effectsToRemove)
+        {
+            stackableEffects.Remove(effect);
+        }
+        SetHUD();
+    }
+
+    public void EndTurnEffects()
+    {
+        effectsThatAffectOthers.Clear();
+        List<StackableEffectSO> effectsToRemove = new List<StackableEffectSO>();
+        if (stackableEffects != null)
+        {
+            foreach (StackableEffectSO effect in stackableEffects)
+            {
+                if (!effect.turnStartTick)
+                {
+                    string effectName = effect.effectName;
+                    switch (effectName)
+                    {
+                        case "Poison":
+                            TakeHPLoss(effect.amount);
+                            effect.TickEffect();
+                            if (effect.amount <= 0)
+                            {
+                                effectsToRemove.Add(effect);
+                                battleHUD.RemoveStatus(stackableEffects.IndexOf(effect));
+                            }
+                            break;
+                        case "Burn":
+                            TakeDamage(effect.amount, false);
+                            effect.TickEffect();
+                            if (effect.amount <= 0)
+                            {
+                                effectsToRemove.Add(effect);
+                                battleHUD.RemoveStatus(stackableEffects.IndexOf(effect));
+                            }
+                            break;
+                        case "Hailstorm":
+                            effectsThatAffectOthers.Add(effect);
+                            break;
+                        case "Frigid":
+                            break;
+                        default:
+                            effect.TickEffect();
+                            if (effect.amount <= 0)
+                            {
+                                effectsToRemove.Add(effect);
+                                battleHUD.RemoveStatus(stackableEffects.IndexOf(effect));
+                            }
+                            break;
+                    }
                 }
             }
         }
@@ -179,25 +233,25 @@ public abstract class Unit : MonoBehaviour
 
     public void GetModifiers()
     {
+        dmgIncomingPercent = 1f;
+        dmgOutgoingPercent = 0f;
         foreach (StackableEffectSO stackableEffect in stackableEffects)
         {
-            if (stackableEffect.type == 1)
+            switch (stackableEffect.effectName)
             {
-                switch (stackableEffect.effectName)
-                {
-                    case "Weak":
-                        dmgOutgoingPercent = -0.25f;
-                        break;
-                    case "Fragile":
-                        dmgIncomingPercent = 1.5f;
-                        break;
-                    case "Power":
-                        dmgOutgoingFlat = stackableEffect.amount;
-                        break;
-                    default:
-                        print("Defaulted");
-                        break;
-                }
+                case "Weak":
+                    print("weak");
+                    dmgOutgoingPercent = -0.25f;
+                    break;
+                case "Fragile":
+                    dmgIncomingPercent = 1.5f;
+                    break;
+                case "Power":
+                    dmgOutgoingFlat = stackableEffect.amount;
+                    break;
+                default:
+                    print("Defaulted");
+                    break;
             }
         }
     }

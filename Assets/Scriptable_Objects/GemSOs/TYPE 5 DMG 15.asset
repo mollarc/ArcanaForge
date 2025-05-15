@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a1f4e0237ea924f9090c6f8b88b2b9, type: 3}
+  m_Name: TYPE 5 DMG 15
+  m_EditorClassIdentifier: 
+  componentName: Magic
+  componentType: 1
+  manaCost: 2
+  cooldown: 1
+  uses: -1
+  gemImage: {fileID: 2106834979, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  moveInfo: 
+  sprites:
+  - {fileID: 1742282348, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: 271044431, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: 1381173374, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -122176162, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -1995569014, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -1059924982, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: 2070312375, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -332464262, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -1603176296, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -652709655, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -873905487, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -489584839, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: 1839297596, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -145899946, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -1197163692, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: 1355653197, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -272041666, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: 1033175633, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: 903817027, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: 2106834979, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  healValue: 0
+  damageValue: 15
+  shieldValue: 0
+  targets: 1
+  moveInfos: 00000000
+  FmodEventPath: event:/SFX_Attack
+  FmodEventPaths: []

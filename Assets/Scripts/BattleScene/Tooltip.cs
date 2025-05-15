@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,7 +12,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public string tooltipCooldown = "";
     public string tooltipUses = "";
     public Sprite tooltipSprite;
-    private bool tooltipDisplay;
+    public bool tooltipDisplay;
 
     public ItemInspector itemInspector;
     void Awake()
@@ -31,7 +32,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         if (tooltipDisplay)
         {
@@ -41,7 +42,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         itemInspector.LoadTooltipData(this);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         if (tooltipDisplay)
         {

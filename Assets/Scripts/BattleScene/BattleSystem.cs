@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST, CASTING , ENDING}
 
@@ -55,6 +56,7 @@ public class BattleSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerUnit.LoadPlayer();
         state = BattleState.START;
         GameObject currentManaUI = GameObject.FindGameObjectWithTag("CurrentManaUI");
         playerHUD.currentManaText = currentManaUI.GetComponentInChildren<TMP_Text>();
@@ -137,18 +139,24 @@ public class BattleSystem : MonoBehaviour
                 enemy.TargetDeselect();
                 enemy.AttackedAnim();
                 enemy.TakeDamage(wand1.DamageValue, true);
-                if (wand1.cloneStatusEffects != null)
+                if (wand1.cloneDebuffEffects != null)
                 {
-                    foreach (StackableEffectSO stackEffectData in wand1.cloneStatusEffects)
+                    foreach (StackableEffectSO stackEffectData in wand1.cloneDebuffEffects)
                     {
                         enemy.AddStatus(stackEffectData);
                     }
                     enemy.battleHUD.DisplayStatus(enemy.stackableEffects);
-                    enemy.RefreshMove();
                 }
             }
         }
-
+        if(wand1.cloneBuffEffects != null)
+        {
+            foreach(StackableEffectSO buffEffectData in wand1.cloneBuffEffects)
+            {
+                playerUnit.AddStatus(buffEffectData);
+            }
+        }
+        playerHUD.DisplayStatus(playerUnit.stackableEffects);
         playerUnit.HealDamage(wand1.HealValue);
         playerHUD.SetHP(playerUnit.currentHP);
 
@@ -158,23 +166,24 @@ public class BattleSystem : MonoBehaviour
         foreach (Enemy _enemy in enemies)
         {
             _enemy.SetHUD();
+            _enemy.RefreshMove();
         }
-
-        Debug.Log("Casted Wand!");
 
         wand1.MarkUsed();
 
         yield return new WaitForSeconds(0.5f);
 
         playerAnimator.SetBool("Attacked", false);
-
+        wand1.CheckMana();
         CheckEnemys();
         state = BattleState.PLAYERTURN;
     }
 
     IEnumerator PlayWandSound(WandObject wand)
     {
-        foreach (string eventpath in wand.FmodSoundPaths)
+        List<string> FmodCopy = new List<string>();
+        FmodCopy.AddRange(wand.FmodSoundPaths);
+        foreach (string eventpath in FmodCopy)
         {
             EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(eventpath);
             if (eventInstance.isValid())
@@ -190,11 +199,24 @@ public class BattleSystem : MonoBehaviour
     {
         cinemachineScript.BattleEndTurnCamera();
         playerUnit.EndTurnEffects();
+        
         playerHUD.SetHP(playerUnit.currentHP);
         playerHUD.SetShield(playerUnit);
         playerHUD.DisplayStatus(playerUnit.stackableEffects);
         foreach (var enemy in enemies)
         {
+            foreach(StackableEffectSO playerEffect in playerUnit.effectsThatAffectOthers)
+            {
+                string effectName = playerEffect.effectName;
+                switch (effectName)
+                {
+                    case "Hailstorm":
+                        enemy.TakeDamage(playerEffect.amount, true);
+                        break;
+                    default:
+                        break;
+                }
+            }
             enemy.EndTurnEffects();
             enemy.SetHUD();
             enemy.battleHUD.DisplayStatus(enemy.stackableEffects);
@@ -215,9 +237,13 @@ public class BattleSystem : MonoBehaviour
         playerUnit.ResetShield();
         playerUnit.SetHUD();
         playerHUD.SetMana(playerUnit);
+        playerUnit.StartTurnEffects();
+        playerUnit.battleHUD.DisplayStatus(playerUnit.stackableEffects);
         foreach (var enemy in enemies)
         {
             enemy.SetMove();
+            enemy.StartTurnEffects();
+            enemy.battleHUD.DisplayStatus(enemy.stackableEffects);
         }
         Debug.Log("Player's Turn!");
     }
@@ -300,6 +326,8 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.WON)
         {
             Debug.Log("You Won!");
+            playerUnit.SavePlayer();
+            wand1.GetComponentInChildren<Button>().gameObject.SetActive(false);
             winScreen.GetRandomRewards();
         }
         else if (state == BattleState.LOST)

@@ -6,9 +6,11 @@ using UnityEngine;
 public class StackableEffectSO : ScriptableObject
 {
     public bool permanent;
+    public bool turnStartTick;
+    public bool scalesWithAmount;
     public int amount;
     public int tickAmount;
-    public int type; //Type of effect. 0: DOT effect 1:Passive Buffs/Debuffs 2:Buffs/Debuffs that Add buffs/debuffs per turn
+    public int type; //Type of effect. 0 Apply to Enemy, 1 Apply to Self
     public string effectName;
     public Sprite effectIcon;
     public string effectTooltip;

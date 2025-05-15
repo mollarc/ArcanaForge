@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: TestWeak
   m_EditorClassIdentifier: 
   permanent: 0
+  turnStartTick: 1
+  scalesWithAmount: 1
   amount: 2
   tickAmount: 1
-  type: 1
+  type: 0
   effectName: Weak
-  effectIcon: {fileID: 21300000, guid: e3d9f831f8710bf4a849e35a4ff98d5c, type: 3}
+  effectIcon: {fileID: 21300000, guid: 5f6c3688bd0451843804cad6fb7c13fb, type: 3}
   effectTooltip: Deal 25% Less Attack Damage
   effectColor: '#11FfEE'
   _status:

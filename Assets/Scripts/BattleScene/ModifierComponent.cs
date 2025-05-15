@@ -34,4 +34,16 @@ public class ModifierComponent : WandComponent
         statusEffects = componentData.statusEffects;
         UpdateTooltip();
     }
+
+    public override void UpdateTooltip()
+    {
+        base.UpdateTooltip();
+        if(statusEffects != null)
+        {
+            foreach(StackableEffectSO s in statusEffects)
+            {
+                tooltip.GetEffectTooltip(s.effectName +": " +s.effectTooltip);
+            }
+        }
+    }
 }

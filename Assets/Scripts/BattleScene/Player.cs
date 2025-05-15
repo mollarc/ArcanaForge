@@ -40,4 +40,11 @@ public class Player : Unit
         currentStatistics.maxHP = maxHP;
         GlobalController.Instance.savedStatistics = currentStatistics;
     }
+
+    public void LoadPlayer()
+    {
+        currentStatistics = GlobalController.Instance.savedStatistics;
+        currentHP = currentStatistics.currentHP;
+        maxHP = currentStatistics.maxHP;
+    }
 }

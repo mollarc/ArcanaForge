@@ -130,7 +130,10 @@ MonoBehaviour:
   manaCost: 0
   cooldown: 0
   currentCooldown: 0
+  uses: 0
+  currentUses: 0
   wasUsed: 0
+  wasDisabled: 0
   gemImage: {fileID: 0}
   image: {fileID: 0}
   canvasGroup: {fileID: 0}
@@ -146,6 +149,7 @@ MonoBehaviour:
   targets: 0
   moveInfos: 
   FmodEventPath: 
+  FmodEventPaths: []
 --- !u!114 &4502928778678642103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,10 +166,11 @@ MonoBehaviour:
   tooltipName: 
   tooltipMana: 
   tooltipCooldown: 
+  tooltipUses: 
   tooltipSprite: {fileID: 0}
   itemInspector: {fileID: 0}
-  WandComponent: {fileID: 870041598486262062}
-  image: {fileID: 517694833835118472}
+  wandComponent: {fileID: 870041598486262062}
+  effectTooltips: []
 --- !u!114 &6052851278090313362
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -38,6 +38,11 @@ public class BattleWin : MonoBehaviour
 
     void Start()
     {
+        display1.gameObject.SetActive(false);
+        display2.gameObject.SetActive(false);
+        display3.gameObject.SetActive(false);
+        selectText.gameObject.SetActive(false);
+        skipButton.SetActive(false);
         fadeImage = GetComponentInChildren<Image>();
         fadeColor = fadeImage.color;
         fadeColor.a = 1.0f; // Start fully opaque
@@ -65,6 +70,11 @@ public class BattleWin : MonoBehaviour
 
         fadeColor.a = .975f; // Ensure it's fully visible at the end
         fadeImage.color = fadeColor;
+        display1.gameObject.SetActive(true);
+        display2.gameObject.SetActive(true);
+        display3.gameObject.SetActive(true);
+        selectText.gameObject.SetActive(true);
+        skipButton.SetActive(true);
     }
 
     public void GetRandomRewards()

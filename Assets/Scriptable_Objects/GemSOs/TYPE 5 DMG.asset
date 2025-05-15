@@ -41,8 +41,9 @@ MonoBehaviour:
   - {fileID: 903817027, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
   - {fileID: 2106834979, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
   healValue: 0
-  damageValue: 10
+  damageValue: 5
   shieldValue: 0
   targets: 1
   moveInfos: 00000000
   FmodEventPath: event:/SFX_Attack
+  FmodEventPaths: []

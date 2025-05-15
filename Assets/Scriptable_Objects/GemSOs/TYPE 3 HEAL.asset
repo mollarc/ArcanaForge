@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a1f4e0237ea924f9090c6f8b88b2b9, type: 3}
   m_Name: TYPE 3 HEAL
   m_EditorClassIdentifier: 
-  componentName: Bandage
+  componentName: Mend
   componentType: 1
   manaCost: 1
   cooldown: 1
@@ -46,3 +46,4 @@ MonoBehaviour:
   targets: 0
   moveInfos: 02000000
   FmodEventPath: event:/SFX_Heal
+  FmodEventPaths: []

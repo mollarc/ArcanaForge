@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: TestFragile
   m_EditorClassIdentifier: 
   permanent: 0
+  turnStartTick: 1
+  scalesWithAmount: 0
   amount: 2
   tickAmount: 1
-  type: 1
+  type: 0
   effectName: Fragile
-  effectIcon: {fileID: 21300000, guid: e3d9f831f8710bf4a849e35a4ff98d5c, type: 3}
+  effectIcon: {fileID: 21300000, guid: d2e703db5c8e35141a5120ff6c0bd4fd, type: 3}
   effectTooltip: Take 50% More Attack Damage
   effectColor: '#11FfEE'
   _status:

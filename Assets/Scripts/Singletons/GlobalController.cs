@@ -23,4 +23,12 @@ public class GlobalController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Start()
+    {
+        if(Player.playerInstance != null)
+        {
+            Player.playerInstance.SavePlayer();
+        }
+    }
 }

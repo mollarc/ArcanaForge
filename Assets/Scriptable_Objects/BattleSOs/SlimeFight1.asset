@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SlimeFight1
   m_EditorClassIdentifier: 
   enemyDataList:
-  - {fileID: 2038308319422139699, guid: 724e4778a6e9189468a7f2c315ef5545, type: 3}
+  - {fileID: 2038308319422139699, guid: 32a67d94142c8b54486426fe53b07866, type: 3}

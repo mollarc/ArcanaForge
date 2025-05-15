@@ -53,6 +53,7 @@ public class BattleHUD : MonoBehaviour
 
     public void DisplayStatus(List<StackableEffectSO> list)
     {
+        ClearNulls();
         if (list.Count != 0)
         {
             foreach (StackableEffectSO effect in list)
@@ -70,7 +71,6 @@ public class BattleHUD : MonoBehaviour
                     }
                     foreach(GameObject status in statusesToRemove)
                     {
-                        print("Removing Dupe Status");
                         statusEffectList.Remove(status);
                     }
                 }
@@ -78,7 +78,7 @@ public class BattleHUD : MonoBehaviour
                 item.GetComponentInChildren<TMP_Text>().text = effect.amount.ToString();
                 item.GetComponentInChildren<Image>().sprite = effect.effectIcon;
                 string tooltipText;
-                if(effect.type == 0)
+                if(effect.scalesWithAmount)
                 {
                     tooltipText = effect.effectTooltip.Replace("X", "<color=" + effect.effectColor + ">" + effect.amount.ToString() + "</color>");
                 }
@@ -98,6 +98,16 @@ public class BattleHUD : MonoBehaviour
     public void RemoveStatus(int index)
     {
         Destroy(statusEffectList[index]);
-        statusEffectList.RemoveAt(index);
+    }
+
+    public void ClearNulls()
+    {
+        for(int i = statusEffectList.Count-1; i >= 0; i--)
+        {
+            if (statusEffectList[i] == null)
+            {
+                statusEffectList.RemoveAt(i);
+            }
+        }
     }
 }

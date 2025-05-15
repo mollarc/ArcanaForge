@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 806895d737e11754fad2cdc97736c144, type: 3}
-  m_Name: Test Poison
+  m_Name: Slime Poison
   m_EditorClassIdentifier: 
   permanent: 0
-  amount: 1
+  turnStartTick: 0
+  scalesWithAmount: 0
+  amount: 3
   tickAmount: 1
   type: 0
   effectName: Poison

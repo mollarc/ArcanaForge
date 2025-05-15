@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b8536941900e2a4ea73c43282919d24, type: 3}
-  m_Name: MOD 8 FRIGID
+  m_Name: MOD 4 FRIGID
   m_EditorClassIdentifier: 
   componentName: Frost
   componentType: 2
@@ -18,7 +18,7 @@ MonoBehaviour:
   cooldown: 0
   uses: -1
   gemImage: {fileID: -1485488481, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  moveInfo: Apply 8 Frigid
+  moveInfo: Apply 4 Frigid
   sprites:
   - {fileID: -1485488481, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
   - {fileID: 523359236, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}

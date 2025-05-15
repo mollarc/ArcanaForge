@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b8536941900e2a4ea73c43282919d24, type: 3}
+  m_Name: MOD HAILSTORM
+  m_EditorClassIdentifier: 
+  componentName: Hailstorm
+  componentType: 2
+  manaCost: 2
+  cooldown: 0
+  uses: 1
+  gemImage: {fileID: 436941846, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  moveInfo: Apply 1 Hailstorm to Self
+  sprites:
+  - {fileID: 436941846, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  - {fileID: -1950526729, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  - {fileID: -570869750, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  - {fileID: 2137316203, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  - {fileID: 484834128, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  - {fileID: -1118330460, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  - {fileID: 13024960, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  - {fileID: -1764142815, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  - {fileID: -174326787, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  - {fileID: 328189732, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  modifierValue: 0
+  numberOfCasts: 0
+  targets: 0
+  moveInfos: 
+  statusEffects:
+  - {fileID: 11400000, guid: 465991a6bf9fa3d4f898b8432843a949, type: 2}

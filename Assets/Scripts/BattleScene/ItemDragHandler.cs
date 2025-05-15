@@ -25,6 +25,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         foreach (var gameObject in GameObject.FindGameObjectsWithTag("Wand"))
         {
             componentMoved.AddListener(gameObject.GetComponent<WandObject>().CalculateValues);
+            componentMoved.AddListener(gameObject.GetComponent<WandObject>().CheckMana);
         }
     }
 
@@ -102,6 +103,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                         slot.currentItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                         originalSlot.currentItem = null;
                         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX_ComponentSlot");
+                        componentMoved.Invoke();
                         return;
                     }
                 }

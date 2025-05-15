@@ -21,7 +21,7 @@ public class WandComponent : MonoBehaviour
     public InventoryController inventoryController;
     public ImageFlipAnimation flipAnimation;
     public string moveInfo;
-    public Tooltip tooltip;
+    public GemTooltip tooltip;
     public TMP_Text cooldownText;
 
     void Awake()
@@ -201,7 +201,7 @@ public class WandComponent : MonoBehaviour
         return true;
     }
 
-    public void UpdateTooltip()
+    public virtual void UpdateTooltip()
     {
         tooltip.tooltipName = componentName;
         tooltip.tooltipDescription = moveInfo;

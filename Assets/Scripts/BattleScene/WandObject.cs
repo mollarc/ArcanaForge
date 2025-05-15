@@ -20,10 +20,12 @@ public class WandObject : MonoBehaviour
     private int damageValue;
     private int shieldValue;
     private float modifierValue;
-    public float outSideModifierPercent = 1f;
+    public float outsideDMGModifierPercent = 1f;
+    public int outsideDMGModifierFlat;
     public int targets;
     public List<string> moveInfos = new List<string>();
-    public List<StackableEffectSO> cloneStatusEffects = new List<StackableEffectSO>();
+    public List<StackableEffectSO> cloneDebuffEffects = new List<StackableEffectSO>();
+    public List<StackableEffectSO> cloneBuffEffects = new List<StackableEffectSO>();
     public TMP_Text wandMoveText;
     public TMP_Text manaCostText;
     public Image castButton;
@@ -37,7 +39,7 @@ public class WandObject : MonoBehaviour
     public Slot[] wandShapeSlots;
     public List<string> FmodSoundPaths;
 
-    
+
 
     public int HealValue { get => healValue; set => healValue = value; }
     public int DamageValue { get => damageValue; set => damageValue = value; }
@@ -54,7 +56,7 @@ public class WandObject : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void SetUP()
@@ -95,11 +97,11 @@ public class WandObject : MonoBehaviour
                     damageValue += typeComponent.damageValue;
                     shieldValue += typeComponent.shieldValue;
                     FmodSoundPaths.Add(typeComponent.FmodEventPath);
-                    if(typeComponent.targets > targets)
+                    if (typeComponent.targets > targets)
                     {
                         targets = typeComponent.targets;
                     }
-                    foreach(var move in typeComponent.moveInfos)
+                    foreach (var move in typeComponent.moveInfos)
                     {
                         List<string> tempList = new List<string>();
                         if (moveInfos.Count != 0)
@@ -119,7 +121,7 @@ public class WandObject : MonoBehaviour
                             }
                             if (tempList.Count != 0)
                             {
-                                foreach(string inList2 in tempList)
+                                foreach (string inList2 in tempList)
                                 {
                                     moveInfos.Add(inList2.ToString());
                                 }
@@ -131,11 +133,11 @@ public class WandObject : MonoBehaviour
                         }
                     }
                 }
-            }    
+            }
         }
-        if(wandModifierSlots.Count() != 0)
+        if (wandModifierSlots.Count() != 0)
         {
-            
+
             //Buffs/Debuffs that affect values should adjust the modifier value
             foreach (Slot modifierSlot in wandModifierSlots)
             {
@@ -160,7 +162,7 @@ public class WandObject : MonoBehaviour
                                 {
                                     isInList = true;
                                     break;
-                                }                          
+                                }
                             }
                             if (!isInList)
                             {
@@ -184,13 +186,21 @@ public class WandObject : MonoBehaviour
                         foreach (StackableEffectSO statusEffectData in modifierComponent.statusEffects)
                         {
                             StackableEffectSO stackableClone = Instantiate(statusEffectData);
-                            cloneStatusEffects.Add(stackableClone);
+                            if (statusEffectData.type == 0)
+                            {
+                                cloneDebuffEffects.Add(stackableClone);
+                            }
+                            else if (statusEffectData.type == 1)
+                            {
+                                cloneBuffEffects.Add(stackableClone);
+                            }
+
                         }
                     }
                 }
             }
         }
-        
+
         if (wandShapeSlots.Count() != 0)
         {
             foreach (Slot shapeSlot in wandShapeSlots)
@@ -210,8 +220,20 @@ public class WandObject : MonoBehaviour
         }
         manaCostText.text = manaCost.ToString();
         manaCost *= -1;
+        foreach (StackableEffectSO playerEffect in Player.playerInstance.stackableEffects)
+        {
+            switch (playerEffect.effectName)
+            {
+                case "Power":
+                    damageValue += playerEffect.amount;
+                    break;
+                case "Weak":
+                    modifierValue -= 0.25f;
+                    break;
+            }
+        }
         healValue = (int)Mathf.Round(healValue * modifierValue);
-        damageValue = (int)Mathf.Round(damageValue * modifierValue * outSideModifierPercent);
+        damageValue = (int)Mathf.Round((damageValue + outsideDMGModifierFlat) * modifierValue * outsideDMGModifierPercent);
         shieldValue = (int)Mathf.Round(shieldValue * modifierValue);
         if (moveInfos != null)
         {
@@ -231,9 +253,9 @@ public class WandObject : MonoBehaviour
                 }
             }
         }
-        if(cloneStatusEffects != null)
+        if (cloneDebuffEffects != null)
         {
-            foreach(StackableEffectSO stackableEffectSO in cloneStatusEffects)
+            foreach (StackableEffectSO stackableEffectSO in cloneDebuffEffects)
             {
                 switch (stackableEffectSO.effectName)
                 {
@@ -252,13 +274,24 @@ public class WandObject : MonoBehaviour
                     case "Fragile":
                         wandMoveText.text += stackableEffectSO.amount.ToString() + " Fragile ";
                         break;
+                }
+            }
+        }
+        if (cloneBuffEffects != null)
+        {
+            foreach (StackableEffectSO stackableEffectSO in cloneBuffEffects)
+            {
+                switch (stackableEffectSO.effectName)
+                {
                     case "Power":
                         wandMoveText.text += stackableEffectSO.amount.ToString() + " Power ";
+                        break;
+                    case "Hailstorm":
+                        wandMoveText.text += stackableEffectSO.amount.ToString() + " Hailstorm ";
                         break;
                 }
             }
         }
-        CheckMana();
     }
 
     public void CheckMana()
@@ -350,7 +383,7 @@ public class WandObject : MonoBehaviour
                     {
                         shapeSlot.currentItem.GetComponent<ShapeComponent>().MoveComponent();
                     }
-                    
+
                 }
             }
         }
@@ -364,7 +397,8 @@ public class WandObject : MonoBehaviour
         damageValue = 0;
         shieldValue = 0;
         modifierValue = 1;
-        cloneStatusEffects.Clear();
+        cloneDebuffEffects.Clear();
+        cloneBuffEffects.Clear();
         FmodSoundPaths.Clear();
     }
 }

@@ -12,6 +12,7 @@ public class TypeComponent : WandComponent
     public int targets; //Int Values refer to "None,Single,Blast,All" in order starting from 0. Highest value takes priority.
     public List<moves> moveInfos;
     public string FmodEventPath;
+    public List<string> FmodEventPaths;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,7 +39,7 @@ public class TypeComponent : WandComponent
         UpdateTooltip();
     }
 
-    public new void UpdateTooltip()
+    public override void UpdateTooltip()
     {
         base.UpdateTooltip();
         foreach (moves move in moveInfos)

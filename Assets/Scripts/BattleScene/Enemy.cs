@@ -33,8 +33,9 @@ public class Enemy : Unit
 
     Vector3 originalScale;
 
-    void Start()
+    new void Start()
     {
+        base.Start();
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         currentWand = GameObject.FindGameObjectWithTag("Wand").GetComponent<WandObject>();
         tempTargetingImage = Instantiate(targetingImagePrefab);
@@ -112,7 +113,7 @@ public class Enemy : Unit
         }
         if (!isHovered)
         {
-            currentWand.outSideModifierPercent = dmgIncomingPercent;
+            currentWand.outsideDMGModifierPercent = dmgIncomingPercent;
             currentWand.CalculateValues();
             isHovered = true;
         }
@@ -138,7 +139,7 @@ public class Enemy : Unit
     {
         if (isHovered)
         {
-            currentWand.outSideModifierPercent = 1f;
+            currentWand.outsideDMGModifierPercent = 1f;
             currentWand.CalculateValues();
             isHovered = false;
         }

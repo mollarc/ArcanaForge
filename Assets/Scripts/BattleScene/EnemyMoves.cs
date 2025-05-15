@@ -32,8 +32,6 @@ public class EnemyMoves : MonoBehaviour
     public void CalculateValues()
     {
         statusEffects.Clear();
-        print(currentMove.damageValue);
-        print(Mathf.Round(currentMove.damageValue * modifierValue));
         healValue = (int)Mathf.Round(currentMove.healValue);
         damageValue = (int)Mathf.Round(currentMove.damageValue * modifierValue) + modifierValueFlat;
         shieldValue = (int)Mathf.Round(currentMove.shieldValue);
