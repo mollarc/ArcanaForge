@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2343704b-f94d-41fb-8f35-4f16f6f60066}">
+		<property name="assetPath">
+			<value>Posin.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.3032916666666665</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{22dc195f-7b60-4b29-b748-617d0a8c75e2}</destination>
+		</relationship>
+	</object>
+</objects>
