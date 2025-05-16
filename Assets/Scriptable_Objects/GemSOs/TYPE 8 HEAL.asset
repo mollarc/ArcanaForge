@@ -17,29 +17,29 @@ MonoBehaviour:
   manaCost: 2
   cooldown: 2
   uses: -1
-  gemImage: {fileID: -207878726, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
+  gemImage: {fileID: 1589775123, guid: f41753733e4aaca418b20f5481420b78, type: 3}
   moveInfo: 
   sprites:
-  - {fileID: 1191756143, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: -160360875, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: 1629361508, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: 1848364666, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: -285292820, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: 734625203, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: 311360183, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: 2111338430, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: -739540971, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: 1007587044, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: -1986583926, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: -1318041666, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: 1910093842, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: -776949595, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: 181450801, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: 2048461151, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: -265810955, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: -1946938629, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: -1631775106, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
-  - {fileID: -207878726, guid: 5cd0a15bb3cc5e941ab17bdf3ae7d89e, type: 3}
+  - {fileID: 1589775123, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: 1937699794, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: -199153275, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: 21614241, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: 585610803, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: -1323216360, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: -817597532, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: 1598834383, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: 1288757140, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: -367718332, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: 867901737, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: 267256773, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: 566366715, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: 588591740, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: -1301351048, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: 1873683325, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: -2020871662, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: 1631967814, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: -2076740988, guid: f41753733e4aaca418b20f5481420b78, type: 3}
+  - {fileID: -433375652, guid: f41753733e4aaca418b20f5481420b78, type: 3}
   healValue: 8
   damageValue: 0
   shieldValue: 0

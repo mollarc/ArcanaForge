@@ -94,6 +94,9 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         Time.timeScale = 1f;
+        GlobalController.Instance.Restart();
+        FightDB.Instance.currentIndex = -1;
+        RewardDB.Instance.currentIndex = -1;
         SceneManager.LoadScene("MainMenu");
     }
 }

@@ -10,6 +10,11 @@ public class Player : Unit
     private void Awake()
     {
         playerInstance = this;
+        if(GlobalController.Instance.hasntSaved)
+        {
+            SavePlayer();
+            GlobalController.Instance.hasntSaved = false;
+        }
     }
 
     public bool ManaChange(int manaChange, bool casting)

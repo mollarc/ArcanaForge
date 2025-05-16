@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using NUnit.Framework.Internal;
 using System.Collections.Generic;
 using TMPro;
@@ -19,6 +20,8 @@ public abstract class Unit : MonoBehaviour
 
     public bool isDead = false;
 
+    public string FmodHitSoundPath;
+
     public List<StackableEffectSO> stackableEffects = new List<StackableEffectSO>();
     public List<StackableEffectSO> effectsThatAffectOthers = new List<StackableEffectSO>();
 
@@ -36,11 +39,21 @@ public abstract class Unit : MonoBehaviour
         battleHUD.hpText.text = battleHUD.hpSlider.value + " / " + battleHUD.hpSlider.maxValue;
     }
 
-    public void TakeDamage(int dmg, bool isHit)
+    public virtual void TakeDamage(int dmg, bool isHit)
     {
+        if(dmg != 0)
+        {
+            EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(FmodHitSoundPath);
+            if (eventInstance.isValid())
+            {
+                eventInstance.start();
+            }
+        }
         dmgIncomingFlat = 0;
+        GetModifiers();
         if (stackableEffects != null)
         {
+            List<StackableEffectSO> effectsToRemove = new List<StackableEffectSO>();
             foreach (StackableEffectSO s in stackableEffects)
             {
                 if (isHit)
@@ -52,15 +65,25 @@ public abstract class Unit : MonoBehaviour
                             {
                                 break;
                             }
-                            dmgIncomingFlat += s.amount;
+                            //dmgIncomingFlat += s.amount;
+                            s.TickEffect();
+                            if (s.amount <= 0)
+                            {
+                                effectsToRemove.Add(s);
+                                battleHUD.RemoveStatus(stackableEffects.IndexOf(s));
+                            }
                             break;
                     }
                 }
             }
+            foreach(StackableEffectSO s in effectsToRemove)
+            {
+                stackableEffects.Remove(s);
+            }
         }
         if (isHit)
         {
-            dmg = (int)Mathf.Round(dmg * dmgIncomingPercent);
+            //dmg = (int)Mathf.Round(dmg * dmgIncomingPercent);
             dmg += dmgIncomingFlat;
         }
         if (currentShield - dmg < 0)
@@ -120,6 +143,7 @@ public abstract class Unit : MonoBehaviour
 
     public void AddStatus(StackableEffectSO _statusEffect)
     {
+        bool hasStatus = false;
         List<StackableEffectSO> effectsToAdd = new List<StackableEffectSO>();
         if (stackableEffects.Count != 0)
         {
@@ -127,13 +151,13 @@ public abstract class Unit : MonoBehaviour
             {
                 if (effect.effectName == _statusEffect.effectName)
                 {
-                    print("Adding to Status");
+                    hasStatus = true;
                     effect.amount += _statusEffect.amount;
                 }
-                else
-                {
-                    effectsToAdd.Add(_statusEffect);
-                }
+            }
+            if (!hasStatus)
+            {
+                effectsToAdd.Add(_statusEffect);
             }
         }
         else
@@ -141,12 +165,10 @@ public abstract class Unit : MonoBehaviour
             effectsToAdd.Add(_statusEffect);
         }
         stackableEffects.AddRange(effectsToAdd);
-        print("End of Add Status");
     }
 
     public void StartTurnEffects()
     {
-        print("Start Turn Tick");
         List<StackableEffectSO> effectsToRemove = new List<StackableEffectSO>();
         if (stackableEffects != null)
         {
@@ -235,12 +257,13 @@ public abstract class Unit : MonoBehaviour
     {
         dmgIncomingPercent = 1f;
         dmgOutgoingPercent = 0f;
+        dmgIncomingFlat = 0;
+        dmgOutgoingFlat = 0;
         foreach (StackableEffectSO stackableEffect in stackableEffects)
         {
             switch (stackableEffect.effectName)
             {
                 case "Weak":
-                    print("weak");
                     dmgOutgoingPercent = -0.25f;
                     break;
                 case "Fragile":

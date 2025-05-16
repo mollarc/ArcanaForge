@@ -5,7 +5,7 @@ public class RewardDB : MonoBehaviour
 {
     public static RewardDB Instance;
 
-    int currentIndex =-1;
+    public int currentIndex =-1;
 
     public List<RewardSO> rewards;
     void Awake()

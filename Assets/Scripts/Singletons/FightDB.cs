@@ -6,7 +6,7 @@ public class FightDB : MonoBehaviour
 {
     public static FightDB Instance;
 
-    int currentIndex =-1;
+    public int currentIndex =-1;
 
     public List<FightsDataSO> fightList = new List<FightsDataSO>();
 

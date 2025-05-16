@@ -22,6 +22,7 @@ public class WandObject : MonoBehaviour
     private float modifierValue;
     public float outsideDMGModifierPercent = 1f;
     public int outsideDMGModifierFlat;
+    public int outsideEffectDMG;
     public int targets;
     public List<string> moveInfos = new List<string>();
     public List<StackableEffectSO> cloneDebuffEffects = new List<StackableEffectSO>();
@@ -146,6 +147,7 @@ public class WandObject : MonoBehaviour
                     ModifierComponent modifierComponent = modifierSlot.currentItem.GetComponent<ModifierComponent>();
                     manaCost += modifierSlot.currentItem.GetComponent<ModifierComponent>().manaCost;
                     modifierValue += modifierSlot.currentItem.GetComponent<ModifierComponent>().modifierValue;
+                    FmodSoundPaths.Add(modifierComponent.FmodEventPath);
                     if (modifierComponent.targets > targets)
                     {
                         targets = modifierComponent.targets;
@@ -228,12 +230,15 @@ public class WandObject : MonoBehaviour
                     damageValue += playerEffect.amount;
                     break;
                 case "Weak":
-                    modifierValue -= 0.25f;
+                    outsideDMGModifierPercent -= 0.25f;
                     break;
             }
         }
         healValue = (int)Mathf.Round(healValue * modifierValue);
-        damageValue = (int)Mathf.Round((damageValue + outsideDMGModifierFlat) * modifierValue * outsideDMGModifierPercent);
+        if(damageValue > 0)
+        {
+            damageValue = (int)Mathf.Round(((damageValue + outsideDMGModifierFlat) * modifierValue * outsideDMGModifierPercent) + outsideEffectDMG);
+        }
         shieldValue = (int)Mathf.Round(shieldValue * modifierValue);
         if (moveInfos != null)
         {
@@ -397,6 +402,7 @@ public class WandObject : MonoBehaviour
         damageValue = 0;
         shieldValue = 0;
         modifierValue = 1;
+        outsideDMGModifierPercent = 1f;
         cloneDebuffEffects.Clear();
         cloneBuffEffects.Clear();
         FmodSoundPaths.Clear();

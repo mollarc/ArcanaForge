@@ -17,22 +17,24 @@ MonoBehaviour:
   manaCost: 1
   cooldown: 1
   uses: 2
-  gemImage: {fileID: -1710442146, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  gemImage: {fileID: 391800097, guid: 07f836562d1ff1e4ebe93d3c46615e48, type: 3}
   moveInfo: Apply 2 Weak
   sprites:
-  - {fileID: -1020007278, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
-  - {fileID: -1322266353, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
-  - {fileID: -1235452073, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
-  - {fileID: 949849831, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
-  - {fileID: 1540974916, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
-  - {fileID: 1498676378, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
-  - {fileID: -2145123226, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
-  - {fileID: 1853360110, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
-  - {fileID: 22373594, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
-  - {fileID: -1710442146, guid: 8fbeb7ac603325d4aa7c8d58c94a77ca, type: 3}
+  - {fileID: 391800097, guid: 07f836562d1ff1e4ebe93d3c46615e48, type: 3}
+  - {fileID: -1078658168, guid: 07f836562d1ff1e4ebe93d3c46615e48, type: 3}
+  - {fileID: 1550635096, guid: 07f836562d1ff1e4ebe93d3c46615e48, type: 3}
+  - {fileID: 779842619, guid: 07f836562d1ff1e4ebe93d3c46615e48, type: 3}
+  - {fileID: 1832344304, guid: 07f836562d1ff1e4ebe93d3c46615e48, type: 3}
+  - {fileID: -1404065660, guid: 07f836562d1ff1e4ebe93d3c46615e48, type: 3}
+  - {fileID: 866596819, guid: 07f836562d1ff1e4ebe93d3c46615e48, type: 3}
+  - {fileID: 908603263, guid: 07f836562d1ff1e4ebe93d3c46615e48, type: 3}
+  - {fileID: -700448276, guid: 07f836562d1ff1e4ebe93d3c46615e48, type: 3}
+  - {fileID: -285180809, guid: 07f836562d1ff1e4ebe93d3c46615e48, type: 3}
   modifierValue: 0
   numberOfCasts: 0
   targets: 1
   moveInfos: 
   statusEffects:
   - {fileID: 11400000, guid: a5da4f629282dc646ad313ded08df3a0, type: 2}
+  FmodEventPath: 
+  FmodEventPaths: []

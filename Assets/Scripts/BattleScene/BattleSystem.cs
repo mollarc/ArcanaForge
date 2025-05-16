@@ -17,6 +17,10 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject playerPrefab;
     public GameObject enemyPrefab1;
+    public GameObject hitEffectPrefab;
+    public GameObject demoOver;
+    public GameObject gameOverScreen;
+    public RuntimeAnimatorController dmgAnim;
 
     public InventoryController inventoryController;
     public BattleWin winScreen;
@@ -137,6 +141,8 @@ public class BattleSystem : MonoBehaviour
             if (enemy.target)
             {
                 enemy.TargetDeselect();
+                GameObject hitEffect = Instantiate(hitEffectPrefab, enemy.wandEffectSpriteLocation.transform);
+                hitEffect.GetComponentInChildren<Animator>().runtimeAnimatorController = dmgAnim;
                 enemy.AttackedAnim();
                 enemy.TakeDamage(wand1.DamageValue, true);
                 if (wand1.cloneDebuffEffects != null)
@@ -144,6 +150,11 @@ public class BattleSystem : MonoBehaviour
                     foreach (StackableEffectSO stackEffectData in wand1.cloneDebuffEffects)
                     {
                         enemy.AddStatus(stackEffectData);
+                        if(stackEffectData.anim != null)
+                        {
+                            GameObject statusEffect = Instantiate(hitEffectPrefab, enemy.wandEffectSpriteLocation.transform);
+                            statusEffect.GetComponentInChildren<Animator>().runtimeAnimatorController = stackEffectData.anim;
+                        }
                     }
                     enemy.battleHUD.DisplayStatus(enemy.stackableEffects);
                 }
@@ -211,7 +222,7 @@ public class BattleSystem : MonoBehaviour
                 switch (effectName)
                 {
                     case "Hailstorm":
-                        enemy.TakeDamage(playerEffect.amount, true);
+                        enemy.TakeHailDamage(playerEffect.amount);
                         break;
                     default:
                         break;
@@ -261,28 +272,36 @@ public class BattleSystem : MonoBehaviour
 
                 enemy.enemyMoves.UseMove();
 
-                enemy.HealDamage(enemy.enemyMoves.healValue);
-                enemy.GainShield(enemy.enemyMoves.shieldValue);
-                enemy.SetHUD();
-                enemy.AttackAnim();
-
-                playerUnit.TakeDamage(enemy.enemyMoves.damageValue, true);
-                playerHUD.SetHP(playerUnit.currentHP);
-                playerHUD.SetShield(playerUnit);
-
-                if (enemy.enemyMoves.statusEffects != null)
+                for (int i = 0; i<enemy.enemyMoves.castAmount; i++)
                 {
-                    foreach (StackableEffectSO stackEffectData in enemy.enemyMoves.statusEffects)
+                    enemy.HealDamage(enemy.enemyMoves.healValue);
+                    enemy.GainShield(enemy.enemyMoves.shieldValue);
+                    enemy.SetHUD();
+                    enemy.AttackAnim();
+                    playerUnit.TakeDamage(enemy.enemyMoves.damageValue, false);
+                    playerHUD.SetHP(playerUnit.currentHP);
+                    playerHUD.SetShield(playerUnit);
+                    if (enemy.enemyMoves.cloneDebuffEffects != null)
                     {
-                        print(stackEffectData.effectName);
-                        playerUnit.AddStatus(stackEffectData);
+                        foreach (StackableEffectSO stackEffectData in enemy.enemyMoves.cloneDebuffEffects)
+                        {
+                            playerUnit.AddStatus(stackEffectData);
+                        }
                     }
+                    if (enemy.enemyMoves.cloneBuffEffects != null)
+                    {
+                        foreach (StackableEffectSO buffEffectData in enemy.enemyMoves.cloneBuffEffects)
+                        {
+                            print(buffEffectData.effectName);
+                            enemy.AddStatus(buffEffectData);
+                        }
+                    }
+                    enemy.battleHUD.DisplayStatus(enemy.stackableEffects);
+                    playerHUD.DisplayStatus(playerUnit.stackableEffects);
+                    yield return new WaitForSeconds(1f);
                 }
-                playerHUD.DisplayStatus(playerUnit.stackableEffects);
-                yield return new WaitForSeconds(1f);
             }
             if (playerUnit.isDead)
-
             {
                 state = BattleState.LOST;
                 EndBattle();
@@ -328,11 +347,18 @@ public class BattleSystem : MonoBehaviour
             Debug.Log("You Won!");
             playerUnit.SavePlayer();
             wand1.GetComponentInChildren<Button>().gameObject.SetActive(false);
+            GlobalController.Instance.fightsWon++;
+            if (GlobalController.Instance.fightsWon == 3)
+            {
+                demoOver.SetActive(true);
+                return;
+            }
             winScreen.GetRandomRewards();
         }
         else if (state == BattleState.LOST)
         {
             Debug.Log("You Lost!");
+            gameOverScreen.SetActive(true);
         }
     }
 
@@ -390,13 +416,11 @@ public class BattleSystem : MonoBehaviour
 
         if (rayhit.collider.gameObject.tag == "Enemy")
         {
-            print("enemyTargeted");
             Enemy enemy = (Enemy)rayhit.collider.gameObject.GetComponent<Enemy>();
             MarkTargets(enemy);
             castingText.enabled = false;
             isTarget = true;
         }
-        Debug.Log(rayhit.collider.gameObject.name);
         yield break;
     }
 

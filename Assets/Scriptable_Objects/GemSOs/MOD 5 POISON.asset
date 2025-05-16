@@ -14,25 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: Venom
   componentType: 2
-  manaCost: 1
-  cooldown: 0
+  manaCost: 2
+  cooldown: 1
   uses: -1
-  gemImage: {fileID: -1485488481, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  moveInfo: Apply 5 Poison
+  gemImage: {fileID: -1203610624, guid: 658b628cce3cf294f8647c1b642d0f2b, type: 3}
+  moveInfo: Apply 7 Poison
   sprites:
-  - {fileID: -1485488481, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: 523359236, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: 1866812255, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: -1435949910, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: 635192246, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: 2047297694, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: 826463707, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: -1144559631, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: -1319290041, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: -165308693, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
+  - {fileID: -1203610624, guid: 658b628cce3cf294f8647c1b642d0f2b, type: 3}
+  - {fileID: 1085462427, guid: 658b628cce3cf294f8647c1b642d0f2b, type: 3}
+  - {fileID: -2068809817, guid: 658b628cce3cf294f8647c1b642d0f2b, type: 3}
+  - {fileID: -426929475, guid: 658b628cce3cf294f8647c1b642d0f2b, type: 3}
+  - {fileID: 1889428368, guid: 658b628cce3cf294f8647c1b642d0f2b, type: 3}
+  - {fileID: 18921899, guid: 658b628cce3cf294f8647c1b642d0f2b, type: 3}
+  - {fileID: -915595541, guid: 658b628cce3cf294f8647c1b642d0f2b, type: 3}
+  - {fileID: 1420604995, guid: 658b628cce3cf294f8647c1b642d0f2b, type: 3}
+  - {fileID: 520632060, guid: 658b628cce3cf294f8647c1b642d0f2b, type: 3}
+  - {fileID: 68751398, guid: 658b628cce3cf294f8647c1b642d0f2b, type: 3}
   modifierValue: 0
   numberOfCasts: 0
   targets: 1
   moveInfos: 00000000
   statusEffects:
   - {fileID: 11400000, guid: 371aac6cf2e8acf458f67c33825de3f7, type: 2}
+  FmodEventPath: event:/SFX_Poison
+  FmodEventPaths: []

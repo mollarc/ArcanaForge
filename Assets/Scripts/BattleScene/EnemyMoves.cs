@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMoves : MonoBehaviour
 {
+    public int castAmount;
     public int healValue;
     public int damageValue;
     public int shieldValue;
@@ -13,34 +14,50 @@ public class EnemyMoves : MonoBehaviour
 
     public TMP_Text moveValue;
 
-    private TempEnemyMove currentMove;
-    
+    public TempEnemyMove currentMove;
+
     public Sprite moveImage;
     public string moveName;
 
     public List<TempEnemyMove> enemyMoves;
     public List<TempEnemyMove> usedMoves;
 
-    public List<StackableEffectSO> statusEffects;
+    public List<StackableEffectSO> cloneDebuffEffects;
+    public List<StackableEffectSO> cloneBuffEffects;
 
     public void Start()
     {
         modifierValue = 1f;
-        print(modifierValue);
     }
 
     public void CalculateValues()
     {
-        statusEffects.Clear();
+        cloneDebuffEffects.Clear();
+        cloneBuffEffects.Clear();
+        healValue = 0;
+        damageValue = 0;
+        shieldValue = 0;
+        Player.playerInstance.GetModifiers();
+        castAmount = currentMove.castAmount;
         healValue = (int)Mathf.Round(currentMove.healValue);
-        damageValue = (int)Mathf.Round(currentMove.damageValue * modifierValue) + modifierValueFlat;
+        if (currentMove.damageValue > 0)
+        {
+            damageValue = (int)Mathf.Round(((currentMove.damageValue * modifierValue) + modifierValueFlat) * Player.playerInstance.dmgIncomingPercent);
+        }
         shieldValue = (int)Mathf.Round(currentMove.shieldValue);
         if (currentMove.statusEffects != null)
         {
-            foreach(StackableEffectSO statusEffectData in currentMove.statusEffects)
+            foreach (StackableEffectSO statusEffectData in currentMove.statusEffects)
             {
                 StackableEffectSO stackableClone = Instantiate(statusEffectData);
-                statusEffects.Add(stackableClone);
+                if (stackableClone.type == 0)
+                {
+                    cloneDebuffEffects.Add(stackableClone);
+                }
+                else if (stackableClone.type == 1)
+                {
+                    cloneBuffEffects.Add(stackableClone);
+                }
             }
         }
     }
@@ -53,32 +70,51 @@ public class EnemyMoves : MonoBehaviour
         CalculateValues();
         moveImage = currentMove.moveImage;
         moveName = currentMove.moveName;
-        if(statusEffects != null)
+        if (cloneDebuffEffects != null)
         {
-            foreach(StackableEffectSO effectSO in statusEffects)
+            foreach (StackableEffectSO effectSO in cloneDebuffEffects)
             {
                 stringToReturn += effectSO.amount + " " + effectSO.effectName + " ";
             }
         }
-        if (enemyMoves[currentMoveIndex].type ==0)
+        if (cloneBuffEffects != null)
+        {
+            foreach (StackableEffectSO effectSO in cloneBuffEffects)
+            {
+                stringToReturn += effectSO.amount + " " + effectSO.effectName + " ";
+            }
+        }
+        if (enemyMoves[currentMoveIndex].type == 0)
         {
             moveValue.text = damageValue.ToString();
-            return stringToReturn += damageValue.ToString() + " DMG";
+            stringToReturn += damageValue.ToString() + " Damage";
         }
         else if (enemyMoves[currentMoveIndex].type == 1)
         {
             moveValue.text = shieldValue.ToString();
-            return stringToReturn += shieldValue.ToString() + " SHLD";
+            stringToReturn += shieldValue.ToString() + " Shield";
         }
         else if (enemyMoves[currentMoveIndex].type == 2)
         {
             moveValue.text = healValue.ToString();
-            return stringToReturn += healValue.ToString() + " HEAL";
+            stringToReturn += healValue.ToString() + " Heal";
+        }
+        else if (enemyMoves[currentMoveIndex].type == 3)
+        {
+            moveValue.text = damageValue.ToString();
+            stringToReturn += damageValue.ToString() + " Damage ";
+            stringToReturn += shieldValue.ToString() + " Shield";
         }
         else
         {
-            return null;
+            moveValue.text = "";
         }
+        if (castAmount > 1)
+        {
+            moveValue.text += "x" + castAmount;
+            stringToReturn += " " + castAmount + " times";
+        }
+        return stringToReturn;
     }
 
     public string RefreshMoveInfo()
@@ -87,9 +123,16 @@ public class EnemyMoves : MonoBehaviour
         CalculateValues();
         moveImage = currentMove.moveImage;
         moveName = currentMove.moveName;
-        if (statusEffects != null)
+        if (cloneDebuffEffects != null)
         {
-            foreach (StackableEffectSO effectSO in statusEffects)
+            foreach (StackableEffectSO effectSO in cloneDebuffEffects)
+            {
+                stringToReturn += effectSO.amount + " " + effectSO.effectName + " ";
+            }
+        }
+        if (cloneBuffEffects != null)
+        {
+            foreach (StackableEffectSO effectSO in cloneBuffEffects)
             {
                 stringToReturn += effectSO.amount + " " + effectSO.effectName + " ";
             }
@@ -97,22 +140,34 @@ public class EnemyMoves : MonoBehaviour
         if (enemyMoves[currentMoveIndex].type == 0)
         {
             moveValue.text = damageValue.ToString();
-            return stringToReturn += damageValue.ToString() + " DMG";
+            stringToReturn += damageValue.ToString() + " Damage";
         }
         else if (enemyMoves[currentMoveIndex].type == 1)
         {
             moveValue.text = shieldValue.ToString();
-            return stringToReturn += shieldValue.ToString() + " SHLD";
+            stringToReturn += shieldValue.ToString() + " Shield";
         }
         else if (enemyMoves[currentMoveIndex].type == 2)
         {
             moveValue.text = healValue.ToString();
-            return stringToReturn += healValue.ToString() + " HEAL";
+            stringToReturn += healValue.ToString() + " Heal";
+        }
+        else if (enemyMoves[currentMoveIndex].type == 3)
+        {
+            moveValue.text = damageValue.ToString();
+            stringToReturn += damageValue.ToString() + " Damage ";
+            stringToReturn += shieldValue.ToString() + " Shield";
         }
         else
         {
-            return null;
+            moveValue.text = "";
         }
+        if (castAmount > 1)
+        {
+            moveValue.text += "x" + castAmount;
+            stringToReturn += " " + castAmount + " times";
+        }
+        return stringToReturn;
     }
 
     public void UseMove()
@@ -121,7 +176,7 @@ public class EnemyMoves : MonoBehaviour
         enemyMoves.Remove(enemyMoves[currentMoveIndex]);
         if (enemyMoves.Count == 0)
         {
-            foreach(var _usedMove in usedMoves)
+            foreach (var _usedMove in usedMoves)
             {
                 enemyMoves.Add(_usedMove);
             }

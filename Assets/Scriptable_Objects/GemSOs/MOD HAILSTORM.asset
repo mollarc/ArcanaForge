@@ -17,22 +17,24 @@ MonoBehaviour:
   manaCost: 2
   cooldown: 0
   uses: 1
-  gemImage: {fileID: 436941846, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  gemImage: {fileID: -766489446, guid: 8793c152149089d499e0ff621231cb74, type: 3}
   moveInfo: Apply 1 Hailstorm to Self
   sprites:
-  - {fileID: 436941846, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
-  - {fileID: -1950526729, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
-  - {fileID: -570869750, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
-  - {fileID: 2137316203, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
-  - {fileID: 484834128, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
-  - {fileID: -1118330460, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
-  - {fileID: 13024960, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
-  - {fileID: -1764142815, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
-  - {fileID: -174326787, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
-  - {fileID: 328189732, guid: 65ced6f46fc9fdd4ca5ad32b948113f0, type: 3}
+  - {fileID: -766489446, guid: 8793c152149089d499e0ff621231cb74, type: 3}
+  - {fileID: -850988826, guid: 8793c152149089d499e0ff621231cb74, type: 3}
+  - {fileID: 1760318036, guid: 8793c152149089d499e0ff621231cb74, type: 3}
+  - {fileID: -2097823556, guid: 8793c152149089d499e0ff621231cb74, type: 3}
+  - {fileID: 655849133, guid: 8793c152149089d499e0ff621231cb74, type: 3}
+  - {fileID: 1340560122, guid: 8793c152149089d499e0ff621231cb74, type: 3}
+  - {fileID: -54177739, guid: 8793c152149089d499e0ff621231cb74, type: 3}
+  - {fileID: 631777177, guid: 8793c152149089d499e0ff621231cb74, type: 3}
+  - {fileID: -1607083628, guid: 8793c152149089d499e0ff621231cb74, type: 3}
+  - {fileID: 410111292, guid: 8793c152149089d499e0ff621231cb74, type: 3}
   modifierValue: 0
   numberOfCasts: 0
   targets: 0
   moveInfos: 
   statusEffects:
   - {fileID: 11400000, guid: 465991a6bf9fa3d4f898b8432843a949, type: 2}
+  FmodEventPath: 
+  FmodEventPaths: []

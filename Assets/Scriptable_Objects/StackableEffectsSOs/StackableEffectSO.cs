@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StatusEffectSO", menuName = "Scriptable Objects/StatusEffectSO")]
@@ -15,6 +14,7 @@ public class StackableEffectSO : ScriptableObject
     public Sprite effectIcon;
     public string effectTooltip;
     public string effectColor;
+    public RuntimeAnimatorController anim;
 
     [SerializeReference, SubclassSelector]
     public IStackableEffect _status;

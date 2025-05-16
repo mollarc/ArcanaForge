@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Slime DMG
   m_EditorClassIdentifier: 
   moveName: Slime Slap
+  castAmount: 1
   healValue: 0
   damageValue: 7
   shieldValue: 0

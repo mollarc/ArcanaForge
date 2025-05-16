@@ -100,8 +100,10 @@ public class WandComponent : MonoBehaviour
         currentCooldown += _adjustment;
         if (currentCooldown <= 0)
         {
+            print("cooldown0");
             if (wasDisabled)
             {
+                print("wasDisabled");
                 color.r *= 2f;
                 color.g *= 2f;
                 color.b *= 2f;
@@ -183,7 +185,7 @@ public class WandComponent : MonoBehaviour
             if (currentCooldown == 0)
             {
                 cooldownText.text = "";
-                if (currentUses > 0)
+                if (currentUses !=0)
                 {
                     canvasGroup.alpha = 1f;
                     color.r *= 2f;

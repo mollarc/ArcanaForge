@@ -17,29 +17,29 @@ MonoBehaviour:
   manaCost: 2
   cooldown: 2
   uses: -1
-  gemImage: {fileID: 2106834979, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  gemImage: {fileID: 464265905, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
   moveInfo: 
   sprites:
-  - {fileID: 1742282348, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 271044431, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 1381173374, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -122176162, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -1995569014, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -1059924982, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 2070312375, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -332464262, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -1603176296, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -652709655, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -873905487, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -489584839, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 1839297596, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -145899946, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -1197163692, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 1355653197, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -272041666, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 1033175633, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 903817027, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 2106834979, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: 464265905, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: 1573274255, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: -134184515, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: 656183125, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: 759994860, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: 1524389466, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: -160618937, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: -1776815787, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: -1554926694, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: 764207055, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: 131996682, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: 1878517440, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: 161839118, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: -2055620337, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: 1267069713, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: -654146722, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: 786216233, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: -104643909, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: -2080656190, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
+  - {fileID: 47407992, guid: 44e623c85a3941b49928ccb2cf0bb950, type: 3}
   healValue: 4
   damageValue: 0
   shieldValue: 8

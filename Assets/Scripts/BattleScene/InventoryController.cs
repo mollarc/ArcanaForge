@@ -168,7 +168,6 @@ public class InventoryController : MonoBehaviour
             {
                 if(slot.currentItem.GetComponent<WandComponent>().currentCooldown > 0) //If gem has a cooldown active
                 {
-                    print(slot.slotIndex);
                     inventoryScript.RemoveGemFromWand(slot.currentItem, slot.slotIndex);
                 }
             }

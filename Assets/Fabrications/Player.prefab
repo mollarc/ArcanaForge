@@ -964,8 +964,14 @@ MonoBehaviour:
   currentHP: 80
   currentShield: 0
   battleHUD: {fileID: 8690407489344305390}
+  dmgIncomingPercent: 0
+  dmgOutgoingPercent: 0
+  dmgIncomingFlat: 0
+  dmgOutgoingFlat: 0
   isDead: 0
+  FmodHitSoundPath: event:/SFX_P+MImpact
   stackableEffects: []
+  effectsThatAffectOthers: []
   maxMana: 10
   currentMana: 0
 --- !u!1 &6100234411379595077

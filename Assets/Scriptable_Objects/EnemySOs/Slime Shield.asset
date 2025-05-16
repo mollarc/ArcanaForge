@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Slime Shield
   m_EditorClassIdentifier: 
   moveName: Hard Slime
+  castAmount: 1
   healValue: 0
   damageValue: 0
   shieldValue: 6

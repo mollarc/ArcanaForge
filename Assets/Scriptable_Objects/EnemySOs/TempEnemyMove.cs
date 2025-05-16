@@ -6,6 +6,7 @@ using UnityEngine;
 public class TempEnemyMove : ScriptableObject
 {
     public string moveName;
+    public int castAmount;
     public int healValue;
     public int damageValue;
     public int shieldValue;

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1221b30dd9789e64989c07d9f88db538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  castAmount: 0
   healValue: 0
   damageValue: 0
   shieldValue: 0
@@ -51,6 +52,7 @@ MonoBehaviour:
   modifierValueFlat: 0
   currentMoveIndex: 0
   moveValue: {fileID: 2025362662145396842}
+  currentMove: {fileID: 0}
   moveImage: {fileID: 0}
   moveName: 
   enemyMoves:
@@ -58,7 +60,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f3cddd7e4cd146645b88b4b46b2e5320, type: 2}
   - {fileID: 11400000, guid: b96d16a01c99d1f4182672035e6bacce, type: 2}
   usedMoves: []
-  statusEffects: []
+  cloneDebuffEffects: []
+  cloneBuffEffects: []
 --- !u!1 &1074155572174883423
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +370,7 @@ MonoBehaviour:
   dmgIncomingFlat: 0
   dmgOutgoingFlat: 0
   isDead: 0
+  FmodHitSoundPath: event:/SFX_SImpact
   stackableEffects: []
   effectsThatAffectOthers: []
   m_Renderer: {fileID: 0}
@@ -377,8 +381,9 @@ MonoBehaviour:
   fade: {fileID: 2166558759443220373}
   targetingImagePrefab: {fileID: 4094055564976525389, guid: ad2ab36cd69fdd340bd50aafcc34f21e, type: 3}
   tempTargetingImage: {fileID: 0}
+  wandEffectSpriteLocation: {fileID: 4982726014660694215}
   currentWand: {fileID: 0}
-  tooltip: {fileID: 3045410741114429619}
+  tooltip: {fileID: 614284265151882805}
 --- !u!61 &9130511475917198177
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -413,7 +418,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.6}
+  m_Offset: {x: 0, y: -0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -423,7 +428,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 1.75}
+  m_Size: {x: 2, y: 1.5}
   m_EdgeRadius: 0
 --- !u!1 &2356836525481926495
 GameObject:
@@ -676,10 +681,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3536535727977625465}
-  - component: {fileID: 3045410741114429619}
   - component: {fileID: 845579228656838588}
   - component: {fileID: 3196545386984011140}
   - component: {fileID: 2166558759443220373}
+  - component: {fileID: 614284265151882805}
   m_Layer: 0
   m_Name: MoveImage
   m_TagString: Untagged
@@ -707,26 +712,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.675}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3045410741114429619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3857788444917331308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41a4aad8a0654354f8a8c06b17c93d92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tooltipDescription: 
-  tooltipName: 
-  tooltipMana: 
-  tooltipCooldown: 
-  tooltipUses: 
-  tooltipSprite: {fileID: 21300000, guid: b2c6c65ac5709a24aa614480aebb151a, type: 3}
-  tooltipDisplay: 0
-  itemInspector: {fileID: 0}
 --- !u!222 &845579228656838588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -778,6 +763,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 0.75
+--- !u!114 &614284265151882805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857788444917331308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05d3539f8b6a0940a1676fb4419e19d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipDescription: 
+  tooltipName: 
+  tooltipMana: 
+  tooltipCooldown: 
+  tooltipUses: 
+  tooltipSprite: {fileID: 21300000, guid: b2c6c65ac5709a24aa614480aebb151a, type: 3}
+  tooltipDisplay: 0
+  itemInspector: {fileID: 0}
+  enemy: {fileID: -6898545311652284167}
+  effectTooltips: []
 --- !u!1 &4108410840082762530
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +815,8 @@ Transform:
   m_LocalPosition: {x: 0.099, y: -0.164, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 27755624881611128}
   m_Father: {fileID: 2811887978474442546}
   m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
 --- !u!212 &8915282701702856815
@@ -978,6 +986,37 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &4982726014660694215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 27755624881611128}
+  m_Layer: 0
+  m_Name: HitEffectLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &27755624881611128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982726014660694215}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.043, y: -0.575, z: -0.016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4889364621505021153}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5013360685142171965
 GameObject:
   m_ObjectHideFlags: 0

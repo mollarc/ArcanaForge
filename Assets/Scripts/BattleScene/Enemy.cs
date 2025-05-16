@@ -1,7 +1,6 @@
-using Mono.Cecil;
+using FMOD.Studio;
 using System.Collections;
-using TMPro;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,10 +21,11 @@ public class Enemy : Unit
     public SceneFade fade;
     public GameObject targetingImagePrefab;
     public GameObject tempTargetingImage;
+    public GameObject wandEffectSpriteLocation;
     public WandObject currentWand;
     GameObject canvas;
 
-    public Tooltip tooltip;
+    public EnemyMoveTooltip tooltip;
 
     Vector3 pointA;
     Vector3 pointB;
@@ -46,6 +46,141 @@ public class Enemy : Unit
         pointA = transform.position;
         pointB = transform.position + Vector3.left;
         pointC = transform.position + Vector3.right;
+    }
+
+    public override void TakeDamage(int dmg, bool isHit)
+    {
+        dmgIncomingFlat = 0;
+        GetModifiers();
+        if (stackableEffects != null)
+        {
+            List<StackableEffectSO> effectsToRemove = new List<StackableEffectSO>();
+            foreach (StackableEffectSO s in stackableEffects)
+            {
+                if (isHit)
+                {
+                    switch (s.effectName)
+                    {
+                        case "Frigid":
+                            if (dmg <= 0)
+                            {
+                                break;
+                            }
+                            //dmgIncomingFlat += s.amount;
+                            s.TickEffect();
+                            if (s.amount <= 0)
+                            {
+                                effectsToRemove.Add(s);
+                                battleHUD.RemoveStatus(stackableEffects.IndexOf(s));
+                            }
+                            break;
+                    }
+                }
+            }
+            foreach (StackableEffectSO s in effectsToRemove)
+            {
+                stackableEffects.Remove(s);
+            }
+        }
+        if (isHit)
+        {
+            //dmg = (int)Mathf.Round(dmg * dmgIncomingPercent);
+            dmg += dmgIncomingFlat;
+            if (dmg != 0)
+            {
+                EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(FmodHitSoundPath);
+                if (eventInstance.isValid())
+                {
+                    print("HitSound");
+                    eventInstance.start();
+                }
+            }
+        }
+        if (currentShield - dmg < 0)
+        {
+            dmg -= currentShield;
+            currentShield = 0;
+        }
+        else
+        {
+            currentShield -= dmg;
+            dmg = 0;
+        }
+        currentHP -= dmg;
+
+        if (currentHP <= 0)
+        {
+            isDead = true;
+        }
+        SetHUD();
+        if (isDead)
+        {
+            Destroy(tempTargetingImage);
+        }
+    }
+
+    public void TakeHailDamage(int dmg)
+    {
+        dmgIncomingFlat = 0;
+        GetModifiers();
+        if (stackableEffects != null)
+        {
+            List<StackableEffectSO> effectsToRemove = new List<StackableEffectSO>();
+            foreach (StackableEffectSO s in stackableEffects)
+            {
+                switch (s.effectName)
+                {
+                    case "Frigid":
+                        if (dmg <= 0)
+                        {
+                            break;
+                        }
+                        dmgIncomingFlat += s.amount;
+                        s.TickEffect();
+                        if (s.amount <= 0)
+                        {
+                            effectsToRemove.Add(s);
+                            battleHUD.RemoveStatus(stackableEffects.IndexOf(s));
+                        }
+                        break;
+                }
+            }
+            foreach (StackableEffectSO s in effectsToRemove)
+            {
+                stackableEffects.Remove(s);
+            }
+        }
+        dmg += dmgIncomingFlat;
+        if (dmg != 0)
+        {
+            EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(FmodHitSoundPath);
+            if (eventInstance.isValid())
+            {
+                print("HitSound");
+                eventInstance.start();
+            }
+        }
+        if (currentShield - dmg < 0)
+        {
+            dmg -= currentShield;
+            currentShield = 0;
+        }
+        else
+        {
+            currentShield -= dmg;
+            dmg = 0;
+        }
+        currentHP -= dmg;
+
+        if (currentHP <= 0)
+        {
+            isDead = true;
+        }
+        SetHUD();
+        if (isDead)
+        {
+            Destroy(tempTargetingImage);
+        }
     }
 
     public void AttackAnim()
@@ -96,15 +231,6 @@ public class Enemy : Unit
         transform.position = pointA;
     }
 
-    public new void TakeDamage(int dmg, bool i)
-    {
-        base.TakeDamage(dmg, i);
-        if (isDead)
-        {
-            Destroy(tempTargetingImage);
-        }
-    }
-
     private void OnMouseOver()
     {
         if (isDead)
@@ -114,9 +240,18 @@ public class Enemy : Unit
         if (!isHovered)
         {
             currentWand.outsideDMGModifierPercent = dmgIncomingPercent;
-            currentWand.CalculateValues();
-            isHovered = true;
+            foreach (StackableEffectSO s in stackableEffects)
+            {
+                switch (s.effectName)
+                {
+                    case "Frigid":
+                        currentWand.outsideEffectDMG = s.amount;
+                        break;
+                }
+            }
         }
+        currentWand.CalculateValues();
+        isHovered = true;
         Image image = tempTargetingImage.GetComponent<Image>();
         //first you need the RectTransform component of your canvas
         RectTransform CanvasRect = canvas.GetComponent<RectTransform>();
@@ -140,6 +275,8 @@ public class Enemy : Unit
         if (isHovered)
         {
             currentWand.outsideDMGModifierPercent = 1f;
+            currentWand.outsideDMGModifierFlat = 0;
+            currentWand.outsideEffectDMG = 0;
             currentWand.CalculateValues();
             isHovered = false;
         }
@@ -170,9 +307,18 @@ public class Enemy : Unit
         StartCoroutine(fade.FadeOutEffect());
         GetModifiers();
         enemyMoves.modifierValue = 1f;
+        enemyMoves.modifierValueFlat = 0;
         enemyMoves.modifierValue += dmgOutgoingPercent;
         enemyMoves.modifierValueFlat += dmgOutgoingFlat;
         tooltip.tooltipDescription = enemyMoves.LoadMove();
+        if (enemyMoves.currentMove.statusEffects != null)
+        {
+            foreach (StackableEffectSO s in enemyMoves.currentMove.statusEffects)
+            {
+                string effect = s.effectName + ": " + s.effectTooltip;
+                tooltip.GetEffectTooltip(effect);
+            }
+        }
         moveImage.sprite = enemyMoves.moveImage;
         tooltip.tooltipSprite = m_Renderer.sprite;
         tooltip.tooltipName = enemyMoves.moveName;
@@ -182,9 +328,17 @@ public class Enemy : Unit
     {
         GetModifiers();
         enemyMoves.modifierValue = 1f;
+        enemyMoves.modifierValueFlat = 0;
         enemyMoves.modifierValue += dmgOutgoingPercent;
         enemyMoves.modifierValueFlat += dmgOutgoingFlat;
         tooltip.tooltipDescription = enemyMoves.RefreshMoveInfo();
+        if (enemyMoves.currentMove.statusEffects != null)
+        {
+            foreach (StackableEffectSO s in enemyMoves.currentMove.statusEffects)
+            {
+                tooltip.GetEffectTooltip(s.effectName + ": " + s.effectTooltip);
+            }
+        }
         moveImage.sprite = enemyMoves.moveImage;
         tooltip.tooltipSprite = m_Renderer.sprite;
         tooltip.tooltipName = enemyMoves.moveName;

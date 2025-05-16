@@ -20,26 +20,26 @@ MonoBehaviour:
   gemImage: {fileID: 2106834979, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
   moveInfo: 
   sprites:
-  - {fileID: 1742282348, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 271044431, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 1381173374, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -122176162, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -1995569014, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -1059924982, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 2070312375, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -332464262, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -1603176296, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -652709655, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -873905487, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -489584839, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 1839297596, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -145899946, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -1197163692, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 1355653197, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: -272041666, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 1033175633, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 903817027, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
-  - {fileID: 2106834979, guid: 367bdf081d76ed847a749426c1fcd38b, type: 3}
+  - {fileID: -1668329019, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: 259913048, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: 202106995, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: 2114848691, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: -901314086, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: -855237156, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: 1125445558, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: -1661835277, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: 375799221, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: 852646386, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: -2117449749, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: -2018310954, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: -1255697097, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: -793939870, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: 692994486, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: 539605928, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: 40384628, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: 1035524754, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: -1086744233, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
+  - {fileID: 1221062822, guid: 0a8d1b3d1891d0e4b9199be1ea4eded6, type: 3}
   healValue: 0
   damageValue: 8
   shieldValue: 0

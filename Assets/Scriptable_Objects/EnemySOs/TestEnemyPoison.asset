@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TestEnemyPoison
   m_EditorClassIdentifier: 
   moveName: TestPoison
+  castAmount: 1
   healValue: 0
   damageValue: 1
   shieldValue: 0

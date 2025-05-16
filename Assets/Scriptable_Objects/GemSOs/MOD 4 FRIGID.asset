@@ -17,22 +17,24 @@ MonoBehaviour:
   manaCost: 1
   cooldown: 0
   uses: -1
-  gemImage: {fileID: -1485488481, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
+  gemImage: {fileID: 844049177, guid: 456d429766cf57941afc8fee502441d6, type: 3}
   moveInfo: Apply 4 Frigid
   sprites:
-  - {fileID: -1485488481, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: 523359236, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: 1866812255, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: -1435949910, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: 635192246, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: 2047297694, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: 826463707, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: -1144559631, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: -1319290041, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
-  - {fileID: -165308693, guid: 0c89d93142e5f4a4791a944edfafd1a8, type: 3}
+  - {fileID: 844049177, guid: 456d429766cf57941afc8fee502441d6, type: 3}
+  - {fileID: 2036600887, guid: 456d429766cf57941afc8fee502441d6, type: 3}
+  - {fileID: -913221338, guid: 456d429766cf57941afc8fee502441d6, type: 3}
+  - {fileID: 428399851, guid: 456d429766cf57941afc8fee502441d6, type: 3}
+  - {fileID: 832185298, guid: 456d429766cf57941afc8fee502441d6, type: 3}
+  - {fileID: -798061491, guid: 456d429766cf57941afc8fee502441d6, type: 3}
+  - {fileID: -1043401653, guid: 456d429766cf57941afc8fee502441d6, type: 3}
+  - {fileID: -2016260222, guid: 456d429766cf57941afc8fee502441d6, type: 3}
+  - {fileID: -1870237996, guid: 456d429766cf57941afc8fee502441d6, type: 3}
+  - {fileID: -1138346767, guid: 456d429766cf57941afc8fee502441d6, type: 3}
   modifierValue: 0
   numberOfCasts: 0
   targets: 1
   moveInfos: 02000000
   statusEffects:
   - {fileID: 11400000, guid: b489be9c244830842bfcf5532f42149a, type: 2}
+  FmodEventPath: event:/SFX_Ice
+  FmodEventPaths: []
