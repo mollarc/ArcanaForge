@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ff8c378ee3c0a841a0113079a4ca736, type: 3}
+  m_Name: Hailstorm
+  m_EditorClassIdentifier: 
+  effectName: Hailstorm
+  effectIcon: {fileID: 21300000, guid: dd12b3e72ccdfc14c841ae7f9012db31, type: 3}
+  effectTooltip: Deal X Damage to All enemies on Turn End. Counts as a Hit.
+  effectColor: '#11FfEE'

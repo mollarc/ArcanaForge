@@ -7,26 +7,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 806895d737e11754fad2cdc97736c144, type: 3}
   m_Name: Slime Poison
   m_EditorClassIdentifier: 
   permanent: 0
   turnStartTick: 0
-  scalesWithAmount: 0
+  scalesWithAmount: 1
   amount: 3
   tickAmount: 1
   type: 0
-  effectName: Poison
-  effectIcon: {fileID: 21300000, guid: a84e5cf74db2b5343925a256b0fbe3f7, type: 3}
-  effectTooltip: Loses X HP on Turn End and decreases by 1.
-  effectColor: '#229600'
-  _status:
-    rid: 444075488482164804
+  effectData: {fileID: 11400000, guid: 29e7faf032474ab40b4cafcaf5c2ba6b, type: 2}
+  effectIcon: {fileID: 0}
+  anim: {fileID: 0}
+  tick:
+    rid: 7533948456766799968
   references:
     version: 2
     RefIds:
-    - rid: 444075488482164804
+    - rid: 7533948456766799968
       type: {class: DecreaseByTick, ns: , asm: Assembly-CSharp}
       data: 

@@ -10,17 +10,19 @@ public class StackableEffectSO : ScriptableObject
     public int amount;
     public int tickAmount;
     public int type; //Type of effect. 0 Apply to Enemy, 1 Apply to Self
-    public string effectName;
+    public EffectDataSO effectData;
     public Sprite effectIcon;
-    public string effectTooltip;
-    public string effectColor;
     public RuntimeAnimatorController anim;
 
     [SerializeReference, SubclassSelector]
-    public IStackableEffect _status;
+    public IStackableEffect tick;
 
-    public int TickLogic(int amount, int tick) => (int)_status?.TickLogic(amount, tick);
+    public int TickLogic(int amount, int tick) => (int)this.tick?.TickLogic(amount, tick);
 
+    void Awake()
+    {
+        effectIcon = effectData.effectIcon;
+    }
     public void TickEffect()
     {
         if(!permanent)

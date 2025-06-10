@@ -59,7 +59,7 @@ public class Enemy : Unit
             {
                 if (isHit)
                 {
-                    switch (s.effectName)
+                    switch (s.effectData.effectName)
                     {
                         case "Frigid":
                             if (dmg <= 0)
@@ -128,7 +128,7 @@ public class Enemy : Unit
             List<StackableEffectSO> effectsToRemove = new List<StackableEffectSO>();
             foreach (StackableEffectSO s in stackableEffects)
             {
-                switch (s.effectName)
+                switch (s.effectData.effectName)
                 {
                     case "Frigid":
                         if (dmg <= 0)
@@ -242,10 +242,13 @@ public class Enemy : Unit
             currentWand.outsideDMGModifierPercent = dmgIncomingPercent;
             foreach (StackableEffectSO s in stackableEffects)
             {
-                switch (s.effectName)
+                switch (s.effectData.effectName)
                 {
                     case "Frigid":
                         currentWand.outsideEffectDMG = s.amount;
+                        break;
+                    case "Fragile":
+                        currentWand.outsideDMGModifierPercent = 1.5f;
                         break;
                 }
             }
@@ -315,7 +318,7 @@ public class Enemy : Unit
         {
             foreach (StackableEffectSO s in enemyMoves.currentMove.statusEffects)
             {
-                string effect = s.effectName + ": " + s.effectTooltip;
+                string effect = s.effectData.effectName + ": " + s.effectData.effectTooltip;
                 tooltip.GetEffectTooltip(effect);
             }
         }
@@ -336,7 +339,7 @@ public class Enemy : Unit
         {
             foreach (StackableEffectSO s in enemyMoves.currentMove.statusEffects)
             {
-                tooltip.GetEffectTooltip(s.effectName + ": " + s.effectTooltip);
+                tooltip.GetEffectTooltip(s.effectData.effectName + ": " + s.effectData.effectTooltip);
             }
         }
         moveImage.sprite = enemyMoves.moveImage;

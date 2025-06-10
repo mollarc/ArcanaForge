@@ -74,14 +74,14 @@ public class EnemyMoves : MonoBehaviour
         {
             foreach (StackableEffectSO effectSO in cloneDebuffEffects)
             {
-                stringToReturn += effectSO.amount + " " + effectSO.effectName + " ";
+                stringToReturn += effectSO.amount + " " + effectSO.effectData.effectName + " ";
             }
         }
         if (cloneBuffEffects != null)
         {
             foreach (StackableEffectSO effectSO in cloneBuffEffects)
             {
-                stringToReturn += effectSO.amount + " " + effectSO.effectName + " ";
+                stringToReturn += effectSO.amount + " " + effectSO.effectData.effectName + " ";
             }
         }
         if (enemyMoves[currentMoveIndex].type == 0)
@@ -127,14 +127,14 @@ public class EnemyMoves : MonoBehaviour
         {
             foreach (StackableEffectSO effectSO in cloneDebuffEffects)
             {
-                stringToReturn += effectSO.amount + " " + effectSO.effectName + " ";
+                stringToReturn += effectSO.amount + " " + effectSO.effectData.effectName + " ";
             }
         }
         if (cloneBuffEffects != null)
         {
             foreach (StackableEffectSO effectSO in cloneBuffEffects)
             {
-                stringToReturn += effectSO.amount + " " + effectSO.effectName + " ";
+                stringToReturn += effectSO.amount + " " + effectSO.effectData.effectName + " ";
             }
         }
         if (enemyMoves[currentMoveIndex].type == 0)

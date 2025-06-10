@@ -7,7 +7,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 806895d737e11754fad2cdc97736c144, type: 3}
   m_Name: Golem Power
@@ -18,15 +18,13 @@ MonoBehaviour:
   amount: 2
   tickAmount: 0
   type: 1
-  effectName: Power
-  effectIcon: {fileID: 21300000, guid: 5fba48a5e14e2fc4487a393de72d049c, type: 3}
-  effectTooltip: Increase Damage by X
-  effectColor: '#c00000'
-  _status:
-    rid: 444075488482164804
+  effectData: {fileID: 11400000, guid: 47e8a730b21e4af4d8193b5b892b35fe, type: 2}
+  effectIcon: {fileID: 0}
+  anim: {fileID: 0}
+  tick:
+    rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 444075488482164804
-      type: {class: DecreaseByTick, ns: , asm: Assembly-CSharp}
-      data: 
+    - rid: -2
+      type: {class: , ns: , asm: }

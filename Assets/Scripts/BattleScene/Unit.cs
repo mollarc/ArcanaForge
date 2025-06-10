@@ -58,7 +58,7 @@ public abstract class Unit : MonoBehaviour
             {
                 if (isHit)
                 {
-                    switch (s.effectName)
+                    switch (s.effectData.effectName)
                     {
                         case "Frigid":
                             if(dmg <= 0)
@@ -149,7 +149,7 @@ public abstract class Unit : MonoBehaviour
         {
             foreach (StackableEffectSO effect in stackableEffects)
             {
-                if (effect.effectName == _statusEffect.effectName)
+                if (effect.effectData.effectName == _statusEffect.effectData.effectName)
                 {
                     hasStatus = true;
                     effect.amount += _statusEffect.amount;
@@ -176,7 +176,7 @@ public abstract class Unit : MonoBehaviour
             {
                 if (effect.turnStartTick)
                 {
-                    string effectName = effect.effectName;
+                    string effectName = effect.effectData.effectName;
                     switch (effectName)
                     {
                         default:
@@ -208,7 +208,7 @@ public abstract class Unit : MonoBehaviour
             {
                 if (!effect.turnStartTick)
                 {
-                    string effectName = effect.effectName;
+                    string effectName = effect.effectData.effectName;
                     switch (effectName)
                     {
                         case "Poison":
@@ -261,7 +261,7 @@ public abstract class Unit : MonoBehaviour
         dmgOutgoingFlat = 0;
         foreach (StackableEffectSO stackableEffect in stackableEffects)
         {
-            switch (stackableEffect.effectName)
+            switch (stackableEffect.effectData.effectName)
             {
                 case "Weak":
                     dmgOutgoingPercent = -0.25f;

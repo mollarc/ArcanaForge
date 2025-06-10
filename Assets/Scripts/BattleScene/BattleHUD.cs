@@ -80,15 +80,15 @@ public class BattleHUD : MonoBehaviour
                 string tooltipText;
                 if(effect.scalesWithAmount)
                 {
-                    tooltipText = effect.effectTooltip.Replace("X", "<color=" + effect.effectColor + ">" + effect.amount.ToString() + "</color>");
+                    tooltipText = effect.effectData.effectTooltip.Replace("X", "<color=" + effect.effectData.effectColor + ">" + effect.amount.ToString() + "</color>");
                 }
                 else
                 {
-                    tooltipText = effect.effectTooltip;
+                    tooltipText = effect.effectData.effectTooltip;
                 }
                 Tooltip tooltip = item.GetComponentInChildren<Tooltip>();
                 tooltip.tooltipDescription = tooltipText;
-                tooltip.tooltipName = "<color=" + effect.effectColor + ">" + effect.effectName.ToUpper() + "</color>";
+                tooltip.tooltipName = "<color=" + effect.effectData.effectColor + ">" + effect.effectData.effectName.ToUpper() + "</color>";
                 tooltip.tooltipSprite = effect.effectIcon;
                 statusEffectList.Add(item);
             }

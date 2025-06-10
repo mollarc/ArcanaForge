@@ -218,7 +218,7 @@ public class BattleSystem : MonoBehaviour
         {
             foreach(StackableEffectSO playerEffect in playerUnit.effectsThatAffectOthers)
             {
-                string effectName = playerEffect.effectName;
+                string effectName = playerEffect.effectData.effectName;
                 switch (effectName)
                 {
                     case "Hailstorm":
@@ -292,7 +292,7 @@ public class BattleSystem : MonoBehaviour
                     {
                         foreach (StackableEffectSO buffEffectData in enemy.enemyMoves.cloneBuffEffects)
                         {
-                            print(buffEffectData.effectName);
+                            print(buffEffectData.effectData.effectName);
                             enemy.AddStatus(buffEffectData);
                         }
                     }

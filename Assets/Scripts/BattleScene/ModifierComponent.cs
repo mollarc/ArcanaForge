@@ -45,7 +45,7 @@ public class ModifierComponent : WandComponent
         {
             foreach(StackableEffectSO s in statusEffects)
             {
-                tooltip.GetEffectTooltip(s.effectName +": " +s.effectTooltip);
+                tooltip.GetEffectTooltip(s.effectData.effectName + ": " + s.effectData.effectTooltip);
             }
         }
     }

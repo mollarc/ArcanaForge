@@ -224,13 +224,13 @@ public class WandObject : MonoBehaviour
         manaCost *= -1;
         foreach (StackableEffectSO playerEffect in Player.playerInstance.stackableEffects)
         {
-            switch (playerEffect.effectName)
+            switch (playerEffect.effectData.effectName)
             {
                 case "Power":
                     damageValue += playerEffect.amount;
                     break;
                 case "Weak":
-                    outsideDMGModifierPercent -= 0.25f;
+                    outsideDMGModifierPercent = 0.75f;
                     break;
             }
         }
@@ -262,7 +262,7 @@ public class WandObject : MonoBehaviour
         {
             foreach (StackableEffectSO stackableEffectSO in cloneDebuffEffects)
             {
-                switch (stackableEffectSO.effectName)
+                switch (stackableEffectSO.effectData.effectName)
                 {
                     case "Poison":
                         wandMoveText.text += stackableEffectSO.amount.ToString() + " Poison ";
@@ -286,7 +286,7 @@ public class WandObject : MonoBehaviour
         {
             foreach (StackableEffectSO stackableEffectSO in cloneBuffEffects)
             {
-                switch (stackableEffectSO.effectName)
+                switch (stackableEffectSO.effectData.effectName)
                 {
                     case "Power":
                         wandMoveText.text += stackableEffectSO.amount.ToString() + " Power ";
@@ -402,7 +402,6 @@ public class WandObject : MonoBehaviour
         damageValue = 0;
         shieldValue = 0;
         modifierValue = 1;
-        outsideDMGModifierPercent = 1f;
         cloneDebuffEffects.Clear();
         cloneBuffEffects.Clear();
         FmodSoundPaths.Clear();

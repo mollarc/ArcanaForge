@@ -7,7 +7,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 806895d737e11754fad2cdc97736c144, type: 3}
   m_Name: Hailstorm
@@ -18,15 +18,13 @@ MonoBehaviour:
   amount: 1
   tickAmount: 0
   type: 1
-  effectName: Hailstorm
-  effectIcon: {fileID: 21300000, guid: dd12b3e72ccdfc14c841ae7f9012db31, type: 3}
-  effectTooltip: Deal X Damage to All enemies on Turn End. Counts as a Hit.
-  effectColor: '#11FfEE'
-  _status:
-    rid: 444075488482164804
+  effectData: {fileID: 11400000, guid: d7f2a03404599234fad47af27e013b59, type: 2}
+  effectIcon: {fileID: 0}
+  anim: {fileID: 0}
+  tick:
+    rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 444075488482164804
-      type: {class: DecreaseByTick, ns: , asm: Assembly-CSharp}
-      data: 
+    - rid: -2
+      type: {class: , ns: , asm: }

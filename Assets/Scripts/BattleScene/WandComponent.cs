@@ -100,7 +100,6 @@ public class WandComponent : MonoBehaviour
         currentCooldown += _adjustment;
         if (currentCooldown <= 0)
         {
-            print("cooldown0");
             if (wasDisabled)
             {
                 print("wasDisabled");
@@ -166,7 +165,7 @@ public class WandComponent : MonoBehaviour
             cooldownText.text = currentCooldown.ToString();
             currentUses--;
             UpdateTooltip();
-            if (currentCooldown == 0)
+            if (currentCooldown == 0 && currentUses!=0)
             {
                 cooldownText.text = "";
                 return false;
@@ -194,6 +193,10 @@ public class WandComponent : MonoBehaviour
                     image.color = color;
                 }
             }
+        }
+        else if (currentUses == 0)
+        {
+            return true;
         }
         else if (!wasUsed)
         {
